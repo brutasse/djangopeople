@@ -71,3 +71,16 @@ class DjangoPeopleTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.redirect_chain), 1)
         self.assertTrue('<h1>Change your password</h1>' in response.content)
+
+    def test_signup(self):
+        url = reverse('signup')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('<h1>Sign up as a Django Person</h1>' in response.content)
+
+        data = {'password1': "123",
+                'password2': "123"}
+
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('Your password needs to be at least 5 characters long.' in response.content)
