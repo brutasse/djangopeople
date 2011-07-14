@@ -147,8 +147,11 @@ class SignupForm(forms.Form):
     # Validation
     def clean_password1(self):
         "Only required if NO openid set for this form"
-        if not self.openid and not self.cleaned_data.get('password1', ''):
+        password1 = self.cleaned_data.get('password1', '')
+        if not self.openid and not password1:
             raise forms.ValidationError('Password is required')
+        if len(password1) < 5:
+            raise forms.ValidationError('Your password needs to be at least 5 characters long.')
         return self.cleaned_data['password1']
 
     def clean_password2(self):
