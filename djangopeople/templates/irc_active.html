@@ -6,7 +6,7 @@
 
 {% block header %}
         <h1>Active on IRC in the past hour</h1>
-        {% if people_list %}<p class="meta">{{ people_list|length }} {% ifequal people_list.__len__ 1 %}person{% else %}people{% endifequal %}{% else %}No one is currently active{% endif %}
+        {% if people_list %}<p class="meta">{{ people_list|length }} {% ifequal people_list.length 1 %}person{% else %}people{% endifequal %}{% else %}No one is currently active{% endif %}
 {% endblock %}
 
 {% block map %}
