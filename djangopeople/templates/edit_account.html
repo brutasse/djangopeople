@@ -18,15 +18,15 @@
   <li><a href="{% url 'edit_finding' user.username %}">Update your contact details</a></li>
   <li><a href="{% url 'edit_finding' user.username %}#privacy">Change your privacy settings</a></li>
   <li><a href="{% url 'edit_portfolio' user.username %}">Add sites to your portfolio</a></li>
-  <li>{% if user.has_usable_password %}<a href="{% url 'edit_password' user.username %}">Change your password</a>{% else %}You do not have a password set - <a href=""{% url 'edit_password' user.username %}>set one now?</a>{% endif %}</li>
+  <li>{% if user.has_usable_password %}<a href="{% url 'edit_password' user.username %}">Change your password</a>{% else %}You do not have a password set - <a href="{% url 'edit_password' user.username %}">set one now?</a>{% endif %}</li>
 </ul>
 <br>
 {% with user.useropenid_set.count as ocount %}
-<p class="help">{% if ocount %}You have {{ ocount }} OpenID{{ ocount|pluralize }} associated with your account. <a href="{% url 'openid_associations' %}">Manage your OpenID{{ ocount|pluralize }}</a>{% else %}If you have an <a href="http://openid.net/">OpenID</a>, you can <a href=""{% url 'openid_associations' %}>associate it with your account</a>. This will allow you to log in using your OpenID instead of your password.{% endif %}</p>
+<p class="help">{% if ocount %}You have {{ ocount }} OpenID{{ ocount|pluralize }} associated with your account. <a href="{% url 'openid_associations' %}">Manage your OpenID{{ ocount|pluralize }}</a>{% else %}If you have an <a href="http://openid.net/">OpenID</a>, you can <a href="{% url 'openid_associations' %}">associate it with your account</a>. This will allow you to log in using your OpenID instead of your password.{% endif %}</p>
 {% endwith %}
 
     <h2>Advanced: Use your profile page as an OpenID</h2>
-    <form method="post" action="{% url 'edit_account' user.username %}">
+    <form method="post" action="{% url 'edit_account' user.username %}">{% csrf_token %}
     <p class="help">
         If you already have an OpenID, you can configure your Django People profile page to delegate to it. This means you'll be able to use your profile page as an OpenID, without having to sign in to Django People first.
     </p>

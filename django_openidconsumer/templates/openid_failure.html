@@ -23,7 +23,7 @@ input.openid {
 <div class="highlight"><p><strong>OpenID failed</strong>, {{ message|escape }}</p></div>
 
 
-    <form method="post" action="{{ action }}">
+    <form method="post" action="{{ action }}">{% csrf_token %}
         <div class="fieldWrapper">
             <label for="id_openid">OpenID</label>
             <input id="id_openid" class="openid" type="text" name="openid_url">

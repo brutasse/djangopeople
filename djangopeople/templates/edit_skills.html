@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-<form action="{% url 'edit_skills' user.username %}" method="POST" id="editSkills">
+<form action="{% url 'edit_skills' user.username %}" method="POST" id="editSkills">{% csrf_token %}
     <p>{{ form.skills }} <input type="submit" value="Save"></p>
 </form>
 

@@ -8,7 +8,7 @@
     {% block content %}
         <div class="primary">
             <h2>{% if person.photo %}Upload a new profile photo{% else %}Add a profile photo{% endif %}</h2>
-            <form enctype="multipart/form-data" method="post" action=".">
+            <form enctype="multipart/form-data" method="post" action=".">{% csrf_token %}
                 <div class="fieldWrapper">
                     {{ form.photo.errors }}
                     <label for="id_photo">Photo</label>

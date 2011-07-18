@@ -30,7 +30,7 @@
 </div>
 
 <div class="content">
-    <form method="post" action="{% url 'edit_location' user.username %}">
+    <form method="post" action="{% url 'edit_location' user.username %}">{% csrf_token %}
     <fieldset>
         <div class="fieldWrapper" id="location">
             {{ form.location_description.errors }}

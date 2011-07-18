@@ -44,7 +44,7 @@ input.openid {
 {% endblock %}
 
 {% block content %}
-	<form method="post" action="{% url 'login' %}">
+	<form method="post" action="{% url 'login' %}">{% csrf_token %}
 		{% if form.errors %}
 			<p class="invalid">Your login attempt failed.</p>
 		{% endif %}
@@ -65,7 +65,7 @@ input.openid {
 
 	<h2>Or sign in with your OpenID</h2>
 
-    <form method="post" action="{% url 'openid_begin' %}">
+    <form method="post" action="{% url 'openid_begin' %}">{% csrf_token %}
     <fieldset>
         <div class="fieldWrapper">
             <label for="id_openid">OpenID</label>

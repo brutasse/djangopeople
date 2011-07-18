@@ -20,7 +20,7 @@ input.openid {
 {% endblock %}
 
 {% block content %}
-    <form method="post" action="{{ action }}">
+    <form method="post" action="{{ action }}">{% csrf_token %}
         <div class="fieldWrapper">
             <label for="id_openid">OpenID</label>
             <input id="id_openid" class="openid" type="text" name="openid_url">

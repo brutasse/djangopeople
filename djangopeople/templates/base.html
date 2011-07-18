@@ -42,7 +42,7 @@
         </ul>
 		{% if not user.is_authenticated %}
 		<div id="hiddenLogin" style="display: none">
-		    <form action="{% url 'login' %}" method="POST"><p><label for="id_usernameH">Username</label><input type="text" name="username" id="id_usernameH"></p><p><label for="id_passwordH">Password</label><input type="password" name="password" id="id_passwordH"></p><p><input type="submit" value="Log in" class="submit"></p>
+		    <form action="{% url 'login' %}" method="POST">{% csrf_token %}<p><label for="id_usernameH">Username</label><input type="text" name="username" id="id_usernameH"></p><p><label for="id_passwordH">Password</label><input type="password" name="password" id="id_passwordH"></p><p><input type="submit" value="Log in" class="submit"></p>
 		        <p class="openid">Or <a href="{% url 'openid_begin' %}">log in with <strong>OpenID</strong></a></p>
 		    </form>
 		</div>

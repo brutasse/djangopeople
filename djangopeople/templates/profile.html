@@ -76,7 +76,7 @@ div.bio a.edit {
                 {% endif %}
                 </ul>
                 {% if is_owner %}
-                <form action="{% url 'edit_skills' person.user.username %}" method="POST" id="editSkills">
+                <form action="{% url 'edit_skills' person.user.username %}" method="POST" id="editSkills">{% csrf_token %}
                 <p>{{ skills_form.skills }} <input type="submit" value="Save"></p>
                 </form>
                 {% endif %}

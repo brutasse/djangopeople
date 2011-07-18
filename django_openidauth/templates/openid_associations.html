@@ -27,7 +27,7 @@ ul.messages {
 {% endif %}
 
 <div id="openidadmin">
-<form action="{{ action }}" method="POST">
+<form action="{{ action }}" method="POST">{% csrf_token %}
 {% if del_buttons %}
 <p>Your account is currently associated with the following OpenID{{ del_buttons|pluralize }}:</p>
 <ul>
@@ -49,7 +49,7 @@ ul.messages {
 
 <p class="help">To associate a new OpenID with this account, sign in with it here:</p>
 
-<form action="{{ action }}" method="POST">
+<form action="{{ action }}" method="POST">{% csrf_token %}
 <p><input type="text" name="openid_url" value=""> <input type="submit" value="Authenticate and associate with this account"></p>
 </form>
 </div>

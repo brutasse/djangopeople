@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block content %}
-    <form method="post" action="{% url 'signup' %}">
+    <form method="post" action="{% url 'signup' %}">{% csrf_token %}
     {% if not openid %}
     <p>Got an <strong class="openid">OpenID</strong>? <a href="{% url 'openid_begin' %}">Sign up with your OpenID now!</a></p>
     {% else %}
