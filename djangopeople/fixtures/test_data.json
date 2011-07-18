@@ -30,7 +30,7 @@
       "last_login": "2011-07-14 15:31:33", 
       "groups": [], 
       "user_permissions": [], 
-      "password": "123456", 
+      "password": "sha1$2979c$8d4dc2a443dbdd8832f8f7b2a48a6abe1daf90aa",
       "email": "dave@example.org", 
       "date_joined": "2011-07-14 15:31:33"
     }

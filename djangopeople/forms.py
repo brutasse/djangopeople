@@ -321,32 +321,14 @@ class PortfolioForm(forms.Form):
     def __init__(self, *args, **kwargs):
         # Dynamically add the fields for IM providers / external services
         assert 'person' in kwargs, 'person is a required keyword argument'
-        person = kwargs.pop('person')
+        self.person = kwargs.pop('person')
+        self.instance = kwargs.pop('instance')
         super(PortfolioForm, self).__init__(*args, **kwargs)
         self.portfolio_fields = []
-        initial_data = {}
-        num = 1
-        for site in person.portfoliosite_set.all():
-            url_field = forms.URLField(
-                max_length=255, required=False, label='URL %d' % num
-            )
-            title_field = forms.CharField(
-                max_length=100, required=False, label='Title %d' % num
-            )
-            self.fields['title_%d' % num] = title_field
-            self.fields['url_%d' % num] = url_field
-            self.portfolio_fields.append({
-                'title_field': BoundField(self, title_field, 'title_%d' % num),
-                'url_field': BoundField(self, url_field, 'url_%d' % num),
-                'title_id': 'id_title_%d' % num,
-                'url_id': 'id_url_%d' % num,
-            })
-            initial_data['title_%d' % num] = site.title
-            initial_data['url_%d' % num] = site.url
-            num += 1
+        num = self.initial['num']
 
-        # Add some more empty ones
-        for i in range(num, num + 3):
+        # Add fields
+        for i in range(1, num + 3):
             url_field = forms.URLField(
                 max_length=255, required=False, label='URL %d' % i
             )
@@ -362,11 +344,18 @@ class PortfolioForm(forms.Form):
                 'url_id': 'id_url_%d' % i,
             })
 
-        self.initial = initial_data
-
         # Add custom validator for each url field
         for key in [k for k in self.fields if k.startswith('url_')]:
             setattr(self, 'clean_%s' % key, make_validator(key, self))
+
+    def save(self, *args, **kwargs):
+        self.person.portfoliosite_set.all().delete()
+        for key in [k for k in self.cleaned_data.keys() if k.startswith('title_')]:
+            title = self.cleaned_data[key]
+            url = self.cleaned_data[key.replace('title_', 'url_')]
+            if title.strip() and url.strip():
+                self.person.portfoliosite_set.create(title=title, url=url)
+
 
 def make_validator(key, form):
     def check():

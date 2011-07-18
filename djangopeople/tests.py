@@ -212,12 +212,14 @@ class DjangoPeopleTest(TestCase):
         # search and find (first_name)
         data = {'q': 'Dave'}
         response = self.client.get(url, data)
-        self.assertContains(response, '<span class="family-name">Brubeck</span>')
+        self.assertContains(response, '<span class="family-name">'
+                                      'Brubeck</span>')
 
         # search and find (username)
         data = {'q': 'DaveB'}
         response = self.client.get(url, data)
-        self.assertContains(response, '<span class="family-name">Brubeck</span>')
+        self.assertContains(response, '<span class="family-name">'
+                                      'Brubeck</span>')
 
         # search and find (last_name)
         data = {'q': 'brubec'}
@@ -292,7 +294,8 @@ class DjangoPeopleTest(TestCase):
     def test_user_profile(self):
         url = reverse('user_profile', args=['daveb'])
         response = self.client.get(url)
-        self.assertContains(response, 'Django projects Dave has contributed to')
+        self.assertContains(response, 'Django projects Dave has '
+                                      'contributed to')
         self.assertContains(response, 'Brubeck')
         self.assertContains(response, 'jazz')
         self.assertContains(response, 'cheese-shop')
@@ -336,18 +339,134 @@ class DjangoPeopleTest(TestCase):
     def test_irc_spotted(self):
         url = reverse('irc_spotted', args=['nobody'])
 
-        data = {'sekrit': 'wrong password',}
+        data = {'sekrit': 'wrong password', }
         response = self.client.post(url, data)
         self.assertContains(response, 'BAD_SEKRIT')
 
-        data = {'sekrit': settings.API_PASSWORD,}
+        data = {'sekrit': settings.API_PASSWORD, }
         response = self.client.post(url, data)
         self.assertContains(response, 'NO_MATCH')
 
         url = reverse('irc_spotted', args=['davieboy'])
-        data = {'sekrit': settings.API_PASSWORD,}
+        data = {'sekrit': settings.API_PASSWORD, }
         response = self.client.post(url, data)
         self.assertContains(response, 'FIRST_TIME_SEEN')
 
         response = self.client.post(url, data)
         self.assertContains(response, 'TRACKED')
+
+
+class EditViewTest(TestCase):
+    fixtures = ['test_data']
+    
+    def setUp(self):
+        super(EditViewTest, self).setUp()
+        self.client.login(username='daveb', password='123456')
+        
+    def test_change_portfolio_entry(self):
+        url_profile = reverse('user_profile', args=['daveb'])
+        url_edit_portfolio = reverse('edit_portfolio', args=['daveb'])
+        response = self.client.get(url_profile)
+        self.assertContains(response, '<li><a href="http://example.org/" '
+                                      'class="url" rel="nofollow"><cite>'
+                                      'cheese-shop</cite></a></li>')
+
+        
+
+        # test change existing portfolio entry
+        response = self.client.post(url_edit_portfolio,
+                                    {'title_1': 'chocolate shop',
+                                     'url_1': 'cs.org'}, follow=True)
+        self.assertRedirects(response, url_profile)
+        self.assertNotContains(response, '<li><a href="http://example.org/" '
+                                         'class="url" rel="nofollow"><cite>'
+                                         'cheese-shop</cite></a></li>')
+        self.assertContains(response, '<li><a href="http://cs.org/" class="url" '
+                                      'rel="nofollow"><cite>chocolate shop'
+                                      '</cite></a></li>')
+
+    def test_remove_portfolio_entry(self):
+        # test remove existing portfolio entry
+        
+        url_profile = reverse('user_profile', args=['daveb'])
+        url_edit_portfolio = reverse('edit_portfolio', args=['daveb'])
+        response = self.client.post(url_edit_portfolio,
+                                    {'title_1': '', 'url_1': ''}, follow=True)
+        self.assertRedirects(response, url_profile)
+        self.assertNotContains(response, '<li><a href="http://example.org/" '
+                                         'class="url" rel="nofollow"><cite>'
+                                         'cheese-shop</cite></a></li>')
+        self.assertNotContains(response, '<li><a href="cs.org/" class="url" '
+                                         'rel="nofollow"><cite>chocolate shop'
+                                         '</cite></a></li>')
+        self.assertContains(response, 'Add some sites')
+
+    def test_add_portfolio_entry(self):
+        # test add new portfolio entry
+
+        url_profile = reverse('user_profile', args=['daveb'])
+        url_edit_portfolio = reverse('edit_portfolio', args=['daveb'])
+        response = self.client.post(url_edit_portfolio,
+                                    {'title_1': 'chocolate shop',
+                                     'url_1': 'cs.org'},
+                                    follow=True)
+        self.assertRedirects(response, url_profile)
+        self.assertNotContains(response, 'Add some sites')
+        self.assertContains(response, '<li><a href="http://cs.org/" class="url" '
+                                      'rel="nofollow"><cite>chocolate shop'
+                                      '</cite></a></li>')
+
+    def test_portfolio_form_url_error(self):
+        # test portfolio edit form
+        url_edit_portfolio = reverse('edit_portfolio', args=['daveb'])
+        response = self.client.get(url_edit_portfolio)
+        self.assertContains(response, '<input id="id_title_1" type="text" '
+                                      'name="title_1" value="cheese-shop" '
+                                      'maxlength="100" />')
+        self.assertContains(response, '<input id="id_url_1" type="text" '
+                                      'name="url_1" value="http://example.org/" '
+                                      'maxlength="255" />')
+        self.assertContains(response, '<input id="id_title_2" type="text" '
+                                      'name="title_2" maxlength="100" />')
+        self.assertContains(response, '<input id="id_url_2" type="text" '
+                                      'name="url_2" maxlength="255" />')
+
+        # test form error messages
+        response = self.client.post(url_edit_portfolio,
+                                    {'title_1': 'chocolate shop',
+                                     'url_1': 'no url'},
+                                    follow=True)
+
+        self.assertFormError(response, 'form', 'url_1', 'Enter a valid URL.')
+
+    def test_edit_other_user(self):
+        # test editing another users portfolio
+
+        # add new user
+        user = User.objects.create_user('testuser', 'foo@example.com', 'pass')
+        DjangoPerson.objects.create(
+            user=user,
+            country=Country.objects.get(pk=1),
+            latitude=44,
+            longitude=2,
+            location_description='Somewhere',
+        )
+        
+        url_profile = reverse('user_profile', args=['testuser'])
+        url_edit_portfolio = reverse('edit_portfolio', args=['testuser'])
+
+        # no Add some sites link for user daveb on testuser's profile page 
+        response = self.client.get(url_profile)
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, 'Add some sites')
+
+        # daveb can't add sites to testuser's portfolio
+        response = self.client.post(url_edit_portfolio,
+                                    {'title_1': 'chocolate shop',
+                                     'url_1': 'cs.org'}, follow=True)
+        self.assertEqual(response.status_code, 403)
+
+        response = self.client.get(url_profile)
+        self.assertNotContains(response, '<li><a href="http://cs.org/" class="url" '
+                                      'rel="nofollow"><cite>chocolate shop'
+                                      '</cite></a></li>')
