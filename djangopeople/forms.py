@@ -205,7 +205,11 @@ class PhotoUploadForm(forms.Form):
     photo = forms.ImageField()
 
 class SkillsForm(forms.Form):
-    skills = TagField(label='Change skills')
+    skills = TagField(label='Change skills', required=False)
+
+    def save(self, person):
+        person.skilltags = self.cleaned_data['skills']
+
 
 class BioForm(forms.Form):
     bio = forms.CharField(widget=forms.Textarea, required=False)

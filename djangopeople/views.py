@@ -524,16 +524,21 @@ def edit_finding(request, username):
     })
 
 
-class EditPortfolioView(generic.CreateView):
+class PersonMixin(generic.View):
+    def dispatch(self, request, *args, **kwargs):
+        self.person = get_object_or_404(DjangoPerson,
+                                 user__username=kwargs['username'])
+        return super(PersonMixin, self).dispatch(request, *args, **kwargs)
+        
+
+class EditPortfolioView(generic.CreateView, PersonMixin):
     form_class = PortfolioForm
     template_name = 'edit_portfolio.html'
-
+    
     def get_initial(self):
         initial = {}
-        person = get_object_or_404(DjangoPerson,
-                                   user__username=self.kwargs['username'])
         num = 1
-        for site in person.portfoliosite_set.all():
+        for site in self.person.portfoliosite_set.all():
             initial['title_%d' % num] = site.title
             initial['url_%d' % num] = site.url
             num += 1
@@ -542,9 +547,7 @@ class EditPortfolioView(generic.CreateView):
 
     def get_form_kwargs(self):
         kwargs = super(EditPortfolioView, self).get_form_kwargs()
-        person = get_object_or_404(DjangoPerson,
-                                   user__username=self.kwargs['username'])
-        kwargs.update({'person': person})
+        kwargs.update({'person': self.person})
         return kwargs
 
     def get_success_url(self):
@@ -552,39 +555,42 @@ class EditPortfolioView(generic.CreateView):
 edit_portfolio = must_be_owner(EditPortfolioView.as_view())
 
 
-@must_be_owner
-def edit_account(request, username):
-    person = get_object_or_404(DjangoPerson, user__username = username)
-    if request.method == 'POST':
-        form = AccountForm(request.POST)
-        if form.is_valid():
-            person.openid_server = form.cleaned_data['openid_server']
-            person.openid_delegate = form.cleaned_data['openid_delegate']
-            person.save()
-            return redirect(reverse('user_profile', args=[username]))
-    else:
-        form = AccountForm(initial = {
-            'openid_server': person.openid_server,
-            'openid_delegate': person.openid_delegate,
-        })
-    return render(request, 'edit_account.html', {
-        'form': form,
-        'person': person,
-        'user': person.user,
-    })
+class EditAccountView(generic.FormView, PersonMixin):
+    form_class = AccountForm
+    template_name = 'edit_account.html'
+    
+    def get_initial(self):
+        initial = {}
+        initial['openid_server'] = self.person.openid_server
+        initial['openid_delegate'] = self.person.openid_delegate
+        return initial
+
+    def form_valid(self, form):
+        self.person.openid_server = form.cleaned_data['openid_server']
+        self.person.openid_delegate = form.cleaned_data['openid_delegate']
+        self.person.save()
+        return super(EditAccountView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('user_profile', args=[self.kwargs['username']])
+edit_account = must_be_owner(EditAccountView.as_view())
 
 
-@must_be_owner
-def edit_skills(request, username):
-    person = get_object_or_404(DjangoPerson, user__username = username)
-    if not request.POST.get('skills'):
-        return render(request, 'edit_skills.html', {
-            'form': SkillsForm(initial={
-                'skills': edit_string_for_tags(person.skilltags)
-            }),
-        })
-    person.skilltags = request.POST.get('skills', '')
-    return redirect(reverse('user_profile', args=[username]))
+class EditSkillsView(generic.FormView, PersonMixin):
+    form_class = SkillsForm
+    template_name = 'edit_skills.html'
+
+    def get_initial(self):
+        initial = {}
+        initial['skills'] = edit_string_for_tags(self.person.skilltags)
+
+    def form_valid(self, form):
+        form.save(self.person)        
+        return super(EditSkillsView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('user_profile', args=[self.kwargs['username']])
+edit_skills = must_be_owner(EditSkillsView.as_view())
 
 
 @must_be_owner

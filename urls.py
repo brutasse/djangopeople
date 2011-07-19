@@ -71,12 +71,12 @@ urlpatterns = patterns('',
 
     url(r'^(?P<username>[a-z0-9]{3,})/$', views.profile, name='user_profile'),
     url(r'^([a-z0-9]{3,})/bio/$', views.edit_bio, name='edit_bio'),
-    url(r'^([a-z0-9]{3,})/skills/$', views.edit_skills, name='edit_skills'),
+    url(r'^(?P<username>[a-z0-9]{3,})/skills/$', views.edit_skills, name='edit_skills'),
 
     url(r'^(?P<username>[a-z0-9]{3,})/password/$',
         views.edit_password, name='edit_password'),
 
-    url(r'^([a-z0-9]{3,})/account/$',
+    url(r'^(?P<username>[a-z0-9]{3,})/account/$',
         views.edit_account, name='edit_account'),
 
     url(r'^(?P<username>[a-z0-9]{3,})/portfolio/$',
