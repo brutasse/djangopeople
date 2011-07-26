@@ -19,22 +19,11 @@
 {% endblock %}
 
 {% block content %}
-    <p class="help">Show off the sites and projects you've personally built (or contributed to) using Django.</p>
-    <form method="post" action="{% url 'edit_portfolio' user.username %}">{% csrf_token %}
-    {% for bit in form.portfolio_fields %}
-    <fieldset>
-        <div class="fieldWrapper">
-            {{ bit.title_field.errors }}
-            <label for="{{ bit.title_id }}">{{ bit.title_field.label }}:</label>
-            {{ bit.title_field }}
-        </div>
-        <div class="fieldWrapper">
-            {{ bit.url_field.errors }}
-            <label for="{{ bit.url_id }}">{{ bit.url_field.label }}:</label>
-            {{ bit.url_field }}
-        </div>
-    </fieldset>
-    {% endfor %}
-    <div class="buttonContainer"><input type="submit" value="Update portfolio"></div>
-    </form>
+  <p class="help">Show off the sites and projects you've personally built (or contributed to) using Django.</p>
+  <form method="post" action="{% url 'edit_portfolio' user.username %}">
+
+      {% include 'includes/form.html' %}
+
+    <div class="buttonContainer"><input type="submit" value="Update portfolio" /></div>
+  </form>
 {% endblock %}

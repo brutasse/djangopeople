@@ -1,0 +1,9 @@
+{% csrf_token %}
+
+{{ form.non_field_errors }}
+
+<fieldset>
+  {% for field in form %}
+    {% include 'includes/field.html' %}
+  {% endfor %}
+</fieldset>

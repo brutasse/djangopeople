@@ -11,15 +11,11 @@
 {% endblock %}
 
 {% block content %}
-<form method="post" action="{% url 'edit_bio' user.username %}">{% csrf_token %}
+<form method="post" action="{% url 'edit_bio' user.username %}">
     <p class="help">No HTML allowed, but paragraph tags will be added automatically and URLs will be turned in to links.</p>
-    <fieldset>
-        <div class="fieldWrapper">
-            {{ form.bio.errors }}
-            <label for="id_bio">Bio</label>
-            {{ form.bio }}
-        </div>
-    </fieldset>
+
+      {% include 'includes/form.html' %}
+
     <div class="buttonContainer"><input type="submit" value="Update bio"></div>
     </form>
 

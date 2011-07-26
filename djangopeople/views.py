@@ -25,7 +25,8 @@ from djangopeople.constants import (MACHINETAGS_FROM_FIELDS,
                                     IMPROVIDERS_DICT, SERVICES_DICT)
 from djangopeople.forms import (SkillsForm, SignupForm, PhotoUploadForm,
                                 PortfolioForm, BioForm, LocationForm,
-                                FindingForm, AccountForm, LostPasswordForm)
+                                FindingForm, AccountForm, LostPasswordForm,
+                                PasswordForm)
 from djangopeople.models import (DjangoPerson, Country, User, Region,
                                  PortfolioSite)
 
@@ -110,6 +111,17 @@ recent = RecentView.as_view()
 
 def login(request):
     return auth_views.login(request, template_name='login.html')
+
+
+class ProfileRedirectView(generic.RedirectView):
+    '''
+    redirect to the profile page of the logged in user
+    used to redirect to the profile page of the user after login
+    '''
+
+    def get_redirect_url(self):
+        return reverse('user_profile', kwargs={'username': self.request.user})
+redirect_to_logged_in_user_profile = ProfileRedirectView.as_view()
 
 
 def logout(request):
@@ -457,11 +469,10 @@ class ProfileView(generic.DetailView):
         # Should we show the 'Finding X' section at all?
         show_finding = (services or privacy['show_email'] or
                         (privacy['show_im'] and ims))
+
         context.update({
             'is_owner': self.request.user.username == self.kwargs['username'],
-            'skills_form': SkillsForm(initial={
-                'skills': edit_string_for_tags(self.object.skilltags)
-            }),
+            'skills_form': SkillsForm(instance=self.object),
             'mtags': mtags,
             'ims': ims,
             'services': services,
@@ -524,135 +535,55 @@ def edit_finding(request, username):
     })
 
 
-class PersonMixin(object):
-    def dispatch(self, request, *args, **kwargs):
-        self.person = get_object_or_404(DjangoPerson,
-                                 user__username=kwargs['username'])
-        return super(PersonMixin, self).dispatch(request, *args, **kwargs)
+class DjangoPersonEditViewBase(generic.UpdateView):
+    def get_object(self):
+        return get_object_or_404(DjangoPerson,
+                                 user__username=self.kwargs['username'])
 
     def get_success_url(self):
         return reverse('user_profile', args=[self.kwargs['username']])
 
 
-class EditPortfolioView(PersonMixin, generic.CreateView):
+class EditPortfolioView(DjangoPersonEditViewBase):
     form_class = PortfolioForm
     template_name = 'edit_portfolio.html'
-
-    def get_initial(self):
-        initial = {}
-        num = 1
-        for site in self.person.portfoliosite_set.all():
-            initial['title_%d' % num] = site.title
-            initial['url_%d' % num] = site.url
-            num += 1
-        initial['num'] = num
-        return initial
-
-    def get_form_kwargs(self):
-        kwargs = super(EditPortfolioView, self).get_form_kwargs()
-        kwargs.update({'person': self.person})
-        return kwargs
 edit_portfolio = must_be_owner(EditPortfolioView.as_view())
 
 
-class EditAccountView(PersonMixin, generic.FormView):
+class EditAccountView(DjangoPersonEditViewBase):
     form_class = AccountForm
     template_name = 'edit_account.html'
-
-    def get_initial(self):
-        initial = super(EditAccountView, self).get_initial()
-        initial.update({
-            'openid_server': self.person.openid_server,
-            'openid_delegate': self.person.openid_delegate,
-        })
-        return initial
-
-    def form_valid(self, form):
-        self.person.openid_server = form.cleaned_data['openid_server']
-        self.person.openid_delegate = form.cleaned_data['openid_delegate']
-        self.person.save()
-        return super(EditAccountView, self).form_valid(form)
 edit_account = must_be_owner(EditAccountView.as_view())
 
 
-class EditSkillsView(PersonMixin, generic.FormView):
+class EditSkillsView(DjangoPersonEditViewBase):
     form_class = SkillsForm
     template_name = 'edit_skills.html'
-
-    def get_initial(self):
-        initial = super(EditSkillsView, self).get_initial()
-        initial['skills'] = edit_string_for_tags(self.person.skilltags)
-        return initial
-
-    def form_valid(self, form):
-        form.save(self.person)
-        return super(EditSkillsView, self).form_valid(form)
 edit_skills = must_be_owner(EditSkillsView.as_view())
 
 
-@must_be_owner
-def edit_password(request, username):
-    user = get_object_or_404(User, username = username)
-    p1 = request.POST.get('password1', '')
-    p2 = request.POST.get('password2', '')
-    if p1 and p2 and p1 == p2:
-        user.set_password(p1)
-        user.save()
-        return redirect(reverse('user_profile', args=[username]))
-    else:
-        return render(request, 'edit_password.html', {})
+class EditPassword(generic.UpdateView):
+    form_class = PasswordForm
+    template_name = 'edit_password.html'
+
+    def get_object(self):
+        return get_object_or_404(User, username=self.kwargs['username'])
+
+    def get_success_url(self):
+        return reverse('user_profile', args=[self.kwargs['username']])
+edit_password = must_be_owner(EditPassword.as_view())
 
 
-@must_be_owner
-def edit_bio(request, username):
-    person = get_object_or_404(DjangoPerson, user__username = username)
-    if request.method == 'POST':
-        form = BioForm(request.POST)
-        if form.is_valid():
-            person.bio = form.cleaned_data['bio']
-            person.save()
-            return redirect(reverse('user_profile', args=[username]))
-    else:
-        form = BioForm(initial = {'bio': person.bio})
-
-    return render(request, 'edit_bio.html', {
-        'form': form,
-    })
+class EditBioView(DjangoPersonEditViewBase):
+    form_class = BioForm
+    template_name = 'edit_bio.html'
+edit_bio = must_be_owner(EditBioView.as_view())
 
 
-@must_be_owner
-def edit_location(request, username):
-    person = get_object_or_404(DjangoPerson, user__username = username)
-    if request.method == 'POST':
-        form = LocationForm(request.POST)
-        if form.is_valid():
-            region = None
-            if form.cleaned_data['region']:
-                region = Region.objects.get(
-                    country__iso_code = form.cleaned_data['country'],
-                    code = form.cleaned_data['region']
-                )
-            person.country = Country.objects.get(
-                iso_code = form.cleaned_data['country']
-            )
-            person.region = region
-            person.latitude = form.cleaned_data['latitude']
-            person.longitude = form.cleaned_data['longitude']
-            person.location_description = \
-                form.cleaned_data['location_description']
-            person.save()
-            return redirect(reverse('user_profile', args=[username]))
-    else:
-        initial_data = {
-            'latitude': person.latitude,
-            'longitude': person.longitude,
-            'location_description': person.location_description,
-            'country': person.country.iso_code
-        }
-        form = LocationForm(initial=initial_data)
-    return render(request, 'edit_location.html', {
-        'form': form,
-    })
+class EditLocationView(DjangoPersonEditViewBase):
+    form_class = LocationForm
+    template_name = 'edit_location.html'
+edit_location = must_be_owner(EditLocationView.as_view())
 
 
 class SkillCloudView(generic.TemplateView):

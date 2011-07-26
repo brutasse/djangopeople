@@ -3,10 +3,12 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.db.models import ObjectDoesNotExist
 from django.forms.forms import BoundField
+from django.forms.widgets import PasswordInput
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
 from tagging.forms import TagField
+from tagging.utils import edit_string_for_tags
 
 from djangopeople import utils
 from djangopeople.constants import SERVICES, IMPROVIDERS
@@ -39,6 +41,7 @@ def not_in_the_atlantic(self):
     if self.cleaned_data.get('latitude', '') and self.cleaned_data.get('longitude', ''):
         lat = self.cleaned_data['latitude']
         lon = self.cleaned_data['longitude']
+        
         if 43 < lat < 45 and -39 < lon < -33:
             raise forms.ValidationError("Drag and zoom the map until the crosshair matches your location")
     return self.cleaned_data['location_description']
@@ -204,21 +207,33 @@ class SignupForm(forms.Form):
 class PhotoUploadForm(forms.Form):
     photo = forms.ImageField()
 
-class SkillsForm(forms.Form):
+
+class SkillsForm(forms.ModelForm):
     skills = TagField(label='Change skills', required=False)
 
-    def save(self, person):
-        person.skilltags = self.cleaned_data['skills']
+    class Meta:
+        model = DjangoPerson
+        fields = ()
+
+    def __init__(self, *args, **kwargs):
+        super(SkillsForm, self).__init__(*args, **kwargs)
+        self.initial = {'skills': edit_string_for_tags(self.instance.skilltags)}
+        
+    def save(self):
+        self.instance.skilltags = self.cleaned_data['skills']
 
 
-class BioForm(forms.Form):
-    bio = forms.CharField(widget=forms.Textarea, required=False)
+class BioForm(forms.ModelForm):
+    class Meta:
+        model = DjangoPerson
+        fields = ('bio',)
 
-class AccountForm(forms.Form):
-    openid_server = forms.URLField(required=False)
-    openid_delegate = forms.URLField(required=False)
+class AccountForm(forms.ModelForm):
+    class Meta:
+        model = DjangoPerson
+        fields = ('openid_server', 'openid_delegate')
 
-class LocationForm(forms.Form):
+class LocationForm(forms.ModelForm):
     country = forms.ChoiceField(choices = [('', '')] + [
         (c.iso_code, c.name) for c in Country.objects.all()
     ])
@@ -226,8 +241,19 @@ class LocationForm(forms.Form):
     longitude = forms.FloatField(min_value=-180, max_value=180)
     location_description = forms.CharField(max_length=50)
 
-    region = GroupedChoiceField(required=False, choices=region_choices())
+    class Meta:
+        model = DjangoPerson
+        fields = ('country', 'latitude', 'longitude', 'location_description',
+                  'region')
 
+    def clean_country(self):
+        try:
+            country = Country.objects.get(iso_code=self.cleaned_data['country'])
+            return country
+        except Country.DoesNotExist:
+            raise forms.ValidationError(
+                    'The ISO code of the country you selected is invalid.'
+                )
     def clean_region(self):
         # If a region is selected, ensure it matches the selected country
         if self.cleaned_data['region']:
@@ -321,15 +347,22 @@ class FindingForm(forms.Form):
             raise forms.ValidationError('That e-mail is already in use')
         return email
 
-class PortfolioForm(forms.Form):
+class PortfolioForm(forms.ModelForm):
+
+    class Meta:
+        model = DjangoPerson
+        fields = ()
+    
     def __init__(self, *args, **kwargs):
         # Dynamically add the fields for IM providers / external services
-        assert 'person' in kwargs, 'person is a required keyword argument'
-        self.person = kwargs.pop('person')
-        self.instance = kwargs.pop('instance')
         super(PortfolioForm, self).__init__(*args, **kwargs)
         self.portfolio_fields = []
-        num = self.initial['num']
+        self.initial = {}
+        num = 1
+        for site in kwargs['instance'].portfoliosite_set.all():
+            self.initial['title_%d' % num] = site.title
+            self.initial['url_%d' % num] = site.url
+            num += 1
 
         # Add fields
         for i in range(1, num + 3):
@@ -352,13 +385,13 @@ class PortfolioForm(forms.Form):
         for key in [k for k in self.fields if k.startswith('url_')]:
             setattr(self, 'clean_%s' % key, make_validator(key, self))
 
-    def save(self, *args, **kwargs):
-        self.person.portfoliosite_set.all().delete()
+    def save(self):
+        self.instance.portfoliosite_set.all().delete()
         for key in [k for k in self.cleaned_data.keys() if k.startswith('title_')]:
             title = self.cleaned_data[key]
             url = self.cleaned_data[key.replace('title_', 'url_')]
             if title.strip() and url.strip():
-                self.person.portfoliosite_set.create(title=title, url=url)
+                self.instance.portfoliosite_set.create(title=title, url=url)
 
 
 def make_validator(key, form):
@@ -394,3 +427,31 @@ class LostPasswordForm(forms.Form):
             settings.RECOVERY_EMAIL_FROM, [person.user.email],
             fail_silently=False
         )
+
+
+class PasswordForm(forms.ModelForm):
+    current_password = forms.CharField(label='Current Password', widget=PasswordInput)
+    password1 = forms.CharField(label='New Password', widget=PasswordInput)
+    password2 = forms.CharField(label='New Password (again)', widget=PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ()
+
+    def clean_current_password(self):
+        if not self.instance.check_password(self.cleaned_data['current_password']):
+            raise forms.ValidationError('Please submit your current password.')
+        else:
+            return self.cleaned_data['current_password']
+        
+    def clean(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+        if password1 == password2:
+            return self.cleaned_data
+        else:
+            raise forms.ValidationError('The passwords did not match.') 
+    
+    def save(self):
+        self.instance.set_password(self.cleaned_data['password1'])
+        self.instance.save()
