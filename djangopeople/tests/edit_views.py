@@ -6,6 +6,8 @@ from tagging.utils import edit_string_for_tags
 
 from djangopeople.models import (DjangoPerson, Country)
 
+from machinetags.utils import tagdict
+
 
 class EditViewTest(TestCase):
     fixtures = ['test_data']
@@ -13,6 +15,223 @@ class EditViewTest(TestCase):
     def setUp(self):
         super(EditViewTest, self).setUp()
         self.client.login(username='daveb', password='123456')
+
+    def test_edit_finding_permissions(self):
+        '''
+        logged in user can only edit his own skills
+        '''
+        url = reverse('edit_finding', args=['daveb'])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 200)
+
+        url = reverse('edit_finding', args=['satchmo'])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 403)
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 403)
+
+    def test_edit_finding_initial_data(self):
+        url_edit_finding = reverse('edit_finding', args=['daveb'])
+        p = DjangoPerson.objects.get(user__username='daveb')
+        mtags = tagdict(p.machinetags.all())
+
+        response = self.client.get(url_edit_finding)
+
+        self.assertContains(response, mtags['profile']['looking_for_work'])
+        self.assertContains(response, mtags['im']['django'])
+        self.assertContains(response, p.user.email)
+        
+    def test_edit_finding_email(self):
+        url_edit_finding = reverse('edit_finding', args=['daveb'])
+        url_profile = reverse('user_profile', args=['daveb'])
+
+        new_email = 'foo@bar.com'
+        data = {'email': new_email,
+                'privacy_search': 'public',
+                'privacy_email': 'private',
+                'privacy_im': 'private',
+                'privacy_irctrack': 'public'}
+        
+        u = User.objects.get(username='daveb')
+        self.assertNotEqual(u.email, new_email)
+
+        response = self.client.post(url_edit_finding, data, follow=True)
+        self.assertRedirects(response, url_profile)
+        self.assertContains(response, new_email)
+
+        u = User.objects.get(username='daveb')
+        self.assertEqual(u.email, new_email)
+
+    def test_edit_finding_looking_for_work(self):
+        url_edit_finding = reverse('edit_finding', args=['daveb'])
+        url_profile = reverse('user_profile', args=['daveb'])
+
+        new_email = 'foo@bar.com'
+        looking_for_work = 'freelance'
+        data = {'looking_for_work': looking_for_work,
+                'email': new_email,
+                'privacy_search': 'public',
+                'privacy_email': 'private',
+                'privacy_im': 'private',
+                'privacy_irctrack': 'public'}
+        
+        p = DjangoPerson.objects.get(user__username='daveb')
+        mtags = tagdict(p.machinetags.all())
+        self.assertEqual(mtags['profile']['looking_for_work'], 'full-time')
+
+        response = self.client.post(url_edit_finding, data, follow=True)
+        self.assertRedirects(response, url_profile)
+        
+        p = DjangoPerson.objects.get(user__username='daveb')
+        mtags = tagdict(p.machinetags.all())
+        self.assertEqual(mtags['profile']['looking_for_work'], 'freelance')
+
+        # check initial value
+        response = self.client.get(url_edit_finding)
+        self.assertContains(response, looking_for_work)
+
+    def test_edit_finding_im(self):
+        url_edit_finding = reverse('edit_finding', args=['daveb'])
+        url_profile = reverse('user_profile', args=['daveb'])
+
+        new_email = 'foo@bar.com'
+        im_jabber = 'daveb@jabber.org'
+        data = {'im_jabber': im_jabber,
+                'email': new_email,
+                'privacy_search': 'public',
+                'privacy_email': 'private',
+                'privacy_im': 'private',
+                'privacy_irctrack': 'public'}
+        
+        p = DjangoPerson.objects.get(user__username='daveb')
+        mtags = tagdict(p.machinetags.all())
+        self.assertEqual(mtags['im']['jabber'], '')
+
+        response = self.client.post(url_edit_finding, data, follow=True)
+        self.assertRedirects(response, url_profile)
+        
+        p = DjangoPerson.objects.get(user__username='daveb')
+        mtags = tagdict(p.machinetags.all())
+        self.assertEqual(mtags['im']['jabber'], im_jabber)
+
+        # check initial value
+        response = self.client.get(url_edit_finding)
+        self.assertContains(response, im_jabber)
+
+    def test_edit_finding_services(self):
+        url_edit_finding = reverse('edit_finding', args=['daveb'])
+        url_profile = reverse('user_profile', args=['daveb'])
+
+        service_twitter = 'https://twitter.com/davebbar'
+        data = {'service_twitter': service_twitter,
+                'email': 'foo@bar.com',
+                'privacy_search': 'public',
+                'privacy_email': 'private',
+                'privacy_im': 'private',
+                'privacy_irctrack': 'public'}
+        
+        p = DjangoPerson.objects.get(user__username='daveb')
+        mtags = tagdict(p.machinetags.all())
+        self.assertEqual(mtags['services']['twitter'], '')
+
+        response = self.client.post(url_edit_finding, data, follow=True)
+        self.assertRedirects(response, url_profile)
+        
+        p = DjangoPerson.objects.get(user__username='daveb')
+        mtags = tagdict(p.machinetags.all())
+        self.assertEqual(mtags['services']['twitter'], service_twitter)
+
+        # check initial value
+        response = self.client.get(url_edit_finding)
+        self.assertContains(response, service_twitter)
+        
+
+    def test_edit_finding_form_error_email_validation(self):
+        url_edit_finding = reverse('edit_finding', args=['daveb'])
+
+        u = User.objects.get(username='daveb')
+        old_email = u.email
+        other_user = User.objects.get(username='satchmo')
+
+        # set new email for daveb to existing email of user satchmo
+        data = {'email': other_user.email, # 
+                'privacy_search': 'public',
+                'privacy_email': 'private',
+                'privacy_im': 'private',
+                'privacy_irctrack': 'public'}
+        
+        u = User.objects.get(username='daveb')
+        self.assertEqual(u.email, old_email)
+
+        response = self.client.post(url_edit_finding, data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response, 'form', 'email', 'That e-mail is already in use')
+
+        u = User.objects.get(username='daveb')
+        self.assertEqual(u.email, old_email)
+        
+    def test_edit_finding_form_error_fields_required(self):
+        url_edit_finding = reverse('edit_finding', args=['daveb'])
+        url_profile = reverse('user_profile', args=['daveb'])
+
+        data = {'email': 'foo@bar.com',
+                'privacy_search': 'public',
+                'privacy_email': 'private',
+                'privacy_im': 'private',
+                'privacy_irctrack': 'public'}
+
+        response = self.client.post(url_edit_finding, data, follow=True)
+        self.assertRedirects(response, url_profile)
+
+        data.pop('email')
+        response = self.client.post(url_edit_finding, data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response, 'form', 'email',
+                             'This field is required.')
+
+        data.pop('privacy_search')
+        response = self.client.post(url_edit_finding, data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response, 'form', 'email',
+                             'This field is required.')
+        self.assertFormError(response, 'form', 'privacy_search',
+                             'This field is required.')
+
+        data.pop('privacy_email')
+        response = self.client.post(url_edit_finding, data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response, 'form', 'email',
+                             'This field is required.')
+        self.assertFormError(response, 'form', 'privacy_search',
+                             'This field is required.')
+        self.assertFormError(response, 'form', 'privacy_email',
+                             'This field is required.')
+
+        data.pop('privacy_im')
+        response = self.client.post(url_edit_finding, data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response, 'form', 'email',
+                             'This field is required.')
+        self.assertFormError(response, 'form', 'privacy_search',
+                             'This field is required.')
+        self.assertFormError(response, 'form', 'privacy_email',
+                             'This field is required.')
+        self.assertFormError(response, 'form', 'privacy_im',
+                             'This field is required.')
+
+        data.pop('privacy_irctrack')
+        response = self.client.post(url_edit_finding, data, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response, 'form', 'email',
+                             'This field is required.')
+        self.assertFormError(response, 'form', 'privacy_search',
+                             'This field is required.')
+        self.assertFormError(response, 'form', 'privacy_email',
+                             'This field is required.')
+        self.assertFormError(response, 'form', 'privacy_irctrack',
+                             'This field is required.')
 
     def test_edit_skill_permission(self):
         '''

@@ -1,7 +1,6 @@
 from django import forms
 from django.conf import settings
 from django.core.mail import send_mail
-from django.db.models import ObjectDoesNotExist
 from django.forms.forms import BoundField
 from django.forms.widgets import PasswordInput
 from django.template.loader import render_to_string
@@ -11,7 +10,7 @@ from tagging.forms import TagField
 from tagging.utils import edit_string_for_tags
 
 from djangopeople import utils
-from djangopeople.constants import SERVICES, IMPROVIDERS
+from djangopeople.constants import SERVICES, IMPROVIDERS, MACHINETAGS_FROM_FIELDS
 from djangopeople.groupedselect import GroupedChoiceField
 from djangopeople.models import (DjangoPerson, Country, Region, User,
                                  RESERVED_USERNAMES)
@@ -270,11 +269,15 @@ class LocationForm(forms.ModelForm):
 
     clean_location_description = not_in_the_atlantic
 
-class FindingForm(forms.Form):
+class FindingForm(forms.ModelForm):
+
+    class Meta:
+        model = DjangoPerson
+        fields = ()
+
     def __init__(self, *args, **kwargs):
-        # Dynamically add the fields for IM providers / external services
-        self.person = kwargs.pop('person') # So we can validate e-mail later
         super(FindingForm, self).__init__(*args, **kwargs)
+        # Dynamically add the fields for IM providers / external services
         self.service_fields = []
         for shortname, name, icon in SERVICES:
             field = forms.URLField(
@@ -343,9 +346,24 @@ class FindingForm(forms.Form):
         email = self.cleaned_data['email']
         if User.objects.filter(
             email = email
-        ).exclude(djangoperson = self.person).count() > 0:
+        ).exclude(djangoperson = self.instance).count() > 0:
             raise forms.ValidationError('That e-mail is already in use')
         return email
+
+    def save(self):
+        user = self.instance.user
+        user.email = self.cleaned_data['email']
+        user.save()
+
+        for fieldname, (namespace, predicate) in \
+            MACHINETAGS_FROM_FIELDS.items():
+            self.instance.machinetags.filter(
+                namespace=namespace, predicate=predicate
+            ).delete()
+            if fieldname in self.cleaned_data and \
+                   self.cleaned_data[fieldname].strip():
+                value = self.cleaned_data[fieldname].strip()
+                self.instance.add_machinetag(namespace, predicate, value)
 
 class PortfolioForm(forms.ModelForm):
 

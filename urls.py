@@ -1,5 +1,3 @@
-import os
-
 from django.conf.urls.defaults import patterns, url, include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -7,10 +5,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.shortcuts import redirect
 
-from tagging.views import tagged_object_list
-
 from djangopeople import views, api #, clustering
-from djangopeople.models import DjangoPerson
 
 
 def perm_redirect(url):
@@ -21,7 +16,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls), name='admin'),
     url(r'^$', views.index, name='index'),
-    url(r'^login/$', views.login, name='login'),
+    url(r'^login/$', 'django.contrib.auth.views.login',
+        {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^about/$', views.about, name='about'),
     url(r'^recent/$', views.recent, name='recent'),
@@ -87,7 +83,7 @@ urlpatterns = patterns('',
     url(r'^(?P<username>[a-z0-9]{3,})/location/$',
         views.edit_location, name='edit_location'),
 
-    url(r'^([a-z0-9]{3,})/finding/$',
+    url(r'^(?P<username>[a-z0-9]{3,})/finding/$',
         views.edit_finding, name='edit_finding'),
 
     url(r'^([a-z0-9]{3,})/upload/$',

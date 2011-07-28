@@ -33,5 +33,7 @@ MACHINETAGS_FROM_FIELDS = dict(
         ('privacy_email', ('privacy', 'email')),
         ('privacy_im', ('privacy', 'im')),
         ('privacy_irctrack', ('privacy', 'irctrack')),
+        ('blog', ('profile', 'blog')),
+        ('looking_for_work', ('profile', 'looking_for_work')),
     ]
 )
