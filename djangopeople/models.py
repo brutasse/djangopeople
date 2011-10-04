@@ -6,6 +6,11 @@ from django.contrib.contenttypes import generic
 from geopy import distance
 from django.utils.safestring import mark_safe
 from django.utils.html import escape
+from storages.backends.hashpath import HashPathStorage
+
+
+fs = HashPathStorage()
+
 import tagging
 
 RESERVED_USERNAMES = set((
@@ -105,7 +110,7 @@ class DjangoPerson(models.Model):
     location_description = models.CharField(max_length=50)
 
     # Profile photo
-    photo = models.ImageField(blank=True, upload_to='profiles')
+    photo = models.ImageField(blank=True, upload_to='profiles', storage=fs)
 
     # Stats
     profile_views = models.IntegerField(default=0)

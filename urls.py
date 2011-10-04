@@ -86,10 +86,10 @@ urlpatterns = patterns('',
     url(r'^(?P<username>[a-z0-9]{3,})/finding/$',
         views.edit_finding, name='edit_finding'),
 
-    url(r'^([a-z0-9]{3,})/upload/$',
+    url(r'^(?P<username>[a-z0-9]{3,})/upload/$',
         views.upload_profile_photo, name='upload_profile_photo'),
 
-    url(r'^([a-z0-9]{3,})/upload/done/$',
+    url(r'^(?P<username>[a-z0-9]{3,})/upload/done/$',
         views.upload_done, name='upload_done'),
 )
 

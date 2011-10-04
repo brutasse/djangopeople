@@ -15,6 +15,10 @@ from djangopeople.groupedselect import GroupedChoiceField
 from djangopeople.models import (DjangoPerson, Country, Region, User,
                                  RESERVED_USERNAMES)
 
+from cStringIO import StringIO
+from PIL import Image
+import hashlib
+import os
 
 def region_choices():
     # For use with GroupedChoiceField
@@ -205,8 +209,10 @@ class SignupForm(forms.Form):
     clean_location_description = not_in_the_atlantic
 
 
-class PhotoUploadForm(forms.Form):
-    photo = forms.ImageField()
+class PhotoUploadForm(forms.ModelForm):
+    class Meta:
+        model = DjangoPerson
+        fields = ('photo',)
 
 
 class SkillsForm(forms.ModelForm):

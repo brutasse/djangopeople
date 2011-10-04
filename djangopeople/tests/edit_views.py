@@ -1,12 +1,17 @@
+import os
+import shutil
+import hashlib
+
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.conf import settings
 
 from tagging.utils import edit_string_for_tags
 
-from djangopeople.models import DjangoPerson, Country
-
 from machinetags.utils import tagdict
+
+from djangopeople.models import DjangoPerson, Country
 
 
 class EditViewTest(TestCase):
@@ -15,6 +20,24 @@ class EditViewTest(TestCase):
     def setUp(self):
         super(EditViewTest, self).setUp()
         self.client.login(username='daveb', password='123456')
+
+        img_content = open(os.path.join(settings.OUR_ROOT,
+                                        'djangopeople/fixtures/pony.gif'),
+                                  'rb').read()
+        sha1sum = hashlib.sha1(img_content).hexdigest()
+        self.hashed_upload_img_file_name = os.path.join(sha1sum[:1],
+                                                        sha1sum[1:2], sha1sum)
+                                           
+        
+        # make sure the profile upload folder exists
+        self.profile_img_path = os.path.join(settings.MEDIA_ROOT, 'profiles')
+        if not os.path.exists(self.profile_img_path):
+            os.makedirs(self.profile_img_path)
+
+    def tearDown(self):
+        # remove uploaded profile picture
+        if os.path.exists(self.profile_img_path):
+            shutil.rmtree(self.profile_img_path)
 
     def test_edit_finding_permissions(self):
         '''
@@ -792,3 +815,91 @@ class EditViewTest(TestCase):
         self.assertFormError(response, 'form', 'location_description',
                              ('Drag and zoom the map until the crosshair '
                               'matches your location'))
+
+    def test_upload_profile_photo_form_error_empty_file(self):
+        upload_file_path = '/dev/null'
+        url_upload_profile_photo = reverse('upload_profile_photo',
+                                           args=['daveb'])
+        # upload an empty file
+        response = self.client.post(url_upload_profile_photo,
+            {'photo': open(upload_file_path)})
+
+        self.assertFormError(response, 'form', 'photo', 'The submitted file '
+                             'is empty.')
+
+    def test_upload_profile_photo_form_error_invalid_image(self):
+        upload_file_path = os.path.join(settings.OUR_ROOT,
+                                        'djangopeople/fixtures/test_data.json')
+        url_upload_profile_photo = reverse('upload_profile_photo',
+                                           args=['daveb'])
+        # upload an invalid file
+        response = self.client.post(url_upload_profile_photo,
+            {'photo': open(upload_file_path)})
+
+        self.assertFormError(response, 'form', 'photo', 'Upload a valid image.'
+                             ' The file you uploaded was either not an image '
+                             'or a corrupted image.')
+
+    def test_upload_profile_photo(self):
+        # test to add a profile photo
+        upload_file_path = os.path.join(settings.OUR_ROOT,
+                                        'djangopeople/fixtures/pony.gif')
+        url_upload_profile_photo = reverse('upload_profile_photo',
+                                           args=['daveb'])
+        response = self.client.get(url_upload_profile_photo)
+        self.assertContains(response, '<h2>Add a profile photo</h2>')
+        
+        # upload a photo
+        response = self.client.post(url_upload_profile_photo,
+            {'photo': open(upload_file_path)})
+
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals('http://testserver'+reverse('upload_done',
+                                                      args=['daveb']),
+            response._headers['location'][1])
+
+        p = DjangoPerson.objects.get(user__username='daveb')
+        image_path = os.path.join(settings.MEDIA_ROOT, 'profiles',
+                                  self.hashed_upload_img_file_name)
+        self.assertEqual(p.photo.path, image_path)
+        self.assertTrue(os.path.exists(image_path))
+
+    def test_upload_profile_photo_same_file(self):
+        """
+        A user uploads the same file twice
+        """
+
+        # test to add a profile photo
+        upload_file_path = os.path.join(settings.OUR_ROOT,
+                                        'djangopeople/fixtures/pony.gif')
+        url_upload_profile_photo = reverse('upload_profile_photo', args=['daveb'])
+        response = self.client.get(url_upload_profile_photo)
+        self.assertContains(response, '<h2>Add a profile photo</h2>')
+        
+        # upload a photo
+        response = self.client.post(url_upload_profile_photo,
+            {'photo': open(upload_file_path)})
+
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals('http://testserver'+reverse('upload_done', args=['daveb']),
+            response._headers['location'][1])
+
+        p = DjangoPerson.objects.get(user__username='daveb')
+        image_path = os.path.join(settings.MEDIA_ROOT, 'profiles',
+                                  self.hashed_upload_img_file_name)
+        self.assertEqual(p.photo.path, image_path)
+        self.assertTrue(os.path.exists(image_path))
+        
+        # upload a same photo again
+        response = self.client.post(url_upload_profile_photo,
+            {'photo': open(upload_file_path)})
+
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals('http://testserver'+reverse('upload_done', args=['daveb']),
+            response._headers['location'][1])
+
+        p = DjangoPerson.objects.get(user__username='daveb')
+        image_path = os.path.join(settings.MEDIA_ROOT, 'profiles',
+                                  self.hashed_upload_img_file_name)
+        self.assertEqual(p.photo.path, image_path)
+        self.assertTrue(os.path.exists(image_path))

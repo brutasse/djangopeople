@@ -1,15 +1,8 @@
-
 import datetime
-import hashlib
 import operator
-import os
 import re
 import smtplib
 
-from cStringIO import StringIO
-from PIL import Image
-
-from django.conf import settings
 from django.contrib import auth
 from django.core.urlresolvers import reverse
 from django.db import transaction
@@ -310,37 +303,6 @@ def derive_username(nickname):
     return nickname
 
 
-@must_be_owner
-def upload_profile_photo(request, username):
-    person = get_object_or_404(DjangoPerson, user__username=username)
-    if request.method == 'POST':
-        form = PhotoUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            # Figure out what type of image it is
-            image_content = request.FILES['photo'].read()
-            format = Image.open(StringIO(image_content)).format
-            format = format.lower().replace('jpeg', 'jpg')
-            filename = hashlib.md5(image_content).hexdigest() + '.' + format
-            # Save the image
-            path = os.path.join(settings.MEDIA_ROOT, 'profiles', filename)
-            open(path, 'w').write(image_content)
-            person.photo = 'profiles/%s' % filename
-            person.save()
-            return redirect(reverse('upload_done', args=[username]))
-    else:
-        form = PhotoUploadForm()
-    return render(request, 'upload_profile_photo.html', {
-        'form': form,
-        'person': person,
-    })
-
-
-@must_be_owner
-def upload_done(request, username):
-    "Using a double redirect to try and stop back button from re-uploading"
-    return redirect(reverse('user_profile', args=[username]))
-
-
 class CountryView(generic.DetailView):
     template_name = 'country.html'
     context_object_name = 'country'
@@ -537,6 +499,25 @@ class EditLocationView(DjangoPersonEditViewBase):
         })
         return initial
 edit_location = must_be_owner(EditLocationView.as_view())
+
+
+class UploadProfilePhoto(DjangoPersonEditViewBase):
+    form_class = PhotoUploadForm
+    template_name = 'upload_profile_photo.html'
+
+    def get_success_url(self):
+        return reverse('upload_done', args=[self.kwargs['username']])
+upload_profile_photo = must_be_owner(UploadProfilePhoto.as_view())
+
+
+class UploadDone(generic.RedirectView):
+    "Using a double redirect to try and stop back button from re-uploading"
+    permanent = False
+
+    def get_redirect_url(self, username):
+        user =  self.request.user
+        return reverse('user_profile', args=[user.username])
+upload_done = must_be_owner(UploadDone.as_view())
 
 
 class SkillCloudView(generic.TemplateView):
