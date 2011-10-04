@@ -1,12 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.conf import settings
 from django.core.urlresolvers import reverse
 from machinetags.models import MachineTaggedItem, add_machinetag
 from django.contrib.contenttypes import generic
 from geopy import distance
 from django.utils.safestring import mark_safe
 from django.utils.html import escape
+from storages.backends.hashpath import HashPathStorage
+
+
+fs = HashPathStorage()
+
 import tagging
 
 RESERVED_USERNAMES = set((
@@ -25,9 +29,11 @@ RESERVED_USERNAMES = set((
     'companies active'
 ).split())
 
+
 class CountryManager(models.Manager):
     def top_countries(self):
         return self.get_query_set().order_by('-num_people')
+
 
 class Country(models.Model):
     # Longest len('South Georgia and the South Sandwich Islands') = 44
@@ -51,23 +57,24 @@ class Country(models.Model):
     bbox_north = models.FloatField()
     bbox_east = models.FloatField()
     bbox_south = models.FloatField()
-    
+
     # De-normalised
     num_people = models.IntegerField(default=0)
-    
+
     objects = CountryManager()
-    
+
     def top_regions(self):
         # Returns populated regions in order of population
         return self.region_set.order_by('-num_people')
-    
+
     class Meta:
         ordering = ('name',)
         verbose_name_plural = 'Countries'
-    
+
     def __unicode__(self):
         return self.name
-    
+
+
 class Region(models.Model):
     code = models.CharField(max_length=20)
     name = models.CharField(max_length=50)
@@ -77,57 +84,61 @@ class Region(models.Model):
     bbox_north = models.FloatField()
     bbox_east = models.FloatField()
     bbox_south = models.FloatField()
-    
+
     # De-normalised
     num_people = models.IntegerField(default=0)
-    
+
     def get_absolute_url(self):
         return reverse('country_region', args=[self.country.iso_code.lower(), self.code.lower()])
-    
+
     def __unicode__(self):
         return self.name
-    
+
     class Meta:
         ordering = ('name',)
-    
+
+
 class DjangoPerson(models.Model):
     user = models.ForeignKey(User, unique=True)
     bio = models.TextField(blank=True)
-    
+
     # Location stuff - all location fields are required
     country = models.ForeignKey(Country)
     region = models.ForeignKey(Region, blank=True, null=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
     location_description = models.CharField(max_length=50)
-    
+
     # Profile photo
-    photo = models.ImageField(blank=True, upload_to='profiles')
-    
+    photo = models.ImageField(blank=True, upload_to='profiles', storage=fs)
+
     # Stats
     profile_views = models.IntegerField(default=0)
-    
+
     # Machine tags
     machinetags = generic.GenericRelation(MachineTaggedItem)
     add_machinetag = add_machinetag
-    
+
     # OpenID delegation
-    openid_server = models.URLField(max_length=255, blank=True)
-    openid_delegate = models.URLField(max_length=255, blank=True)
+    openid_server = models.URLField(max_length=255, blank=True,
+                                    verify_exists=False)
+    openid_delegate = models.URLField(max_length=255, blank=True,
+                                      verify_exists=False)
 
     # Last active on IRC
     last_active_on_irc = models.DateTimeField(blank=True, null=True)
 
     def irc_nick(self):
         try:
-            return self.machinetags.filter(namespace = 'im', predicate='django')[0].value
+            return self.machinetags.filter(namespace='im',
+                                           predicate='django')[0].value
         except IndexError:
             return '<none>'
-     
+
     def get_nearest(self, num=5):
         "Returns the nearest X people, but only within the same continent"
         # TODO: Add caching
-        
+
         people = list(self.country.djangoperson_set.select_related().exclude(pk=self.id))
         if len(people) <= num:
             # Not enough in country; use people from the same continent instead
@@ -141,18 +152,18 @@ class DjangoPerson(models.Model):
                 (self.latitude, self.longitude),
                 (person.latitude, person.longitude)
             ).miles
-        
+
         # Return the nearest X
         people.sort(key=lambda x: x.distance_in_miles)
         return people[:num]
-    
+
     def location_description_html(self):
         region = ''
         if self.region:
             region = '<a href="%s">%s</a>' % (
                 self.region.get_absolute_url(), self.region.name
             )
-            bits = self.location_description.split(', ')        
+            bits = self.location_description.split(', ')
             if len(bits) > 1 and bits[-1] == self.region.name:
                 bits[-1] = region
             else:
@@ -161,13 +172,13 @@ class DjangoPerson(models.Model):
             return mark_safe(', '.join(bits))
         else:
             return self.location_description
-    
+
     def __unicode__(self):
         return unicode(self.user.get_full_name())
-    
+
     def get_absolute_url(self):
         return reverse('user_profile', args=[self.user.username])
-    
+
     def save(self, force_insert=False, force_update=False, **kwargs): # TODO: Put in transaction
         # Update country and region counters
         super(DjangoPerson, self).save(force_insert=False, force_update=False, **kwargs)
@@ -176,7 +187,7 @@ class DjangoPerson(models.Model):
         if self.region:
             self.region.num_people = self.region.djangoperson_set.count()
             self.region.save()
-    
+
     class Meta:
         verbose_name_plural = 'Django people'
 
@@ -190,23 +201,25 @@ tagging.register(DjangoPerson,
     tagged_item_manager_attr = 'skilltagged'
 )
 
+
 class PortfolioSite(models.Model):
     title = models.CharField(max_length=100)
     url = models.URLField(max_length=255)
     contributor = models.ForeignKey(DjangoPerson)
-    
+
     def __unicode__(self):
         return '%s <%s>' % (self.title, self.url)
-    
+
+
 class CountrySite(models.Model):
     "Community sites for various countries"
     title = models.CharField(max_length = 100)
     url = models.URLField(max_length = 255)
     country = models.ForeignKey(Country)
-    
+
     def __unicode__(self):
         return '%s <%s>' % (self.title, self.url)
-   
+
 #class ClusteredPoint(models.Model):
 #    
 #    """

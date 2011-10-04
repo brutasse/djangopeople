@@ -1,19 +1,24 @@
 from django import forms
 from django.conf import settings
 from django.core.mail import send_mail
-from django.db.models import ObjectDoesNotExist
 from django.forms.forms import BoundField
+from django.forms.widgets import PasswordInput
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
 from tagging.forms import TagField
+from tagging.utils import edit_string_for_tags
 
 from djangopeople import utils
-from djangopeople.constants import SERVICES, IMPROVIDERS
+from djangopeople.constants import SERVICES, IMPROVIDERS, MACHINETAGS_FROM_FIELDS
 from djangopeople.groupedselect import GroupedChoiceField
 from djangopeople.models import (DjangoPerson, Country, Region, User,
                                  RESERVED_USERNAMES)
 
+from cStringIO import StringIO
+from PIL import Image
+import hashlib
+import os
 
 def region_choices():
     # For use with GroupedChoiceField
@@ -39,6 +44,7 @@ def not_in_the_atlantic(self):
     if self.cleaned_data.get('latitude', '') and self.cleaned_data.get('longitude', ''):
         lat = self.cleaned_data['latitude']
         lon = self.cleaned_data['longitude']
+
         if 43 < lat < 45 and -39 < lon < -33:
             raise forms.ValidationError("Drag and zoom the map until the crosshair matches your location")
     return self.cleaned_data['location_description']
@@ -163,7 +169,8 @@ class SignupForm(forms.Form):
         username = self.cleaned_data['username'].lower()
 
         # No reserved usernames, or anything that looks like a 4 digit year 
-        if username in RESERVED_USERNAMES or (len(username) == 4 and username.isdigit()):
+        if username in RESERVED_USERNAMES or (len(username) == 4 and
+                                              username.isdigit()):
             raise forms.ValidationError(already_taken)
 
         try:
@@ -193,7 +200,7 @@ class SignupForm(forms.Form):
                     code = self.cleaned_data['region'],
                     country__iso_code = self.cleaned_data['country']
                 )
-            except ObjectDoesNotExist:
+            except Region.DoesNotExist:
                 raise forms.ValidationError(
                     'The region you selected does not match the country'
                 )
@@ -201,28 +208,62 @@ class SignupForm(forms.Form):
 
     clean_location_description = not_in_the_atlantic
 
-class PhotoUploadForm(forms.Form):
-    photo = forms.ImageField()
 
-class SkillsForm(forms.Form):
-    skills = TagField(label='Change skills')
+class PhotoUploadForm(forms.ModelForm):
+    class Meta:
+        model = DjangoPerson
+        fields = ('photo',)
 
-class BioForm(forms.Form):
-    bio = forms.CharField(widget=forms.Textarea, required=False)
 
-class AccountForm(forms.Form):
-    openid_server = forms.URLField(required=False)
-    openid_delegate = forms.URLField(required=False)
+class SkillsForm(forms.ModelForm):
+    skills = TagField(label='Change skills', required=False)
 
-class LocationForm(forms.Form):
+    class Meta:
+        model = DjangoPerson
+        fields = ()
+
+    def __init__(self, *args, **kwargs):
+        super(SkillsForm, self).__init__(*args, **kwargs)
+        self.initial = {'skills': edit_string_for_tags(self.instance.skilltags)}
+
+    def save(self):
+        self.instance.skilltags = self.cleaned_data['skills']
+
+
+class BioForm(forms.ModelForm):
+    class Meta:
+        model = DjangoPerson
+        fields = ('bio',)
+
+
+class AccountForm(forms.ModelForm):
+    class Meta:
+        model = DjangoPerson
+        fields = ('openid_server', 'openid_delegate')
+
+
+class LocationForm(forms.ModelForm):
     country = forms.ChoiceField(choices = [('', '')] + [
         (c.iso_code, c.name) for c in Country.objects.all()
     ])
+    region = GroupedChoiceField(required=False, choices=region_choices())
     latitude = forms.FloatField(min_value=-90, max_value=90)
     longitude = forms.FloatField(min_value=-180, max_value=180)
     location_description = forms.CharField(max_length=50)
 
-    region = GroupedChoiceField(required=False, choices=region_choices())
+    class Meta:
+        model = DjangoPerson
+        fields = ('country', 'latitude', 'longitude', 'location_description',
+                  'region')
+
+    def clean_country(self):
+        try:
+            country = Country.objects.get(iso_code=self.cleaned_data['country'])
+            return country
+        except Country.DoesNotExist:
+            raise forms.ValidationError(
+                    'The ISO code of the country you selected is invalid.'
+                )
 
     def clean_region(self):
         # If a region is selected, ensure it matches the selected country
@@ -232,19 +273,23 @@ class LocationForm(forms.Form):
                     code = self.cleaned_data['region'],
                     country__iso_code = self.cleaned_data['country']
                 )
-            except ObjectDoesNotExist:
+            except Region.DoesNotExist:
                 raise forms.ValidationError(
                     'The region you selected does not match the country'
                 )
-        return self.cleaned_data['region']
+            return self.cleaned_data['region']
 
     clean_location_description = not_in_the_atlantic
 
-class FindingForm(forms.Form):
+class FindingForm(forms.ModelForm):
+
+    class Meta:
+        model = DjangoPerson
+        fields = ()
+
     def __init__(self, *args, **kwargs):
-        # Dynamically add the fields for IM providers / external services
-        self.person = kwargs.pop('person') # So we can validate e-mail later
         super(FindingForm, self).__init__(*args, **kwargs)
+        # Dynamically add the fields for IM providers / external services
         self.service_fields = []
         for shortname, name, icon in SERVICES:
             field = forms.URLField(
@@ -313,40 +358,44 @@ class FindingForm(forms.Form):
         email = self.cleaned_data['email']
         if User.objects.filter(
             email = email
-        ).exclude(djangoperson = self.person).count() > 0:
+        ).exclude(djangoperson = self.instance).count() > 0:
             raise forms.ValidationError('That e-mail is already in use')
         return email
 
-class PortfolioForm(forms.Form):
+    def save(self):
+        user = self.instance.user
+        user.email = self.cleaned_data['email']
+        user.save()
+
+        for fieldname, (namespace, predicate) in \
+            MACHINETAGS_FROM_FIELDS.items():
+            self.instance.machinetags.filter(
+                namespace=namespace, predicate=predicate
+            ).delete()
+            if fieldname in self.cleaned_data and \
+                   self.cleaned_data[fieldname].strip():
+                value = self.cleaned_data[fieldname].strip()
+                self.instance.add_machinetag(namespace, predicate, value)
+
+class PortfolioForm(forms.ModelForm):
+
+    class Meta:
+        model = DjangoPerson
+        fields = ()
+    
     def __init__(self, *args, **kwargs):
         # Dynamically add the fields for IM providers / external services
-        assert 'person' in kwargs, 'person is a required keyword argument'
-        person = kwargs.pop('person')
         super(PortfolioForm, self).__init__(*args, **kwargs)
         self.portfolio_fields = []
-        initial_data = {}
+        self.initial = {}
         num = 1
-        for site in person.portfoliosite_set.all():
-            url_field = forms.URLField(
-                max_length=255, required=False, label='URL %d' % num
-            )
-            title_field = forms.CharField(
-                max_length=100, required=False, label='Title %d' % num
-            )
-            self.fields['title_%d' % num] = title_field
-            self.fields['url_%d' % num] = url_field
-            self.portfolio_fields.append({
-                'title_field': BoundField(self, title_field, 'title_%d' % num),
-                'url_field': BoundField(self, url_field, 'url_%d' % num),
-                'title_id': 'id_title_%d' % num,
-                'url_id': 'id_url_%d' % num,
-            })
-            initial_data['title_%d' % num] = site.title
-            initial_data['url_%d' % num] = site.url
+        for site in kwargs['instance'].portfoliosite_set.all():
+            self.initial['title_%d' % num] = site.title
+            self.initial['url_%d' % num] = site.url
             num += 1
 
-        # Add some more empty ones
-        for i in range(num, num + 3):
+        # Add fields
+        for i in range(1, num + 3):
             url_field = forms.URLField(
                 max_length=255, required=False, label='URL %d' % i
             )
@@ -362,11 +411,18 @@ class PortfolioForm(forms.Form):
                 'url_id': 'id_url_%d' % i,
             })
 
-        self.initial = initial_data
-
         # Add custom validator for each url field
         for key in [k for k in self.fields if k.startswith('url_')]:
             setattr(self, 'clean_%s' % key, make_validator(key, self))
+
+    def save(self):
+        self.instance.portfoliosite_set.all().delete()
+        for key in [k for k in self.cleaned_data.keys() if k.startswith('title_')]:
+            title = self.cleaned_data[key]
+            url = self.cleaned_data[key.replace('title_', 'url_')]
+            if title.strip() and url.strip():
+                self.instance.portfoliosite_set.create(title=title, url=url)
+
 
 def make_validator(key, form):
     def check():
@@ -401,3 +457,31 @@ class LostPasswordForm(forms.Form):
             settings.RECOVERY_EMAIL_FROM, [person.user.email],
             fail_silently=False
         )
+
+
+class PasswordForm(forms.ModelForm):
+    current_password = forms.CharField(label='Current Password', widget=PasswordInput)
+    password1 = forms.CharField(label='New Password', widget=PasswordInput)
+    password2 = forms.CharField(label='New Password (again)', widget=PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ()
+
+    def clean_current_password(self):
+        if not self.instance.check_password(self.cleaned_data['current_password']):
+            raise forms.ValidationError('Please submit your current password.')
+        else:
+            return self.cleaned_data['current_password']
+        
+    def clean(self):
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+        if password1 == password2:
+            return self.cleaned_data
+        else:
+            raise forms.ValidationError('The passwords did not match.') 
+    
+    def save(self):
+        self.instance.set_password(self.cleaned_data['password1'])
+        self.instance.save()

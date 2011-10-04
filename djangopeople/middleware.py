@@ -25,4 +25,3 @@ class RemoveWWW(object):
             return HttpResponsePermanentRedirect(newurl)
         else:
             return None
-

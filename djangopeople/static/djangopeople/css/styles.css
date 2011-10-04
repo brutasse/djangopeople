@@ -489,6 +489,7 @@ p.jobad, p.mapnote {
 }
 .tagline {
 	font-size: 1.5em;
+	clear: both;
 }
 
 /* @group Tag Cloud */

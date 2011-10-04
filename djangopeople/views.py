@@ -1,21 +1,14 @@
 import datetime
-import hashlib
 import operator
-import os
 import re
 import smtplib
 
-from cStringIO import StringIO
-from PIL import Image
-
-from django.conf import settings
 from django.contrib import auth
-from django.contrib.auth import views as auth_views
 from django.core.urlresolvers import reverse
-from django.db.models import Q
+from django.db import transaction
+from django.db.models import Q, F
 from django.http import Http404, HttpResponseForbidden
-from django.shortcuts import get_object_or_404, render_to_response, redirect
-from django.template import RequestContext
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
@@ -24,28 +17,23 @@ from djangopeople.constants import (MACHINETAGS_FROM_FIELDS,
                                     IMPROVIDERS_DICT, SERVICES_DICT)
 from djangopeople.forms import (SkillsForm, SignupForm, PhotoUploadForm,
                                 PortfolioForm, BioForm, LocationForm,
-                                FindingForm, AccountForm, LostPasswordForm)
+                                FindingForm, AccountForm, LostPasswordForm,
+                                PasswordForm)
 from djangopeople.models import (DjangoPerson, Country, User, Region,
                                  PortfolioSite)
 
 from django_openidauth.models import associate_openid, UserOpenID
 
 from tagging.models import Tag, TaggedItem
-#from tagging.views import tagged_object_list
-from tagging.utils import calculate_cloud, edit_string_for_tags, get_tag
+from tagging.utils import calculate_cloud, get_tag
 
 from machinetags.utils import tagdict
 from machinetags.models import MachineTaggedItem
 
 from django.views.generic.list_detail import object_list
 
-
 NOTALPHA_RE = re.compile('[^a-zA-Z0-9]')
 
-def render(request, template, context_dict=None):
-    return render_to_response(
-        template, context_dict or {}, context_instance=RequestContext(request)
-    )
 
 @utils.simple_decorator
 def must_be_owner(view):
@@ -107,8 +95,15 @@ class RecentView(generic.TemplateView):
 recent = RecentView.as_view()
 
 
-def login(request):
-    return auth_views.login(request, template_name='login.html')
+class ProfileRedirectView(generic.RedirectView):
+    '''
+    redirect to the profile page of the logged in user
+    used to redirect to the profile page of the user after login
+    '''
+
+    def get_redirect_url(self):
+        return reverse('user_profile', kwargs={'username': self.request.user})
+redirect_to_logged_in_user_profile = ProfileRedirectView.as_view()
 
 
 def logout(request):
@@ -127,13 +122,13 @@ class LostPasswordView(generic.FormView):
         except smtplib.SMTPException:
             return self.render_to_response(
                 self.get_context_data(
-                    message= _('Could not email you a recovery link.'),
+                    message=_('Could not email you a recovery link.'),
             ))
         return self.render_to_response(
             self.get_context_data(
-                message= _("An e-mail has been sent with instructions for "
-                           "recovering your account. Don't forget to check "
-                           "your spam folder!"),
+                message=_("An e-mail has been sent with instructions for "
+                          "recovering your account. Don't forget to check "
+                          "your spam folder!"),
         ))
 lost_password = LostPasswordView.as_view()
 
@@ -145,7 +140,7 @@ class LostPasswordRecoverView(generic.TemplateView):
         username = kwargs['username']
         user = get_object_or_404(User, username=username)
         if utils.hash_is_valid(username, kwargs['days'], kwargs['hash']):
-            user.backend='django.contrib.auth.backends.ModelBackend'
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
             auth.login(request, user)
             url = reverse('edit_password', kwargs={'username': username})
             return redirect(url)
@@ -159,107 +154,109 @@ class LostPasswordRecoverView(generic.TemplateView):
 lost_password_recover = LostPasswordRecoverView.as_view()
 
 
-def openid_whatnext(request):
+class OpenIDWhatNext(generic.RedirectView):
     """
     If user is already logged in, send them to /openid/associations/
     Otherwise, send them to the signup page
     """
-    if not request.openid:
-        return redirect(reverse('index'))
-    if request.user.is_anonymous():
-        # Have they logged in with an OpenID that matches an account?
-        try:
-            user_openid = UserOpenID.objects.get(openid = str(request.openid))
-        except UserOpenID.DoesNotExist:
-            return redirect(reverse('signup'))
-        # Log the user in
-        user = user_openid.user
-        user.backend='django.contrib.auth.backends.ModelBackend'
-        auth.login(request, user)
-        return redirect(reverse('user_profile', args=[user.username]))
+    permanent = False
 
-    else:
-        return redirect(reverse('openid_associations'))
+    def get_redirect_url(self):
+        if not self.request.openid:
+            return reverse('index')
 
-
-def signup(request):
-    if not request.user.is_anonymous():
-        return redirect(reverse('index'))
-    if request.method == 'POST':
-        if request.openid:
-            form = SignupForm(
-                request.POST, request.FILES, openid=request.openid
-            )
-        else:
-            form = SignupForm(request.POST, request.FILES)
-        if form.is_valid():
-            # First create the user
-            creation_args = {
-                'username': form.cleaned_data['username'],
-                'email': form.cleaned_data['email'],
-            }
-            if form.cleaned_data.get('password1'):
-                creation_args['password'] = form.cleaned_data['password1']
-
-            user = User.objects.create_user(**creation_args)
-            user.first_name = form.cleaned_data['first_name']
-            user.last_name = form.cleaned_data['last_name']
-            user.save()
-
-            if request.openid:
-                associate_openid(user, str(request.openid))
-
-            region = None
-            if form.cleaned_data['region']:
-                region = Region.objects.get(
-                    country__iso_code = form.cleaned_data['country'],
-                    code = form.cleaned_data['region']
+        if self.request.user.is_anonymous():
+            # Have they logged in with an OpenID that matches an account?
+            try:
+                user_openid = UserOpenID.objects.get(
+                    openid=str(self.request.openid),
                 )
+            except UserOpenID.DoesNotExist:
+                return reverse('signup')
 
-            # Now create the DjangoPerson
-            person = DjangoPerson.objects.create(
-                user = user,
-                bio = form.cleaned_data['bio'],
-                country = Country.objects.get(
-                    iso_code = form.cleaned_data['country']
-                ),
-                region = region,
-                latitude = form.cleaned_data['latitude'],
-                longitude = form.cleaned_data['longitude'],
-                location_description = form.cleaned_data['location_description']
+            # Log the user in
+            user = user_openid.user
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
+            auth.login(self.request, user)
+            return reverse('user_profile', args=[user.username])
+        return reverse('openid_associations')
+openid_whatnext = OpenIDWhatNext.as_view()
+
+
+class SignupView(generic.FormView):
+    form_class = SignupForm
+    template_name = 'signup.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_anonymous():
+            return redirect(reverse('index'))
+        return super(SignupView, self).dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        creation_args = {
+            'username': form.cleaned_data['username'],
+            'email': form.cleaned_data['email'],
+        }
+        if form.cleaned_data.get('password1'):
+            creation_args['password'] = form.cleaned_data['password1']
+        user = User.objects.create(**creation_args)
+        user.first_name = form.cleaned_data['first_name']
+        user.last_name = form.cleaned_data['last_name']
+        user.save()
+
+        if self.request.openid:
+            associate_openid(user, str(self.request.openid))
+
+        region = None
+        if form.cleaned_data['region']:
+            region = Region.objects.get(
+                country__iso_code=form.cleaned_data['country'],
+                code=form.cleaned_data['region'],
             )
 
-            # Set up the various machine tags
-            for fieldname, (namespace, predicate) in \
-                    MACHINETAGS_FROM_FIELDS.items():
-                if form.cleaned_data.has_key(fieldname) and \
-                    form.cleaned_data[fieldname].strip():
-                    value = form.cleaned_data[fieldname].strip()
-                    person.add_machinetag(namespace, predicate, value)
+        # Now create the DjangoPerson
+        person = DjangoPerson.objects.create(
+            user=user,
+            bio=form.cleaned_data['bio'],
+            country=Country.objects.get(
+                iso_code=form.cleaned_data['country'],
+            ),
+            region=region,
+            latitude=form.cleaned_data['latitude'],
+            longitude=form.cleaned_data['longitude'],
+            location_description=form.cleaned_data['location_description'],
+        )
 
-            # Stash their blog and looking_for_work
-            if form.cleaned_data['blog']:
-                person.add_machinetag(
-                    'profile', 'blog', form.cleaned_data['blog']
-                )
-            if form.cleaned_data['looking_for_work']:
-                person.add_machinetag(
-                    'profile', 'looking_for_work',
-                    form.cleaned_data['looking_for_work']
-                )
+        # Set up the various machine tags
+        for fieldname, (namespace, predicate) in \
+                MACHINETAGS_FROM_FIELDS.items():
+            if fieldname in form.cleaned_data and \
+                form.cleaned_data[fieldname].strip():
+                value = form.cleaned_data[fieldname].strip()
+                person.add_machinetag(namespace, predicate, value)
 
-            # Finally, set their skill tags
-            person.skilltags = form.cleaned_data['skilltags']
+        # Finally, set their skill tags
+        person.skilltags = form.cleaned_data['skilltags']
 
-            # Log them in and redirect to their profile page
-            # HACK! http://groups.google.com/group/django-users/
-            #    browse_thread/thread/39488db1864c595f
-            user.backend='django.contrib.auth.backends.ModelBackend'
-            auth.login(request, user)
-            return redirect(person.get_absolute_url())
-    else:
-        if request.openid and request.openid.sreg:
-            sreg = request.openid.sreg
+        # Log them in and redirect to their profile page
+        user.backend = 'django.contrib.auth.backends.ModelBackend'
+        auth.login(self.request, user)
+        self.person = person
+        return super(SignupView, self).form_valid(form)
+
+    def get_success_url(self):
+        return self.person.get_absolute_url()
+
+    def get_form_kwargs(self):
+        kwargs = super(SignupView, self).get_form_kwargs()
+        if self.request.openid:
+            kwargs['openid'] = self.request.openid
+        return kwargs
+
+    def get_initial(self):
+        initial = super(SignupView, self).get_initial()
+        if self.request.openid and self.request.openid.sreg:
+            sreg = self.request.openid.sreg
             first_name = ''
             last_name = ''
             username = ''
@@ -271,21 +268,24 @@ def signup(request):
             # Find a not-taken username
             if sreg.get('nickname'):
                 username = derive_username(sreg['nickname'])
-            form = SignupForm(initial = {
+
+            initial.update({
                 'first_name': first_name,
                 'last_name': last_name,
                 'email': sreg.get('email', ''),
                 'username': username,
-            }, openid = request.openid)
-        elif request.openid:
-            form = SignupForm(openid = request.openid)
-        else:
-            form = SignupForm()
+            })
+        return initial
 
-    return render(request, 'signup.html', {
-        'form': form,
-        'openid': request.openid,
-    })
+    def get_context_data(self, **kwargs):
+        ctx = super(SignupView, self).get_context_data(**kwargs)
+        ctx.update({
+            'openid': self.request.openid,
+        })
+        return ctx
+signup = SignupView.as_view()
+signup = transaction.commit_on_success(signup)
+
 
 def derive_username(nickname):
     nickname = NOTALPHA_RE.sub('', nickname)
@@ -295,392 +295,373 @@ def derive_username(nickname):
     to_add = 1
     while True:
         try:
-            DjangoPerson.objects.get(user__username = nickname)
+            DjangoPerson.objects.get(user__username=nickname)
         except DjangoPerson.DoesNotExist:
             break
         nickname = base_nickname + str(to_add)
         to_add += 1
     return nickname
 
-@must_be_owner
-def upload_profile_photo(request, username):
-    person = get_object_or_404(DjangoPerson, user__username = username)
-    if request.method == 'POST':
-        form = PhotoUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            # Figure out what type of image it is
-            image_content = request.FILES['photo'].read()
-            format = Image.open(StringIO(image_content)).format
-            format = format.lower().replace('jpeg', 'jpg')
-            filename = hashlib.md5(image_content).hexdigest() + '.' + format
-            # Save the image
-            path = os.path.join(settings.MEDIA_ROOT, 'profiles', filename)
-            open(path, 'w').write(image_content)
-            person.photo = 'profiles/%s' % filename
-            person.save()
-            return redirect(reverse('upload_done', args=[username]))
-    else:
-        form = PhotoUploadForm()
-    return render(request, 'upload_profile_photo.html', {
-        'form': form,
-        'person': person,
-    })
 
-@must_be_owner
-def upload_done(request, username):
-    "Using a double redirect to try and stop back button from re-uploading"
-    return redirect(reverse('user_profile', args=[username]))
+class CountryView(generic.DetailView):
+    template_name = 'country.html'
+    context_object_name = 'country'
 
-def country(request, country_code):
-    country = get_object_or_404(Country, iso_code = country_code.upper())
-    return render(request, 'country.html', {
-        'country': country,
-        'people_list': country.djangoperson_set.all(),
-        'regions': country.top_regions(),
-    })
+    def get_object(self):
+        return get_object_or_404(Country,
+                                 iso_code=self.kwargs['country_code'].upper())
 
-def country_sites(request, country_code):
-    country = get_object_or_404(Country, iso_code = country_code.upper())
-    sites = PortfolioSite.objects.select_related().filter(
-        contributor__country = country
-    ).order_by('contributor')
-    return render(request, 'country_sites.html', {
-        'country': country,
-        'sites': sites,
-    })
+    def get_context_data(self, **kwargs):
+        context = super(CountryView, self).get_context_data(**kwargs)
+        context.update({
+            'people_list': self.object.djangoperson_set.all(),
+            'regions': self.object.top_regions(),
+        })
+        return context
+country = CountryView.as_view()
+
+
+class CountrySitesView(generic.ListView):
+    context_object_name = 'sites'
+    template_name = 'country_sites.html'
+
+    def get_queryset(self):
+        self.country = get_object_or_404(
+            Country, iso_code=self.kwargs['country_code'].upper(),
+        )
+        return PortfolioSite.objects.select_related().filter(
+            contributor__country=self.country,
+        ).order_by('contributor')
+
+    def get_context_data(self, **kwargs):
+        context = super(CountrySitesView, self).get_context_data(**kwargs)
+        context.update({
+            'country': self.country,
+        })
+        return context
+country_sites = CountrySitesView.as_view()
+
 
 def region(request, country_code, region_code):
-    region = get_object_or_404(Region, 
-        country__iso_code = country_code.upper(),
-        code = region_code.upper()
+    region = get_object_or_404(Region,
+        country__iso_code=country_code.upper(),
+        code=region_code.upper()
     )
     return render(request, 'country.html', {
         'country': region,
     })
 
-def profile(request, username):
-    person = get_object_or_404(DjangoPerson, user__username = username)
-    person.profile_views += 1 # Not bothering with transactions; only a stat
-    person.save()
-    mtags = tagdict(person.machinetags.all())
-    
-    # Set up convenient iterables for IM and services
-    ims = []
-    for key, value in mtags.get('im', {}).items():
-        shortname, name, icon = IMPROVIDERS_DICT.get(key, ('', '', ''))
-        if not shortname:
-            continue # Bad machinetag
-        ims.append({
-            'shortname': shortname,
-            'name': name,
-            'value': value,
-        })
-    ims.sort(lambda x, y: cmp(x['shortname'], y['shortname']))
-    
-    services = []
-    for key, value in mtags.get('services', {}).items():
-        shortname, name, icon = SERVICES_DICT.get(key, ('', '', ''))
-        if not shortname:
-            continue # Bad machinetag
-        services.append({
-            'shortname': shortname,
-            'name': name,
-            'value': value,
-        })
-    services.sort(lambda x, y: cmp(x['shortname'], y['shortname']))
-    
-    # Set up vars that control privacy stuff
-    privacy = {
-        'show_im': (
-            mtags['privacy']['im'] == 'public' or 
-            not request.user.is_anonymous()
-        ),
-        'show_email': (
-            mtags['privacy']['email'] == 'public' or 
-            (not request.user.is_anonymous() and mtags['privacy']['email'] == 'private')
-        ),
-        'hide_from_search': mtags['privacy']['search'] != 'public',
-        'show_last_irc_activity': bool(person.last_active_on_irc and person.irc_tracking_allowed()),
-    }
-    
-    # Should we show the 'Finding X' section at all?
-    show_finding = services or privacy['show_email'] or \
-        (privacy['show_im'] and ims)
-    
-    return render(request, 'profile.html', {
-        'person': person,
-        'is_owner': request.user.username == username,
-        'skills_form': SkillsForm(initial={
-            'skills': edit_string_for_tags(person.skilltags)
-        }),
-        'mtags': mtags,
-        'ims': ims,
-        'services': services,
-        'privacy': privacy,
-        'show_finding': show_finding,
-    })
 
-@must_be_owner
-def edit_finding(request, username):
-    person = get_object_or_404(DjangoPerson, user__username = username)
-    if request.method == 'POST':
-        form = FindingForm(request.POST, person=person)
-        if form.is_valid():
-            user = person.user
-            user.email = form.cleaned_data['email']
-            user.save()
-            
-            person.machinetags.filter(namespace = 'profile').delete()
-            if form.cleaned_data['blog']:
-                person.add_machinetag(
-                    'profile', 'blog', form.cleaned_data['blog']
-                )
-            if form.cleaned_data['looking_for_work']:
-                person.add_machinetag(
-                    'profile', 'looking_for_work',
-                    form.cleaned_data['looking_for_work']
-                )
-            
-            for fieldname, (namespace, predicate) in \
-                MACHINETAGS_FROM_FIELDS.items():
-                person.machinetags.filter(
-                    namespace = namespace, predicate = predicate
-                ).delete()
-                if form.cleaned_data.has_key(fieldname) and \
-                    form.cleaned_data[fieldname].strip():
-                    value = form.cleaned_data[fieldname].strip()
-                    person.add_machinetag(namespace, predicate, value)
-            
-            return redirect(reverse('user_profile', args=[username]))
-    else:
-        mtags = tagdict(person.machinetags.all())
-        initial = {
-            'email': person.user.email,
-            'blog': mtags['profile']['blog'],
-            'looking_for_work': mtags['profile']['looking_for_work'],
+class ProfileView(generic.DetailView):
+    context_object_name = 'person'
+    template_name = 'profile.html'
+
+    def get_object(self):
+        person = get_object_or_404(DjangoPerson,
+                                   user__username=self.kwargs['username'])
+        DjangoPerson.objects.filter(pk=person.pk).update(
+            profile_views=F('profile_views') + 1,
+        )
+        return person
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        mtags = tagdict(self.object.machinetags.all())
+
+        # Set up convenient iterables for IM and services
+        ims = []
+        for key, value in mtags.get('im', {}).items():
+            shortname, name, icon = IMPROVIDERS_DICT.get(key, ('', '', ''))
+            if not shortname:
+                continue  # Bad machinetag
+            ims.append({
+                'shortname': shortname,
+                'name': name,
+                'value': value,
+            })
+        ims.sort(lambda x, y: cmp(x['shortname'], y['shortname']))
+
+        services = []
+        for key, value in mtags.get('services', {}).items():
+            shortname, name, icon = SERVICES_DICT.get(key, ('', '', ''))
+            if not shortname:
+                continue  # Bad machinetag
+            services.append({
+                'shortname': shortname,
+                'name': name,
+                'value': value,
+            })
+        services.sort(lambda x, y: cmp(x['shortname'], y['shortname']))
+
+        # Set up vars that control privacy stuff
+        privacy = {
+            'show_im': (
+                mtags['privacy']['im'] == 'public' or
+                not self.request.user.is_anonymous()
+            ),
+            'show_email': (
+                mtags['privacy']['email'] == 'public' or
+                (not self.request.user.is_anonymous() and
+                 mtags['privacy']['email'] == 'private')
+            ),
+            'hide_from_search': mtags['privacy']['search'] != 'public',
+            'show_last_irc_activity': bool(self.object.last_active_on_irc and
+                                           self.object.irc_tracking_allowed()),
         }
-        
+
+        # Should we show the 'Finding X' section at all?
+        show_finding = (services or privacy['show_email'] or
+                        (privacy['show_im'] and ims))
+
+        context.update({
+            'is_owner': self.request.user.username == self.kwargs['username'],
+            'skills_form': SkillsForm(instance=self.object),
+            'mtags': mtags,
+            'ims': ims,
+            'services': services,
+            'privacy': privacy,
+            'show_finding': show_finding,
+        })
+        return context
+profile = ProfileView.as_view()
+
+
+class DjangoPersonEditViewBase(generic.UpdateView):
+    def get_object(self):
+        return get_object_or_404(DjangoPerson,
+                                 user__username=self.kwargs['username'])
+
+    def get_success_url(self):
+        return reverse('user_profile', args=[self.kwargs['username']])
+
+
+class EditFindingView(DjangoPersonEditViewBase):
+    form_class = FindingForm
+    template_name = 'edit_finding.html'
+
+    def get_initial(self):
+        mtags = tagdict(self.object.machinetags.all())
+        initial = {
+            'email': self.object.user.email,
+        }
         # Fill in other initial fields from machinetags
         for fieldname, (namespace, predicate) in \
                 MACHINETAGS_FROM_FIELDS.items():
             initial[fieldname] = mtags[namespace][predicate]
-        
-        form = FindingForm(initial=initial, person=person)
-    return render(request, 'edit_finding.html', {
-        'form': form,
-        'person': person,
-    })
+        return initial
+edit_finding = must_be_owner(EditFindingView.as_view())
 
-@must_be_owner
-def edit_portfolio(request, username):
-    person = get_object_or_404(DjangoPerson, user__username = username)
-    if request.method == 'POST':
-        form = PortfolioForm(request.POST, person = person)
-        if form.is_valid():
-            person.portfoliosite_set.all().delete()
-            for key in [k for k in request.POST if k.startswith('title_')]:
-                title = request.POST[key]
-                url = request.POST[key.replace('title_', 'url_')]
-                if title.strip() and url.strip():
-                    person.portfoliosite_set.create(title = title, url = url)
-            return redirect(reverse('user_profile', args=[username]))
-    else:
-        form = PortfolioForm(person = person)
-    return render(request, 'edit_portfolio.html', {
-        'form': form,
-    })
 
-@must_be_owner
-def edit_account(request, username):
-    person = get_object_or_404(DjangoPerson, user__username = username)
-    if request.method == 'POST':
-        form = AccountForm(request.POST)
-        if form.is_valid():
-            person.openid_server = form.cleaned_data['openid_server']
-            person.openid_delegate = form.cleaned_data['openid_delegate']
-            person.save()
-            return redirect(reverse('user_profile', args=[username]))
-    else:
-        form = AccountForm(initial = {
-            'openid_server': person.openid_server,
-            'openid_delegate': person.openid_delegate,
+class EditPortfolioView(DjangoPersonEditViewBase):
+    form_class = PortfolioForm
+    template_name = 'edit_portfolio.html'
+edit_portfolio = must_be_owner(EditPortfolioView.as_view())
+
+
+class EditAccountView(DjangoPersonEditViewBase):
+    form_class = AccountForm
+    template_name = 'edit_account.html'
+edit_account = must_be_owner(EditAccountView.as_view())
+
+
+class EditSkillsView(DjangoPersonEditViewBase):
+    form_class = SkillsForm
+    template_name = 'edit_skills.html'
+edit_skills = must_be_owner(EditSkillsView.as_view())
+
+
+class EditPassword(generic.UpdateView):
+    form_class = PasswordForm
+    template_name = 'edit_password.html'
+
+    def get_object(self):
+        return get_object_or_404(User, username=self.kwargs['username'])
+
+    def get_success_url(self):
+        return reverse('user_profile', args=[self.kwargs['username']])
+edit_password = must_be_owner(EditPassword.as_view())
+
+
+class EditBioView(DjangoPersonEditViewBase):
+    form_class = BioForm
+    template_name = 'edit_bio.html'
+edit_bio = must_be_owner(EditBioView.as_view())
+
+
+class EditLocationView(DjangoPersonEditViewBase):
+    form_class = LocationForm
+    template_name = 'edit_location.html'
+
+    def get_initial(self):
+        initial = super(EditLocationView, self).get_initial()
+        initial.update({
+            'country': self.object.country.iso_code,
         })
-    return render(request, 'edit_account.html', {
-        'form': form,
-        'person': person,
-        'user': person.user,
-    })
+        return initial
+edit_location = must_be_owner(EditLocationView.as_view())
 
-@must_be_owner
-def edit_skills(request, username):
-    person = get_object_or_404(DjangoPerson, user__username = username)
-    if not request.POST.get('skills'):
-        return render(request, 'edit_skills.html', {
-            'form': SkillsForm(initial={
-                'skills': edit_string_for_tags(person.skilltags)
-            }),
+
+class UploadProfilePhoto(DjangoPersonEditViewBase):
+    form_class = PhotoUploadForm
+    template_name = 'upload_profile_photo.html'
+
+    def get_success_url(self):
+        return reverse('upload_done', args=[self.kwargs['username']])
+upload_profile_photo = must_be_owner(UploadProfilePhoto.as_view())
+
+
+class UploadDone(generic.RedirectView):
+    "Using a double redirect to try and stop back button from re-uploading"
+    permanent = False
+
+    def get_redirect_url(self, username):
+        user =  self.request.user
+        return reverse('user_profile', args=[user.username])
+upload_done = must_be_owner(UploadDone.as_view())
+
+
+class SkillCloudView(generic.TemplateView):
+    template_name = 'skills.html'
+
+    def get_context_data(self, **kwargs):
+        tags = DjangoPerson.skilltags.cloud(steps=5)
+        calculate_cloud(tags, 5)
+        context = super(SkillCloudView, self).get_context_data(**kwargs)
+        context.update({
+            'tags': tags,
         })
-    person.skilltags = request.POST.get('skills', '')
-    return redirect(reverse('user_profile', args=[username]))
+        return context
+skill_cloud = SkillCloudView.as_view()
 
-@must_be_owner
-def edit_password(request, username):
-    user = get_object_or_404(User, username = username)
-    p1 = request.POST.get('password1', '')
-    p2 = request.POST.get('password2', '')
-    if p1 and p2 and p1 == p2:
-        user.set_password(p1)
-        user.save()
-        return redirect(reverse('user_profile', args=[username]))
-    else:
-        return render(request, 'edit_password.html', {})
 
-@must_be_owner
-def edit_bio(request, username):
-    person = get_object_or_404(DjangoPerson, user__username = username)
-    if request.method == 'POST':
-        form = BioForm(request.POST)
-        if form.is_valid():
-            person.bio = form.cleaned_data['bio']
-            person.save()
-            return redirect(reverse('user_profile', args=[username]))
-    else:
-        form = BioForm(initial = {'bio': person.bio})
+class CountrySkillCloudView(generic.DetailView):
+    context_object_name = 'country'
+    template_name = 'skills.html'
 
-    return render(request, 'edit_bio.html', {
-        'form': form,
-    })
+    def get_object(self):
+        return get_object_or_404(Country,
+                                 iso_code=self.kwargs['country_code'].upper())
 
-@must_be_owner
-def edit_location(request, username):
-    person = get_object_or_404(DjangoPerson, user__username = username)
-    if request.method == 'POST':
-        form = LocationForm(request.POST)
-        if form.is_valid():
-            region = None
-            if form.cleaned_data['region']:
-                region = Region.objects.get(
-                    country__iso_code = form.cleaned_data['country'],
-                    code = form.cleaned_data['region']
-                )
-            person.country = Country.objects.get(
-                iso_code = form.cleaned_data['country']
-            )
-            person.region = region
-            person.latitude = form.cleaned_data['latitude']
-            person.longitude = form.cleaned_data['longitude']
-            person.location_description = \
-                form.cleaned_data['location_description']
-            person.save()
-            return redirect(reverse('user_profile', args=[username]))
-    else:
-        initial_data = {
-            'latitude': person.latitude,
-            'longitude': person.longitude,
-            'location_description': person.location_description,
-            'country': person.country.iso_code
-        }
-        form = LocationForm(initial=initial_data)
-    return render(request, 'edit_location.html', {
-        'form': form,
-    })
+    def get_context_data(self, **kwargs):
+        context = super(CountrySkillCloudView, self).get_context_data(**kwargs)
+        tags = Tag.objects.cloud_for_model(DjangoPerson, steps=5, filters={
+            'country': self.object,
+        })
+        calculate_cloud(tags, 5)
+        context.update({
+            'tags': tags,
+        })
+        return context
+country_skill_cloud = CountrySkillCloudView.as_view()
 
-def skill_cloud(request):
-    tags = DjangoPerson.skilltags.cloud(steps=5)
-    calculate_cloud(tags, 5)
-    return render(request, 'skills.html', {
-        'tags': tags
-    })
-
-def country_skill_cloud(request, country_code):
-    country = get_object_or_404(Country, iso_code = country_code.upper())
-    tags = Tag.objects.cloud_for_model(DjangoPerson, steps=5, filters={
-        'country': country
-    })
-    calculate_cloud(tags, 5)
-    return render(request, 'skills.html', {
-        'tags': tags,
-        'country': country
-    })
 
 def skill(request, tag):
     return tagged_object_list(request,
-        model = DjangoPerson,
-        tag = tag,
-        related_tags = True,
-        related_tag_counts = True,
-        template_name = 'skill.html',
-        template_object_name = 'people',
+        model=DjangoPerson,
+        tag=tag,
+        related_tags=True,
+        related_tag_counts=True,
+        template_name='skill.html',
+        template_object_name='people',
     )
+
 
 def country_skill(request, country_code, tag):
     return tagged_object_list(request,
-        model = DjangoPerson,
-        tag = tag,
-        related_tags = True,
-        related_tag_counts = True,
-        extra_filter_args = {'country__iso_code': country_code.upper()},
-        template_name = 'skill.html',
-        extra_context = {
-            'country': Country.objects.get(iso_code = country_code.upper()),
+        model=DjangoPerson,
+        tag=tag,
+        related_tags=True,
+        related_tag_counts=True,
+        extra_filter_args={'country__iso_code': country_code.upper()},
+        template_name='skill.html',
+        template_object_name='people',
+        extra_context={
+            'country': Country.objects.get(iso_code=country_code.upper()),
         },
     )
 
-def country_looking_for(request, country_code, looking_for):
-    country = get_object_or_404(Country, iso_code = country_code.upper())
-    ids = [
-        o['object_id'] for o in MachineTaggedItem.objects.filter(
-        namespace='profile', predicate='looking_for_work', value=looking_for).values('object_id')
-    ]
-    people = DjangoPerson.objects.filter(country = country, id__in = ids)
-    return render(request, 'country_looking_for.html', {
-        'people': people,
-        'country': country,
-        'looking_for': looking_for,
-    })
 
-def search_people(q):
-    words = [w.strip() for w in q.split() if len(w.strip()) > 2]
-    if not words:
-        return []
-    
-    terms = []
-    for word in words:
-        terms.append(Q(
-            user__username__icontains = word) | 
-            Q(user__first_name__icontains = word) | 
-            Q(user__last_name__icontains = word)
+class CountryLookingForView(generic.ListView):
+    context_object_name = 'people'
+    template_name = 'country_looking_for.html'
+
+    def get_queryset(self):
+        self.country = get_object_or_404(
+            Country, iso_code=self.kwargs['country_code'].upper(),
         )
-    
-    combined = reduce(operator.and_, terms)
-    return DjangoPerson.objects.filter(combined).select_related().distinct()
-    
-def search(request):
-    q = request.GET.get('q', '')
-    has_badwords = [
-        w.strip() for w in q.split() if len(w.strip()) in (1, 2)
-    ]
-    if q:
-        people = search_people(q)
-        return render(request, 'search.html', {
-            'q': q,
-            'people_list': people,
-            'has_badwords': has_badwords,
-        })
-    else:
-        return render(request, 'search.html')
+        ids = [
+            o['object_id'] for o in MachineTaggedItem.objects.filter(
+                namespace='profile',
+                predicate='looking_for_work',
+                value=self.kwargs['looking_for'],
+            ).values('object_id')
+        ]
+        return DjangoPerson.objects.filter(country=self.country, id__in=ids)
 
-def irc_active(request):
-    "People active on IRC in the last hour"
-    results = DjangoPerson.objects.filter(
-        last_active_on_irc__gt = 
-            datetime.datetime.now() - datetime.timedelta(hours=1)
-    ).order_by('-last_active_on_irc')
-    # Filter out the people who don't want to be tracked (inefficient)
-    results = [r for r in results if r.irc_tracking_allowed()]
-    return render(request, 'irc_active.html', {
-        'people_list': results,
-    })
+    def get_context_data(self, **kwargs):
+        context = super(CountryLookingForView, self).get_context_data(**kwargs)
+        context.update({
+            'country': self.country,
+            'looking_for': self.kwargs['looking_for'],
+        })
+        return context
+country_looking_for = CountryLookingForView.as_view()
+
+
+class SearchView(generic.ListView):
+    context_object_name = 'people_list'
+    template_name = 'search.html'
+
+    def get_queryset(self):
+        self.q = self.request.GET.get('q', '')
+        self.has_badwords = [
+            w.strip() for w in self.q.split() if len(w.strip()) in (1, 2)
+        ]
+        if self.q:
+            return self.search_people()
+        return []
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchView, self).get_context_data(**kwargs)
+        context.update({
+            'q': self.q,
+            'has_badwords': self.has_badwords
+        })
+        return context
+
+    def search_people(self):
+        words = [w.strip() for w in self.q.split() if len(w.strip()) > 2]
+        if not words:
+            return []
+
+        terms = []
+        for word in words:
+            terms.append(Q(
+                user__username__icontains=word) |
+                Q(user__first_name__icontains=word) |
+                Q(user__last_name__icontains=word)
+            )
+
+        combined = reduce(operator.and_, terms)
+        return DjangoPerson.objects.filter(
+            combined,
+        ).select_related().distinct()
+search = SearchView.as_view()
+
+
+class IRCActiveView(generic.ListView):
+    context_object_name = 'people_list'
+    template_name = 'irc_active.html'
+
+    def get_queryset(self):
+        results = DjangoPerson.objects.filter(
+            last_active_on_irc__gt=(datetime.datetime.now() -
+                                    datetime.timedelta(hours=1))
+        ).order_by('-last_active_on_irc')
+        # Filter out the people who don't want to be tracked (inefficient)
+        return [r for r in results if r.irc_tracking_allowed()]
+irc_active = IRCActiveView.as_view()
+
 
 # Custom variant of the generic view from django-tagging
 def tagged_object_list(request, model=None, tag=None, related_tags=False,
@@ -705,13 +686,15 @@ def tagged_object_list(request, model=None, tag=None, related_tags=False,
         try:
             model = kwargs['model']
         except KeyError:
-            raise AttributeError(_('tagged_object_list must be called with a model.'))
+            raise AttributeError(_('tagged_object_list must be called with '
+                                   'a model.'))
 
     if tag is None:
         try:
             tag = kwargs['tag']
         except KeyError:
-            raise AttributeError(_('tagged_object_list must be called with a tag.'))
+            raise AttributeError(_('tagged_object_list must be called with '
+                                   'a tag.'))
 
     tag_instance = get_tag(tag)
     if tag_instance is None:
@@ -719,7 +702,7 @@ def tagged_object_list(request, model=None, tag=None, related_tags=False,
     queryset = TaggedItem.objects.get_by_model(model, tag_instance)
     if extra_filter_args:
         queryset = queryset.filter(**extra_filter_args)
-    if not kwargs.has_key('extra_context'):
+    if 'extra_context' not in kwargs:
         kwargs['extra_context'] = {}
     kwargs['extra_context']['tag'] = tag_instance
     if related_tags:

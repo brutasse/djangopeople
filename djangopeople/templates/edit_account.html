@@ -26,26 +26,16 @@
 {% endwith %}
 
     <h2>Advanced: Use your profile page as an OpenID</h2>
-    <form method="post" action="{% url 'edit_account' user.username %}">{% csrf_token %}
+    <form method="post" action="{% url 'edit_account' user.username %}">
     <p class="help">
         If you already have an OpenID, you can configure your Django People profile page to delegate to it. This means you'll be able to use your profile page as an OpenID, without having to sign in to Django People first.
     </p>
     <p class="help">
         Read <a href="http://simonwillison.net/2006/Dec/19/openid/">more about delegation</a> to learn how to use this form.
-    </p>
-    
-    <fieldset>
-        <div class="fieldWrapper">
-            {{ form.openid_server.errors }}
-            <label for="id_openid_server">OpenID server</label>
-            {{ form.openid_server }} (e.g. <samp>http://www.myopenid.com/server</samp>)
-        </div>
-        <div class="fieldWrapper">
-            {{ form.openid_delegate.errors }}
-            <label for="id_openid_delegate">OpenID delegate</label>
-            {{ form.openid_delegate }} (e.g. <samp>http://yourname.myopenid.com/</samp>)
-        </div>
-    </fieldset>
+    </p>    
+
+      {% include 'includes/form.html' %}
+
     <div class="buttonContainer"><input type="submit" value="Update OpenID delegation"></div>
     </form>
 

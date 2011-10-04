@@ -1,0 +1,189 @@
+[
+  {
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "admin", 
+      "first_name": "super", 
+      "last_name": "admin", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2011-07-14 14:45:13", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$4c2cd$0a67924b8f443f903f8ee3bc92afc0116c8dac11", 
+      "email": "admin@djangopeople.net", 
+      "date_joined": "2011-07-14 14:26:25"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "daveb",
+      "first_name": "Dave", 
+      "last_name": "Brubeck", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2011-07-14 15:31:33", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$2979c$8d4dc2a443dbdd8832f8f7b2a48a6abe1daf90aa",
+      "email": "dave@example.org", 
+      "date_joined": "2011-07-14 15:31:33"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "auth.user",
+    "fields": {
+      "username": "satchmo",
+      "first_name": "Louis",
+      "last_name": "Armstrong",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "last_login": "2010-07-14 15:31:33",
+      "groups": [],
+      "user_permissions": [],
+      "password": "sha1$4c2cd$0a67924b8f443f903f8ee3bc92afc0116c8dac21",
+      "email": "satchmo@example.org",
+      "date_joined": "2011-07-14 15:31:33"
+    }
+  },
+  {
+    "pk": 1, 
+    "model": "djangopeople.djangoperson", 
+    "fields": {
+      "last_active_on_irc": null, 
+      "bio": "ad", 
+      "profile_views": 1, 
+      "country": 12,
+      "region": null, 
+      "longitude": 14.9853515625, 
+      "location_description": "Vienna, Austria", 
+      "user": 2, 
+      "photo": null,
+      "latitude": 50.035973672195468, 
+      "openid_server": "", 
+      "openid_delegate": ""
+    }
+  },
+  {
+    "pk": 2,
+    "model": "djangopeople.djangoperson",
+    "fields": {
+      "last_active_on_irc": null,
+      "bio": "ad",
+      "profile_views": 1,
+      "country": 70,
+      "region": null,
+      "longitude": 14.9853515625,
+      "location_description": "Paris, France",
+      "user": 3,
+      "photo": null,
+      "latitude": 50.035973672195468,
+      "openid_server": "",
+      "openid_delegate": ""
+    }
+  },
+  {
+    "pk": 1,
+    "model": "tagging.tag",
+    "fields": {
+      "name": "jazz"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "tagging.tag",
+    "fields": {
+      "name": "linux"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "tagging.tag",
+    "fields": {
+      "name": "python"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "tagging.taggeditem",
+    "fields": {
+      "tag": 1,
+      "object_id": 1,
+      "content_type": 15
+    }
+  },
+  {
+    "pk": 2,
+    "model": "tagging.taggeditem",
+    "fields": {
+      "tag": 2,
+      "object_id": 1,
+      "content_type": 15
+    }
+  },
+  {
+    "pk": 3,
+    "model": "tagging.taggeditem",
+    "fields": {
+      "tag": 3,
+      "object_id": 1,
+      "content_type": 15
+    }
+  },
+  {
+    "pk": 1,
+    "model": "machinetags.machinetaggeditem",
+    "fields": {
+      "predicate": "looking_for_work",
+      "namespace": "profile",
+      "content_type": 15,
+      "value": "full-time",
+      "object_id": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "machinetags.machinetaggeditem",
+    "fields": {
+      "predicate": "django",
+      "namespace": "im",
+      "content_type": 15,
+      "value": "davieboy",
+      "object_id": 1
+    }
+  },
+  {
+    "pk": 15,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "djangoperson",
+      "name": "django person",
+      "app_label": "djangopeople"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "djangopeople.portfoliosite",
+    "fields": {
+      "url": "http://example.org/",
+      "contributor": 1,
+      "title": "cheese-shop"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "djangopeople.countrysite",
+    "fields": {
+      "url": "http://example.org/",
+      "country": 12,
+      "title": "django AT"
+    }
+  }
+]

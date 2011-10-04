@@ -1,4 +1,6 @@
 {% load url from future %}
+{% load static %}
+{% get_static_prefix as STATIC_URL %}
 {% for person in people %}{% load thumbnail %}
 <li class="vcard">
     <img src="{% if person.photo %}{% thumbnail person.photo 40x40 crop %}{% else %}{{ STATIC_URL }}djangopeople/img/person_small_blank.png{% endif %}" alt="{{ person }}" class="main photo">
