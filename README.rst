@@ -2,7 +2,7 @@
    :alt: Build Status
    :target: https://secure.travis-ci.org/brutasse/djangopeople
 
-This is the codebase behind what used to be djangopeople.net and not lives at
+This is the codebase behind what used to be djangopeople.net and now lives at
 people.djangoproject.com.
 
 If you want to add features or make big changes, please `create a new issue`_
