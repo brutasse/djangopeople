@@ -308,6 +308,7 @@ class DjangoPeopleTest(TestCase):
         self.assertContains(response, 'cheese-shop')
         self.assertContains(response, 'full-time')
         self.assertContains(response, 'Vienna, Austria')
+        self.assertContains(response, 'People near Dave')
 
     def test_irc_active(self):
         url = reverse('irc_active')

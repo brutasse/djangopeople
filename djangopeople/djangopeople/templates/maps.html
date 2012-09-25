@@ -2,7 +2,16 @@
 {% load staticfiles gravatar %}
 
 {% block maps_api %}
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3.4&sensor=false"></script>
+<link rel="stylesheet" href="{% static "djangopeople/leaflet/leaflet.css" %}" />
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="{% static "djangopeople/leaflet/leaflet.ie.css" %}" />
+<![endif]-->
+
+{% if debug %}
+	<script src="{% static "djangopeople/leaflet/leaflet-src.js" %}"></script>
+	{% else %}
+	<script src="{% static "djangopeople/leaflet/leaflet.js" %}"></script>
+{% endif %}
 <script type="text/javascript" src="{% static "djangopeople/js/maps.js" %}"></script>
 {% endblock maps_api %}
 
@@ -16,21 +25,37 @@ var people = [
 ];
 </script>
 
-{% block maps_code %}
+{% block map_options %}
 <script type="text/javascript">
-window.onload = function() {
-	var gmap = new google.maps.Map(document.getElementById('gmap'), {
+	var MAP_OPTIONS = {
 		zoom: 5,
 		maxZoom: 12,
-		center: new google.maps.LatLng(0,0),
-		mapTypeId: google.maps.MapTypeId.ROADMAP,
-		scrollwheel: false
-	});
+		scrollWheelZoom: false,
+	}
+</script>
+{% endblock map_options %}
+
+{% block map_extra_options %}
+{% endblock map_extra_options %}
+
+{% block map_init %}
+<script type="text/javascript">
+window.onload = function() {
+	var MAP = new L.Map('map', MAP_OPTIONS);
+	L.tileLayer('http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png', {
+	    attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, Imagery © <a href="http://www.thunderforest.com/">Thunderforest</a>',
+	    maxZoom: 18
+	}).addTo(MAP);
 
 	// Plot the people as markers
-	var bounds = plotPeopleOnMap(people, gmap);
-	gmap.fitBounds(bounds);
+	if (typeof people != 'undefined' && people.length > 0) {
+		plotPeopleOnMap(people, MAP);
+	}
+	{% block post_map_init %}
+	{% endblock post_map_init %}
 };
 </script>
-{% endblock maps_code %}
+{% endblock map_init %}
+
+
 {% endblock js %}

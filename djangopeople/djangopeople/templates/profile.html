@@ -1,26 +1,14 @@
 {% extends "maps.html" %}
-{% load staticfiles %}
+{% load staticfiles gravatar %}
 
 {% block title%}{{ person }} |{% endblock %}
 
 {% block nav_li_class_profile %}{% if is_owner %} class="current"{% endif %}{% endblock %}
 
-{% block js %}{% load gravatar %}
+{% block extrahead %}
 {% if person.openid_server %}<link rel="openid.server" href="{{ person.openid_server }}">{% endif %}
 {% if person.openid_delegate %}<link rel="openid.delegate" href="{{ person.openid_delegate }}">{% endif %}
 {% if privacy.hide_from_search %}<meta name="ROBOTS" content="NOINDEX, FOLLOW">{% endif %}
-{% if person.latitude and person.longitude %}
-<script type="text/javascript">
-var nearby_people = [
-	// latitude, longitude, name, username, location description, flag, isocode
-	{% for p in nearest_people %}
-		[{{ p.latitude_str }}, {{ p.longitude_str }}, "{{ p|escapejs }}", "{{ p.user.username|escapejs }}", "{{ p.location_description|escapejs }}", "{% gravatar p.user.email 40 %}", "{{ p.country.iso_code|lower }}"]{% if not forloop.last %},{% endif %}
-	{% endfor %}
-];
-
-var person_latitude = {{ person.latitude_str }};
-var person_longitude = {{ person.longitude_str }};
-</script>
 <script type="text/javascript" src="{% static "djangopeople/js/profile.js" %}"></script>
 <style type="text/css">
 #id_skills {
@@ -35,8 +23,13 @@ div.bio a.edit {
 	font-size: 0.8em;
 }
 </style>
-{% endif %}
+{% endblock %}
 
+{% block post_map_init %}
+	var person_latitude = {{ person.latitude_str }};
+	var person_longitude = {{ person.longitude_str }};
+	var latlng = new L.LatLng(person_latitude, person_longitude);
+	shrinkMap(MAP, latlng);
 {% endblock %}
 
 {% block bodymeta %} class="vcard hresume"{% endblock %}
@@ -53,9 +46,10 @@ div.bio a.edit {
 		</a> <span class="region">{{ person.location_description_html }}</span>{% if is_owner %} <a href="{% url "edit_location" person.user.username %}" class="changeloc">{% trans "(change)" %}</a>{% endif %}</p>
 {% endblock %}
 
+
 {% block map %}
 	<div class="mapContainer minor">
-		<div id="gmap">&nbsp;</div>
+		<div id="map">&nbsp;</div>
 	</div>
 {% endblock %}
 
@@ -119,11 +113,11 @@ div.bio a.edit {
 	</div>
 
 	<div class="secondary">
-		{% if nearest_people %}
+		{% if people_list %}
 			<h2>{% blocktrans with name=person.user.first_name %}People near {{ name }}{% endblocktrans %}</h2>
 
 			<ul class="detailsList">
-				{% for person in nearest_people %}
+				{% for person in people_list %}
 					<li>
 						<img src="{% gravatar person.user.email 40 %}" alt="{{ person }}" class="main">
 						<h3><a href="{{ person.get_absolute_url }}">{{ person }}</a></h3>

@@ -3,24 +3,16 @@
 
 {% block title %}{{ country }} |{% endblock %}
 
-{% block maps_code %}
+{% block map_extra_options %}
 <script type="text/javascript">
-window.onload = function() {
-	var swBound = new google.maps.LatLng({{ country.bbox_south }}, {{ country.bbox_west }});
-	var neBound = new google.maps.LatLng({{ country.bbox_north }}, {{ country.bbox_east }});
-	var boundBox = new google.maps.LatLngBounds(swBound, neBound);
-	var gmap = new google.maps.Map(document.getElementById('gmap'), {
-		zoom: 9,
-		center: boundBox.getCenter(),
-		mapTypeId: google.maps.MapTypeId.ROADMAP,
-		scrollwheel: false
-	});
-	gmap.fitBounds(boundBox);
-
-	// Plot the people as markers
-	plotPeopleOnMap(people, gmap);
-};
+	var swBound = new L.LatLng({{ country.bbox_south }}, {{ country.bbox_west }});
+	var neBound = new L.LatLng({{ country.bbox_north }}, {{ country.bbox_east }});
+	var boundBox = new L.LatLngBounds(swBound, neBound);
 </script>
+{% endblock %}
+
+{% block post_map_init %}
+	MAP.fitBounds(boundBox);
 {% endblock %}
 
 {% block header %}
@@ -42,7 +34,7 @@ window.onload = function() {
 
 {% block map %}
 	<div class="mapContainer major">
-		<div id="gmap">&nbsp;</div>
+		<div id="map">&nbsp;</div>
 	</div>
 {% endblock %}
 

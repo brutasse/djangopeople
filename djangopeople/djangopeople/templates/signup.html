@@ -5,10 +5,14 @@
 
 {% block nav_li_class_signup %} class="current"{% endblock %}
 
-{% block js %}
+{% block extrahead %}
 <script type="text/javascript" src="{% static "djangopeople/js/jquery.color.js" %}"></script>
 <script type="text/javascript" src="{% static "djangopeople/js/signup.js" %}"></script>
 <link rel="stylesheet" href="{% static "djangopeople/css/flags.css" %}" type="text/css">
+{% endblock %}
+
+{% block post_map_init %}
+	handleFormGeoElements(MAP);
 {% endblock %}
 
 {% block header%}
@@ -63,7 +67,7 @@
 </div>
 
 <div class="mapContainer major" id="mapWrapper">
-	<div id="gmap">&nbsp;</div>
+	<div id="map">&nbsp;</div>
 	<div id="crosshair"></div>
 </div>
 

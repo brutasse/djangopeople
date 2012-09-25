@@ -29,6 +29,7 @@ Create ``djangopeople/settings.py`` and add::
     DATABASES = {
         # your DB config
     }
+    INTERNAL_IPS = ('127.0.0.1', )
 
 Then::
 

@@ -1,96 +1,62 @@
-window.onload = function() {
-    function ShrinkControl(button) {
-        button.innerHTML = 'Shrink map';
-        button.style.color = "black";
-        button.style.backgroundColor = "white";
-        button.style.font = "12px Arial";
-        button.style.border = "1px solid black";
-        button.style.padding = "2px";
-        button.style.marginBottom = "3px";
-        button.style.textAlign = "center";
-        button.style.width = "6em";
-        button.style.cursor = "pointer";
+function shrinkMap (map, latlng) {
+    // Center map
+    map.panTo(latlng);
 
-        google.maps.event.addDomListener(button, "click", function() {
-            $('#gmap').css({'cursor': 'pointer'}).attr(
+    var ShrinkMapControl = L.Control.extend({
+        options: {
+            position: 'bottomleft'
+        },
+
+        onAdd: function (map) {
+            // create the control container with a particular class name
+            var container = L.DomUtil.create('div', 'shrinkControl');
+            container.innerHTML = 'Shrink map';
+            L.DomEvent.addListener(container, 'click', this.onClick, this);
+
+            return container;
+        },
+
+        onClick: function () {
+            $('#map').css({'cursor': 'pointer'}).attr(
                 'title', 'Activate larger map'
             );
-            gmap.controls[google.maps.ControlPosition.BOTTOM_LEFT].clear();
-            hidePeopleOnMap(peopleArray);
-            $('#gmap').animate({
+            $('#map').animate({
                 height: '7em',
                 opacity: 0.6
             }, 500, 'swing', function() {
-                google.maps.event.trigger(gmap, 'resize');
-                gmap.setCenter(personLatLng);
-                gmap.setZoom(12);
-                gmap.setOptions({
-                    draggable: false,
-                    panControl: false,
-                    zoomControl: false,
-                    mapTypeControl: false
-                });
-                $('#gmap').click(onMapClicked);
+                map._onResize()
+                $('#map').click(onMapClicked);
+                shrinkControl.removeFrom(map);
             });
-        });
-    }
 
-    var personLatLng =  new google.maps.LatLng(person_latitude, person_longitude);
-
-    var myOptions = {
-        zoom: 12,
-        center: personLatLng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        draggable: false,
-        disableDefaultUI: true,
-        scrollwheel: false
-    };
-    var gmap = new google.maps.Map(document.getElementById('gmap'), myOptions);
-
-    var shrinkButtonDiv = document.createElement('div');
-    var shrinkButton = new ShrinkControl(shrinkButtonDiv);
-    shrinkButtonDiv.index = 1;
-
-
+        }
+    });
+    var shrinkControl = new ShrinkMapControl();
 
     /* Map enlarges and becomes active when you click on it */
-    $('#gmap').css({'cursor': 'pointer', 'opacity': 0.6}).attr(
+    $('#map').css({'cursor': 'pointer', 'opacity': 0.6}).attr(
             'title', 'Activate larger map'
             );
     function onMapClicked() {
-        $('#gmap').css({'cursor': ''}).attr('title', '');
-        $('#gmap').animate({
+        $('#map').css({'cursor': ''}).attr('title', '');
+        $('#map').animate({
             height: '25em',
             opacity: 1.0
         }, 500, 'swing', function() {
-            google.maps.event.trigger(gmap, 'resize');
-            gmap.panTo(personLatLng);
-            gmap.setOptions({
-                draggable: true,
-                panControl: true,
-                zoomControl: true,
-                mapTypeControl: true
-            });
-            showPeopleOnMap(peopleArray, gmap);
+            map._onResize()
 
             // Unbind event so user can actually interact with map
-            $('#gmap').unbind('click', onMapClicked);
+            $('#map').unbind('click', onMapClicked);
+            shrinkControl.addTo(map);
         });
-        gmap.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(shrinkButtonDiv);
     }
-    $('#gmap').click(onMapClicked);
+    $('#map').click(onMapClicked);
 
-    var marker = new google.maps.Marker({
-        position: personLatLng,
-        map: gmap,
+
+    // Marker for the current profile, not clickable
+    var marker = new L.Marker(latlng, {
         icon: greenIconImage(),
-        shadow: greenIconShadow()
-
-    });
-
-    //gets an array of person map markers, used for hiding and showing them on
-    //the map
-    var peopleArray = getPeopleArray(nearby_people);
+    }).addTo(map);
 
 };
 

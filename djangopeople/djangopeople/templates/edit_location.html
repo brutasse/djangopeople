@@ -3,7 +3,7 @@
 
 {% block title %}{% trans "Change your location" %} |{% endblock %}
 
-{% block js %}
+{% block extrahead %}
 <script type="text/javascript" src="{% static "djangopeople/js/jquery.color.js" %}"></script>
 <script type="text/javascript" src="{% static "djangopeople/js/signup.js" %}"></script>
 <link rel="stylesheet" href="{% static "djangopeople/css/flags.css" %}" type="text/css">
@@ -12,6 +12,10 @@
 	width: 24em;
 }
 </style>
+{% endblock %}
+
+{% block post_map_init %}
+	handleFormGeoElements(MAP);
 {% endblock %}
 
 {% block header%}
@@ -25,7 +29,7 @@
 	<p class="help">{% trans "<strong>Zoom and center the map on your location</strong>. Your map location will be shared in public, so only make it as accurate as makes you comfortable." %}</p>
 </div>
 <div class="mapContainer major" id="mapWrapper">
-	<div id="gmap">&nbsp;</div>
+	<div id="map">&nbsp;</div>
 	<div id="crosshair"></div>
 </div>
 
