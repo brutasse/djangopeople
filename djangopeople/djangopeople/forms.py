@@ -135,39 +135,39 @@ class SignupForm(PopulateChoices, forms.Form):
         label=_('Search visibility'),
         choices=(
             ('public',
-             'Allow search engines to index my profile page (recommended)'),
-            ('private', "Don't allow search engines to index my profile page"),
+             _('Allow search engines to index my profile page (recommended)')),
+            ('private', _("Don't allow search engines to index my profile page")),
         ), widget=forms.RadioSelect, initial='public'
     )
     privacy_email = forms.ChoiceField(
-        label=_('E-mail privacy'),
+        label=_('Email privacy'),
         choices=(
-            ('public', 'Anyone can see my e-mail address'),
-            ('private', 'Only logged-in users can see my e-mail address'),
-            ('never', 'No one can ever see my e-mail address'),
+            ('public', _('Anyone can see my email address')),
+            ('private', _('Only logged-in users can see my email address')),
+            ('never', _('Noone can ever see my email address')),
         ), widget=forms.RadioSelect, initial='private'
     )
     privacy_im = forms.ChoiceField(
         label=_('IM privacy'),
         choices=(
-            ('public', 'Anyone can see my IM details'),
-            ('private', 'Only logged-in users can see my IM details'),
+            ('public', _('Anyone can see my IM details')),
+            ('private', _('Only logged-in users can see my IM details')),
         ), widget=forms.RadioSelect, initial='private'
     )
     privacy_irctrack = forms.ChoiceField(
         label=_('IRC tracking'),
         choices=(
-            ('public', ('Keep track of the last time I was seen on IRC '
+            ('public', _('Keep track of the last time I was seen on IRC '
                         '(requires your IRC nick)')),
-            ('private', "Don't record the last time I was seen on IRC"),
+            ('private', _("Don't record the last time I was seen on IRC")),
         ), widget=forms.RadioSelect, initial='public'
     )
     looking_for_work = forms.ChoiceField(
         label=_('Looking for work?'),
         choices=(
-            ('', 'Not looking for work at the moment'),
-            ('freelance', 'Looking for freelance work'),
-            ('full-time', 'Looking for full-time work'),
+            ('', _('Not looking for work at the moment')),
+            ('freelance', _('Looking for freelance work')),
+            ('full-time', _('Looking for full-time work')),
         ), required=False
     )
 
