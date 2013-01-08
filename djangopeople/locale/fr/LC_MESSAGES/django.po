@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Django People\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-10 08:03+0000\n"
-"PO-Revision-Date: 2012-10-17 12:46+0000\n"
+"PO-Revision-Date: 2013-01-08 11:40+0100\n"
 "Last-Translator: claudep <claude@2xlibre.net>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/django/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -488,7 +488,7 @@ msgid ""
 " <a href=\"http://en.wikipedia.org/wiki/Flags_of_the_U.S._states\" "
 "title=\"Flags of the U.S. states\">from Wikipedia</a>. Profile pictures come"
 " from <a href=\"http://en.gravatar.com/\">Gravatar</a>."
-msgstr "Les données et les emplacements des pays proviennent de <a href=\"http://www.geonames.org/\">GeoNames</a>, alors que les cartes elles-mêmes sont fournies par l'<a href=\"https://developers.google.com/maps/\">API Google Maps</a>. Les drapeaux et les icônes de pays sont de  <a href=\"http://famfamfam.com/lab/icons/\">Mark James</a> ; les drapeaux des États amériacains proviennent de <a href=\"http://en.wikipedia.org/wiki/Flags_of_the_U.S._states\" title=\"Flags of the U.S. states\">Wikipédia</a>. Les images des profils viennent de <a href=\"http://en.gravatar.com/\">Gravatar</a>."
+msgstr "Les données et les emplacements des pays proviennent de <a href=\"http://www.geonames.org/\">GeoNames</a>, alors que les cartes elles-mêmes sont fournies par l'<a href=\"https://developers.google.com/maps/\">API Google Maps</a>. Les drapeaux et les icônes de pays sont de  <a href=\"http://famfamfam.com/lab/icons/\">Mark James</a> ; les drapeaux des États américains proviennent de <a href=\"http://en.wikipedia.org/wiki/Flags_of_the_U.S._states\" title=\"Flags of the U.S. states\">Wikipédia</a>. Les images des profils viennent de <a href=\"http://en.gravatar.com/\">Gravatar</a>."
 
 #: djangopeople/templates/about.html:22
 #, python-format
