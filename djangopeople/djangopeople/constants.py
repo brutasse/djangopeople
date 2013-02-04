@@ -9,7 +9,6 @@ SERVICES = (
     ('facebook', 'Facebook', 'img/services/facebook.png'),
     ('googleplus', 'Google+', 'img/services/googleplus.png'),
     ('linkedin', 'LinkedIn', 'img/services/linkedin.png'),
-    ('pownce', 'Pownce', 'img/services/pownce.png'),
     ('djangosnippets', 'djangosnippets.org', 'img/services/django.png'),
     ('djangosites', 'DjangoSites.org', 'img/services/django.png'),
     ('bitbucket', 'Bitbucket', 'img/services/bitbucket.png'),
