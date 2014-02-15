@@ -3,33 +3,28 @@
 
 {% block title %}{% trans "Change your location" %} |{% endblock %}
 
-{% block header%}
+{% block header %}
 	<h1>{% trans "Change your location" %}</h1>
 {% endblock %}
 
 {% block content %}
 
-{% addtoblock "js" %}
-	<script type="text/javascript" src="{% static "djangopeople/js/jquery.color.js" %}"></script>
-	<script type="text/javascript" src="{% static "djangopeople/js/signup.js" %}"></script>
-{% endaddtoblock %}
-
 {% addtoblock "css" %}
-	<link rel="stylesheet" href="{% static "djangopeople/css/flags.css" %}" type="text/css">
-	<style type="text/css">
-		#id_location_description {
-			width: 24em;
-		}
-	</style>
+<link rel="stylesheet" href="{% static "djangopeople/css/flags.css" %}" type="text/css">
+<style type="text/css">
+	#id_location_description {
+		width: 24em;
+	}
+</style>
 {% endaddtoblock %}
-
 {% endblock %}
+
 {% block extra %}
 <div class="content">
 	<p class="help">{% trans "<strong>Zoom and center the map on your location</strong>. Your map location will be shared in public, so only make it as accurate as makes you comfortable." %}</p>
 </div>
 <div class="mapContainer major" id="mapWrapper">
-	<div id="gmap">&nbsp;</div>
+	<div id="map">&nbsp;</div>
 	<div id="crosshair"></div>
 </div>
 
@@ -67,4 +62,9 @@
 		<div class="buttonContainer"><input type="submit" value="{% trans "Change location" %}"></div>
 	</form>
 </div>
+
+{% addtoblock "js" %}
+<script type="text/options" class="map-options" data-edit="true"></script>
+{% endaddtoblock %}
+
 {% endblock %}

@@ -39,6 +39,7 @@ urlpatterns = patterns(
     url(r'^recover/$', views.recover, name='password_reset_recover'),
     url(r'^', include('password_reset.urls')),
     url(r'^signup/$', views.signup, name='signup'),
+    url(r'^geonames/$', views.geonames, name='geonames'),
 
     url(r'^favicon.ico$', favicon),
     url(r'^robots.txt$', robots, name='robots'),

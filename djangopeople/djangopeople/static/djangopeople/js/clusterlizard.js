@@ -12,6 +12,7 @@
 window.ClusterLizard = {
 
 	clusterIcon: function (size, w, h) {
+		var STATIC_URL = $('body').data('static-url');
 		var icon = new GIcon();
 		icon.image = STATIC_URL + "djangopeople/img/marker_" + size + ".png"
 		icon.shadowImage = STATIC_URL + "djangopeople/img/marker_" + size + "_shadow.png"
@@ -36,14 +37,14 @@ window.ClusterLizard = {
 		map.addOverlay(marker);
 		return marker;
 	},
-	
+
 	ClusterMarker: function (latlng, icon, number) {
 		this.latlng = latlng;
 		this.icon = icon;
 		this.number = number;
 		this.fontSize = 10;
 	},
-	
+
 }
 
 /////////// Implementing ClusterMarker ////////////
@@ -103,7 +104,7 @@ ClusterLizard.ClusterMarker.prototype.redraw = function(force) {
   // Now position our DIV based on the DIV coordinates of our bounds
   this.div.style.top = coords.y - (this.icon.iconSize.height/2) + "px";
   this.div.style.left = coords.x - (this.icon.iconSize.width/2) + "px";
-  
+
 }
 
 // Binds the click action on the marker to going somewhere.
@@ -114,7 +115,6 @@ ClusterLizard.ClusterMarker.prototype.bindClick = function(url) {
 	}
 }
 
-	
 ClusterLizard.icon_large = ClusterLizard.clusterIcon(4, 48, 48);
 ClusterLizard.icon_med = ClusterLizard.clusterIcon(3, 39, 39);
 ClusterLizard.icon_small = ClusterLizard.clusterIcon(2, 28, 28);

@@ -1,13 +1,17 @@
 import datetime
+import json
 import operator
 import re
 
+import requests
+
+from django.conf import settings
 from django.contrib import auth
 from django.core import signing
 from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.db.models import Q, F
-from django.http import Http404, HttpResponseForbidden
+from django.http import Http404, HttpResponseForbidden, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -428,7 +432,7 @@ class ProfileView(generic.DetailView):
             'services': services,
             'privacy': privacy,
             'show_finding': show_finding,
-            'nearest_people': self.object.get_nearest(),
+            'people_list': self.object.get_nearest(),
         })
         return context
 profile = ProfileView.as_view()
@@ -752,3 +756,12 @@ class DeletionDone(generic.TemplateView):
             raise Http404
         return super(DeletionDone, self).dispatch(request, *args, **kwargs)
 delete_account_done = DeletionDone.as_view()
+
+
+def geonames(request):
+    params = dict(request.GET)
+    params['username'] = settings.GEONAMES_USERNAME
+    response = requests.get('http://ws.geonames.org/findNearbyPlaceNameJSON',
+                            params=params)
+    return HttpResponse(json.dumps(response.json()),
+                        content_type='application/json')

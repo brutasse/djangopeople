@@ -9,3 +9,5 @@ settings.py
 \#*\#
 *~
 .\#*
+node_modules
+djangopeople/djangopeople/static/djangopeople/js/djangopeople.js

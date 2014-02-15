@@ -5,28 +5,16 @@
 
 {% block map %}
 
+{% addtoblock "js" %}
+<script type="text/options" class="map-options" data-zoom=2></script>
+{% endaddtoblock %}
+
 {% addtoblock "css" %}
 	<link rel="stylesheet" href="{% static "djangopeople/css/flags.css" %}" type="text/css" media="all" charset="utf-8">
 {% endaddtoblock %}
 
-{% addtoblock "js" %}
-<script type="text/javascript">
-	$(function() {
-		var center = new google.maps.LatLng(19.97335, -15.8203);
-		var gmap = new google.maps.Map(document.getElementById('gmap'), {
-			zoom : 2,
-			center: center,
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			scrollwheel: false
-		});
-		// Plot the people as markers
-		plotPeopleOnMap(people, gmap);
-	});
-</script>
-{% endaddtoblock %}
-
 	<div class="mapContainer major">
-		<div id="gmap">&nbsp;</div>
+		<div id="map">&nbsp;</div>
 	</div>
 {% endblock %}
 

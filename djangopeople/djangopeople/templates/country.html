@@ -3,28 +3,19 @@
 
 {% block title %}{{ country }} |{% endblock %}
 
-{% block header %}
-
-{% addtoblock "js" %}
+{% block map_extra_options %}
 <script type="text/javascript">
-	$(function() {
-		var swBound = new google.maps.LatLng({{ country.bbox_south }}, {{ country.bbox_west }});
-		var neBound = new google.maps.LatLng({{ country.bbox_north }}, {{ country.bbox_east }});
-		var boundBox = new google.maps.LatLngBounds(swBound, neBound);
-		var gmap = new google.maps.Map(document.getElementById('gmap'), {
-			zoom: 9,
-			center: boundBox.getCenter(),
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			scrollwheel: false
-		});
-		gmap.fitBounds(boundBox);
-
-		// Plot the people as markers
-		plotPeopleOnMap(people, gmap);
-	});
+	var swBound = new L.LatLng({{ country.bbox_south }}, {{ country.bbox_west }});
+	var neBound = new L.LatLng({{ country.bbox_north }}, {{ country.bbox_east }});
+	var boundBox = new L.LatLngBounds(swBound, neBound);
 </script>
-{% endaddtoblock %}
+{% endblock %}
 
+{% block post_map_init %}
+	MAP.fitBounds(boundBox);
+{% endblock %}
+
+{% block header %}
 	{% if country.iso_code or country.flag %}<img src="{% static country.flag_url %}" alt="{{ country }}" class="main">{% endif %}
 	<h1>{{ country }}</h1>
 	<p class="meta">
@@ -43,22 +34,22 @@
 
 {% block map %}
 	<div class="mapContainer major">
-		<div id="gmap">&nbsp;</div>
+		<div id="map">&nbsp;</div>
 	</div>
 {% endblock %}
 
-	{% block content %}
+{% block content %}
 	{% with country.countrysite_set.all as sites %}
-	{% if sites %}
-	<div class="highlight">
-		<h2>{% blocktrans %}Django community sites in {{ country }}{% endblocktrans %}</h2>
-		<ul>
-		{% for site in sites %}
-			<li><a href="{{ site.url }}" class="ext">{{ site.title }}</a></li>
-		{% endfor %}
-		</ul>
-	</div>
-	{% endif %}
+		{% if sites %}
+			<div class="highlight">
+				<h2>{% blocktrans %}Django community sites in {{ country }}{% endblocktrans %}</h2>
+				<ul>
+				{% for site in sites %}
+					<li><a href="{{ site.url }}" class="ext">{{ site.title }}</a></li>
+				{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
 	{% endwith %}
 	{% if is_paginated %}
 		<div class="paginator highlight">
@@ -83,14 +74,14 @@
 				{% person_list_items people_list %}
 			{% endif %}
 		</ul>
-		{% if regions %}
-			<h2>{% trans "Regions" %}</h2>
+	{% if regions %}
+		<h2>{% trans "Regions" %}</h2>
 		<ul class="detailsList split">
 			{% for region in regions %}
-			<li>
-		{% if region.flag %}<a href="{% url "country_region" country.iso_code|lower region.code|lower %}" class="nobg"><img src="{% static region.small_flag_url %}" width="16" height="11" alt="{{ region }}" title="{{ region }}"></a> {% endif %}<a href="{% url "country_region" country.iso_code|lower region.code|lower %}"><strong>{{ region }}</strong></a> {% blocktrans count counter=region.num_people %}{{ counter }} person{% plural %}{{ counter }} people{% endblocktrans %}
-			</li>
+				<li>
+					{% if region.flag %}<a href="{% url "country_region" country.iso_code|lower region.code|lower %}" class="nobg"><img src="{% static region.small_flag_url %}" width="16" height="11" alt="{{ region }}" title="{{ region }}"></a> {% endif %}<a href="{% url "country_region" country.iso_code|lower region.code|lower %}"><strong>{{ region }}</strong></a> {% blocktrans count counter=region.num_people %}{{ counter }} person{% plural %}{{ counter }} people{% endblocktrans %}
+				</li>
 			{% endfor %}
 		</ul>
-		{% endif %}
-	{% endblock %}
+	{% endif %}
+{% endblock %}

@@ -745,8 +745,8 @@ class EditViewTest(TestCase):
         response = self.client.get(url_profile)
 
         self.assertContains(response, 'Austria')
-        self.assertContains(response, 'person_latitude = %d' % latitude)
-        self.assertContains(response, 'person_longitude = %d' % longitude)
+        self.assertContains(response, 'data-shrinklat="%d' % latitude)
+        self.assertContains(response, 'data-shrinklon="%d' % longitude)
 
         p = DjangoPerson.objects.get(user__username='daveb')
         self.assertTrue(abs(p.latitude - latitude) < 0.01)
@@ -780,11 +780,11 @@ class EditViewTest(TestCase):
 
         self.assertRedirects(response, url_profile)
         self.assertNotContains(response, 'Austria')
-        self.assertNotContains(response, 'person_latitude = %d' % latitude)
-        self.assertNotContains(response, 'person_longitude = %d' % longitude)
+        self.assertNotContains(response, 'data-shrinklat="%d' % latitude)
+        self.assertNotContains(response, 'data-shrinklon="%d' % longitude)
         self.assertContains(response, 'Australia')
-        self.assertContains(response, 'person_latitude = %d' % new_latitude)
-        self.assertContains(response, 'person_longitude = %d' % new_longitude)
+        self.assertContains(response, 'data-shrinklat="%d' % new_latitude)
+        self.assertContains(response, 'data-shrinklon="%d' % new_longitude)
 
         p = DjangoPerson.objects.get(user__username='daveb')
         self.assertTrue(abs(p.latitude - new_latitude) < 0.01)

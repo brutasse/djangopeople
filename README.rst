@@ -20,19 +20,21 @@ Hacking
     mkvirtualenv -p python2 djangopeople
     pip install -r requirements.txt
     add2virtualenv .
+    npm install
+    ln -s node_modules/.bin/grunt grunt
 
 Check ``env/DATABASE_URL`` to configure a local DB.
 
 Then::
 
-    make db
+    python manage.py syncdb --noinput && python manage.py fix_counts
     python manage.py runserver
 
 The development server is now running on http://localhost:8000.
 
 To run the tests::
 
-    make test
+    python manage.py test
 
 Deploying on Heroku
 -------------------

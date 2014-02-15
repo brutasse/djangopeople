@@ -18,7 +18,7 @@
 {% block map %}
 	{% if people_list %}
 		<div class="mapContainer major">
-			<div id="gmap">&nbsp;</div>
+			<div id="map">&nbsp;</div>
 		</div>
 	{% endif %}
 {% endblock %}
@@ -32,42 +32,4 @@
 			{% person_list_items people_list %}
 		</ul>
 	{% endif %}
-
-{% addtoblock "js" %}
-<script type="text/javascript">
-	$(function() {
-		var south, north, west, east;
-		$.each(people, function(index, value) {
-			if (!index) {
-				south = value[0];
-				north = value[0];
-				east = value[1];
-				west = value[1];
-			}
-			south = Math.min(value[0], south);
-			north = Math.max(value[0], north);
-			east = Math.max(value[1], east);
-			west = Math.min(value[1], west);
-		});
-		var swBound = new google.maps.LatLng(south, west);
-		var neBound = new google.maps.LatLng(north, east);
-		var boundBox = new google.maps.LatLngBounds(swBound, neBound);
-		var gmap = new google.maps.Map(document.getElementById('gmap'), {
-			zoom: 9,
-			center: boundBox.getCenter(),
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			scrollwheel: false
-		});
-		if (people.length === 1) {
-			gmap.setCenter(neBound);
-		} else {
-			gmap.fitBounds(boundBox);
-		}
-
-		// Plot the people as markers
-		plotPeopleOnMap(people, gmap);
-	});
-</script>
-{% endaddtoblock %}
-
 {% endblock %}

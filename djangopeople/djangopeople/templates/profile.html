@@ -8,7 +8,6 @@
 {% block bodymeta %} class="vcard hresume"{% endblock %}
 
 {% block header %}
-
 {% addtoblock "css" %}
 {% if person.openid_server %}<link rel="openid.server" href="{{ person.openid_server }}">{% endif %}
 {% if person.openid_delegate %}<link rel="openid.delegate" href="{{ person.openid_delegate }}">{% endif %}
@@ -29,20 +28,7 @@
 {% endaddtoblock %}
 
 {% addtoblock "js" %}
-{% if person.latitude and person.longitude %}
-<script type="text/javascript">
-	var nearby_people = [
-		// latitude, longitude, name, username, location description, flag, isocode
-		{% for p in nearest_people %}
-			[{{ p.latitude_str }}, {{ p.longitude_str }}, "{{ p|escapejs }}", "{{ p.user.username|escapejs }}", "{{ p.location_description|escapejs }}", "{% gravatar p.user.email 40 %}", "{{ p.country.iso_code|lower }}"]{% if not forloop.last %},{% endif %}
-		{% endfor %}
-	];
-
-	var person_latitude = {{ person.latitude_str }};
-	var person_longitude = {{ person.longitude_str }};
-</script>
-<script type="text/javascript" src="{% static "djangopeople/js/profile.js" %}"></script>
-{% endif %}
+<script type="text/options" class="map-options" data-shrinklat="{{ person.latitude_str }}" data-shrinklon="{{ person.longitude_str }}"></script>
 {% endaddtoblock %}
 
 	<img src="{% gravatar person.user.email 83 %}" alt="{{ person }}" class="main photo">
@@ -56,9 +42,10 @@
 		</a> <span class="region">{{ person.location_description_html }}</span>{% if is_owner %} <a href="{% url "edit_location" person.user.username %}" class="changeloc">{% trans "(change)" %}</a>{% endif %}</p>
 {% endblock %}
 
+
 {% block map %}
 	<div class="mapContainer minor">
-		<div id="gmap">&nbsp;</div>
+		<div id="map">&nbsp;</div>
 	</div>
 {% endblock %}
 
@@ -122,11 +109,11 @@
 	</div>
 
 	<div class="secondary">
-		{% if nearest_people %}
+		{% if people_list %}
 			<h2>{% blocktrans with name=person.user.first_name %}People near {{ name }}{% endblocktrans %}</h2>
 
 			<ul class="detailsList">
-				{% for person in nearest_people %}
+				{% for person in people_list %}
 					<li>
 						<img src="{% gravatar person.user.email 40 %}" alt="{{ person }}" class="main">
 						<h3><a href="{{ person.get_absolute_url }}">{{ person }}</a></h3>

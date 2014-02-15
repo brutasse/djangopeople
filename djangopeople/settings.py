@@ -177,6 +177,8 @@ LOGGING = {
     },
 }
 
+GEONAMES_USERNAME = os.environ.get('GEONAMES_USERNAME', 'brutasse')
+
 if 'CANONICAL_HOSTNAME' in os.environ:
     CANONICAL_HOSTNAME = os.environ['CANONICAL_HOSTNAME']
     ALLOWED_HOSTS = [CANONICAL_HOSTNAME]
