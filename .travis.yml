@@ -5,6 +5,7 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install libevent-dev daemontools
 install:
+  - pip install -U pip wheel
   - pip install -r requirements-dev.txt
 before_script:
   - flake8 djangopeople
@@ -12,3 +13,4 @@ before_script:
 script:
   - psql -c 'CREATE DATABASE djangopeople;' -U postgres
   - python manage.py test
+cache: pip
