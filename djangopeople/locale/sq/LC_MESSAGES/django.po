@@ -3,28 +3,29 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Antoni Aloy <aaloy@apsl.net>, 2012
+# Besnik <besnik@programeshqip.org>, 2011-2014
+# Besnik <besnik@programeshqip.org>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Django People\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-10 08:03+0000\n"
-"PO-Revision-Date: 2013-11-20 10:29+0000\n"
-"Last-Translator: Antoni Aloy <aaloy@apsl.net>\n"
-"Language-Team: Spanish (http://www.transifex.com/django/djangopeople/language/es/)\n"
+"PO-Revision-Date: 2014-12-16 11:15+0000\n"
+"Last-Translator: Besnik <besnik@programeshqip.org>\n"
+"Language-Team: Albanian (http://www.transifex.com/django/djangopeople/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
+"Language: sq\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: default_settings.py:40
 msgid "English"
-msgstr "Inglés"
+msgstr "Anglisht"
 
 #: django_openidauth/models.py:8 djangopeople/models.py:123
 msgid "User"
-msgstr "Usuario"
+msgstr "Përdorues"
 
 #: django_openidauth/models.py:9
 #: django_openidconsumer/templates/openid_failure.html:27
@@ -35,44 +36,44 @@ msgstr "OpenID"
 
 #: django_openidauth/models.py:10
 msgid "Creation date"
-msgstr "Fecha de creación"
+msgstr "Datë krijimi"
 
 #: django_openidauth/views.py:69 django_openidauth/views.py:88
 #, python-format
 msgid "%s has been associated with your account"
-msgstr "%s ha sido asociado a tu cuenta"
+msgstr "%s i është përshoqëruar llogarisë suaj"
 
 #: django_openidauth/views.py:74 django_openidauth/views.py:93
 #, python-format
 msgid ""
 "%s could not be associated with your account, as it is already associated "
 "with a different account"
-msgstr "%s no ha podido ser asociado a tu cuenta, ya está asociado con una cuenta diferente."
+msgstr "%s nuk iu përshoqërua dot llogarisë suaj, ngaqë është tashmë e përshoqëruar me një llogari tjetër"
 
 #: django_openidauth/views.py:105
 msgid "You need to set a password if you want to remove all of your OpenIDs"
-msgstr "Necesitas establecer una clave si quieres eliminar todos tus OpenIDs"
+msgstr "Lypset të caktoni një fjalëkalim nëse dëshironi të hiqen krejt OpenID-të tuaja"
 
 #: django_openidauth/views.py:111
 #, python-format
 msgid "%s has been removed from your account"
-msgstr "%s ha sido eliminado de tu cuenta"
+msgstr "%s është hequr prej llogarisë suaj"
 
 #: django_openidauth/templates/openid_associations.html:2
 #: django_openidauth/templates/openid_associations.html:19
 msgid "OpenID associations"
-msgstr "Asociaciones OpenID"
+msgstr "Përshoqërime OpenID"
 
 #: django_openidauth/templates/openid_associations.html:32
 msgid "Your account is currently associated with the following OpenID:"
 msgid_plural ""
 "Your account is currently associated with the following OpenIDs:"
-msgstr[0] "Tu cuenta está actualmente asociada al siguiente OpenID"
-msgstr[1] "Tu cuenta está actualmente asociada a los siguientes OpenIDs"
+msgstr[0] "Hëpërhë llogaria juaj është e përshoqëruar me OpenID-në vijuese:"
+msgstr[1] "Hëpërhë llogaria juaj është e përshoqëruar me OpenID-të vijuese:"
 
 #: django_openidauth/templates/openid_associations.html:35
 msgid "Remove association"
-msgstr "Eliminar asociación"
+msgstr "Hiqja përshoqërimin"
 
 #: django_openidauth/templates/openid_associations.html:41
 msgid ""
@@ -81,55 +82,55 @@ msgid ""
 msgid_plural ""
 "You are currently logged with the following OpenIDs. Click \"associate\" to "
 "allow an OpenID to be used to sign in to your account."
-msgstr[0] "Estás actualmente registrado con el siguientes OpenID. Pulsa sobre \"asociar\" para poder ser usado para entrar en tu cuenta."
-msgstr[1] "Estás actualmente registrado con los siguientes OpenIDs. Pulsa sobre \"asociar\" para permitir a un OpenID ser usado para entrar en tu cuenta."
+msgstr[0] "Hëpërhë keni hyrë me OpenID-në vijuese. Klikoni mbi \"përshoqëroje\" që të lejohet përdorimi i saj për hyrje në llogarinë tuaj."
+msgstr[1] "Hëpërhë keni hyrë me OpenID-të vijuese. Klikoni mbi \"përshoqëroje\" që të lejohet përdorimi i një OpenID-je për hyrje në llogarinë tuaj."
 
 #: django_openidauth/templates/openid_associations.html:44
 msgid "Associate"
-msgstr "Asociar"
+msgstr "Përshoqëroje"
 
 #: django_openidauth/templates/openid_associations.html:50
 msgid "To associate a new OpenID with this account, sign in with it here:"
-msgstr "Para asociar un nuevo OpenID con esta cuenta, identifícate con él aquí:"
+msgstr "Që të përshoqërohet një OpenID e re me këtë llogari, hyni këtu përmes saj:"
 
 #: django_openidauth/templates/openid_associations.html:55
 msgid "Authenticate and associate with this account"
-msgstr "Autenticar y asociar con esta cuenta"
+msgstr "Mirëfilltësoje dhe përshoqëroje me këtë llogari"
 
 #: django_openidconsumer/views.py:89
 msgid "i-names are not supported"
-msgstr "Los i-names no están soportados"
+msgstr "i-names nuk mbulohen"
 
 #: django_openidconsumer/views.py:95
 msgid "The OpenID was invalid"
-msgstr "El OpenID no es válido"
+msgstr "OpenID-ja qe e pavlefshme"
 
 #: django_openidconsumer/views.py:121
 msgid "The request was cancelled"
-msgstr "La petición fue cancelada"
+msgstr "Kërkesa u anulua"
 
 #: django_openidconsumer/views.py:125
 msgid "Setup needed"
-msgstr "Se necesita configurar"
+msgstr "Lyp rregullim"
 
 #: django_openidconsumer/templates/openid_failure.html:3
 msgid "Open ID failed, Sign in with your OpenID"
-msgstr "Falló OpenID. Identifícate con tu OpenID"
+msgstr "Open ID dështoi, Hyni me OpenID-në tuaj"
 
 #: django_openidconsumer/templates/openid_failure.html:19
 #: django_openidconsumer/templates/openid_signin.html:3
 #: django_openidconsumer/templates/openid_signin.html:19
 msgid "Sign in with your OpenID"
-msgstr "Identifícate con tu OpenID"
+msgstr "Hyni me OpenID-në tuaj"
 
 #: django_openidconsumer/templates/openid_failure.html:23
 msgid "OpenID failed"
-msgstr "Falló OpenID"
+msgstr "OpenID-ja dështoi"
 
 #: django_openidconsumer/templates/openid_failure.html:31
 #: django_openidconsumer/templates/openid_signin.html:29
 msgid "Sign in"
-msgstr "Identificación"
+msgstr "Hyni"
 
 #: djangopeople/constants.py:28
 msgid "#django IRC"
@@ -137,116 +138,116 @@ msgstr "#django IRC"
 
 #: djangopeople/forms.py:49
 msgid "Drag and zoom the map until the crosshair matches your location"
-msgstr "Arrastra y amplía el mapa hasta que la cruz esté situada en tu localidad"
+msgstr "Tërhiqeni dhe zmadhojeni shënjestrën derisa të përputhet me vendndodhjen tuaj"
 
 #: djangopeople/forms.py:112 djangopeople/templates/base.html:41
 msgid "Username"
-msgstr "Usuario"
+msgstr "Emër përdoruesi"
 
 #: djangopeople/forms.py:114 djangopeople/forms.py:350
 msgid "First name"
-msgstr "Nombre"
+msgstr "Emër"
 
 #: djangopeople/forms.py:115 djangopeople/forms.py:351
 msgid "Last name"
-msgstr "Apellido"
+msgstr "Mbiemër"
 
 #: djangopeople/forms.py:116 djangopeople/forms.py:352
 msgid "E-mail"
-msgstr "Correo electrónico"
+msgstr "Email"
 
 #: djangopeople/forms.py:117 djangopeople/forms.py:540
 #: djangopeople/templates/base.html:41
 msgid "Password"
-msgstr "Clave"
+msgstr "Fjalëkalim"
 
 #: djangopeople/forms.py:119
 msgid "Password (again)"
-msgstr "Clave (otra vez)"
+msgstr "Fjalëkalim (sërish)"
 
 #: djangopeople/forms.py:123 djangopeople/models.py:124
 msgid "Bio"
-msgstr "Biografía"
+msgstr "Jetëshkrim"
 
 #: djangopeople/forms.py:125 djangopeople/forms.py:353
 #: djangopeople/templates/edit_finding.html:34
 msgid "Blog URL"
-msgstr "URL del Blog"
+msgstr "URL Blogu"
 
 #: djangopeople/forms.py:127 djangopeople/forms.py:267
 #: djangopeople/models.py:74 djangopeople/models.py:88
 #: djangopeople/models.py:127 djangopeople/models.py:252
 #: djangopeople/templates/edit_location.html:44
 msgid "Country"
-msgstr "País"
+msgstr "Vend"
 
 #: djangopeople/forms.py:130 djangopeople/forms.py:271
 #: djangopeople/models.py:132
 msgid "Location"
-msgstr "Localidad"
+msgstr "Vendndodhje"
 
 #: djangopeople/forms.py:132 djangopeople/forms.py:268
 #: djangopeople/models.py:107 djangopeople/models.py:128
 #: djangopeople/templates/edit_location.html:59
 msgid "Region"
-msgstr "Región"
+msgstr "Rajon"
 
 #: djangopeople/forms.py:135 djangopeople/forms.py:355
 #: djangopeople/templates/edit_finding.html:71
 msgid "Search visibility"
-msgstr "Visibilidad de búsqueda"
+msgstr "Dukshmëri kërkimesh"
 
 #: djangopeople/forms.py:143 djangopeople/forms.py:363
 #: djangopeople/templates/edit_finding.html:76
 msgid "E-mail privacy"
-msgstr "Privacidad de correo electrónico"
+msgstr "Privatësi email-esh"
 
 #: djangopeople/forms.py:151 djangopeople/forms.py:371
 #: djangopeople/templates/edit_finding.html:81
 msgid "IM privacy"
-msgstr "Privacidad MI"
+msgstr "Privatësi IM-je"
 
 #: djangopeople/forms.py:158 djangopeople/forms.py:378
 #: djangopeople/templates/edit_finding.html:86
 msgid "IRC tracking"
-msgstr "Registro de IRPC"
+msgstr "Gjurmim IRC"
 
 #: djangopeople/forms.py:166 djangopeople/forms.py:386
 #: djangopeople/templates/edit_finding.html:39
 msgid "Looking for work?"
-msgstr "Buscando trabajo?"
+msgstr "Kërkoni punësim?"
 
 #: djangopeople/forms.py:174
 msgid "Your skills"
-msgstr "Conocimientos"
+msgstr "Aftësitë tuaja"
 
 #: djangopeople/forms.py:182
 msgid "Password is required"
-msgstr "La clave es obligatoria"
+msgstr "Fjalëkalimi është i domosdoshëm"
 
 #: djangopeople/forms.py:189
 msgid "Passwords must match"
-msgstr "Las claves debe coincidir"
+msgstr "Fjalëkalimet duhet të përputhen"
 
 #: djangopeople/forms.py:193
 msgid "That username is unavailable"
-msgstr "Este nombre de usuario no está disponible"
+msgstr "Ky emër përdoruesi nuk është i passhëm"
 
 #: djangopeople/forms.py:217 djangopeople/forms.py:399
 msgid "That e-mail is already in use"
-msgstr "Esta dirección de correo electrónico ya está en uso"
+msgstr "Ky e-mail është i përdorur tashmë"
 
 #: djangopeople/forms.py:230 djangopeople/forms.py:300
 msgid "The region you selected does not match the country"
-msgstr "La región que has seleccionado no se corresponde con el país"
+msgstr "Rajoni që përzgjodhët nuk i takon vendit"
 
 #: djangopeople/forms.py:238
 msgid "Change skills"
-msgstr "Cambiar habilidades"
+msgstr "Ndryshoni aftësitë"
 
 #: djangopeople/forms.py:286
 msgid "The ISO code of the country you selected is invalid."
-msgstr "El código ISO para el país que has seleccionado no es válido"
+msgstr "Kodi ISO që përzgjodhët për vendin është i pavlefshëm."
 
 #: djangopeople/forms.py:439
 #, python-format
@@ -256,148 +257,148 @@ msgstr "URL %d"
 #: djangopeople/forms.py:442
 #, python-format
 msgid "Title %d"
-msgstr "Título %d"
+msgstr "Titull %d"
 
 #: djangopeople/forms.py:472
 msgid "You need to provide a URL"
-msgstr "Necesitas introducir una URL"
+msgstr "Lypset të jepni një URL"
 
 #: djangopeople/forms.py:478
 msgid "Current Password"
-msgstr "Clave actual"
+msgstr "Fjalëkalimi i Tanishëm"
 
 #: djangopeople/forms.py:480
 msgid "New Password"
-msgstr "Nueva clave"
+msgstr "Fjalëkalim i Ri"
 
 #: djangopeople/forms.py:481
 msgid "New Password (again)"
-msgstr "Nueva clave (de nuevo)"
+msgstr "Fjalëkalim i Ri (sërish)"
 
 #: djangopeople/forms.py:493
 msgid "Please submit your current password."
-msgstr "Por favor, introduce tu clave actual"
+msgstr "Ju lutemi, jepni fjalëkalimin tuaj të tanishëm."
 
 #: djangopeople/forms.py:504
 msgid "The passwords did not match."
-msgstr "Las claves no coinciden."
+msgstr "Fjalëkalimet nuk u përputhën."
 
 #: djangopeople/forms.py:545
 msgid "Your password was invalid"
-msgstr "Tu clave no es válida."
+msgstr "Fjalëkalimi juaj është i pavlefshëm."
 
 #: djangopeople/groupedselect.py:81
 msgid ""
 "Select a valid choice. That choice is not one of the available choices."
-msgstr "Selecciona una opción válida. Esta opción no está entre las disponibles."
+msgstr "Përzgjidhni një zgjedhje të vlefshme. Ajo zgjedhje nuk është një nga zgjedhjet e mundshme."
 
 #: djangopeople/models.py:40 djangopeople/models.py:87
 msgid "Name"
-msgstr "Nombre"
+msgstr "Emër"
 
 #: djangopeople/models.py:41
 msgid "ISO code"
-msgstr "Código ISO"
+msgstr "Kod ISO"
 
 #: djangopeople/models.py:42
 msgid "ISO numeric code"
-msgstr "Código ISO numérico"
+msgstr "Kod numerik ISO"
 
 #: djangopeople/models.py:44
 msgid "ISO alpha-3"
-msgstr "ISO alpha-3"
+msgstr "Alfa-3 ISO"
 
 #: djangopeople/models.py:45
 msgid "FIPS code"
-msgstr "Código FIPS"
+msgstr "Kod FIPS"
 
 #: djangopeople/models.py:46
 msgid "Continent"
-msgstr "Continente"
+msgstr "Kontinent"
 
 #: djangopeople/models.py:48
 msgid "Capital"
-msgstr "Capital"
+msgstr "Kryeqytet"
 
 #: djangopeople/models.py:49
 msgid "Area in square kilometers"
-msgstr "Área en quilómetros cuadrados"
+msgstr "Zonë, në kilometra katrorë"
 
 #: djangopeople/models.py:50
 msgid "Population"
-msgstr "Población"
+msgstr "Popullsia"
 
 #: djangopeople/models.py:51
 msgid "Currency code"
-msgstr "Código de moneda"
+msgstr "Kod monedhe"
 
 #: djangopeople/models.py:53
 msgid "Languages"
-msgstr "Idiomas"
+msgstr "Gjuhë"
 
 #: djangopeople/models.py:54
 msgid "Geonames ID"
-msgstr "Geonombres ID"
+msgstr "ID gjeoemri"
 
 #: djangopeople/models.py:63 djangopeople/models.py:96
 msgid "Number of people"
-msgstr "Población"
+msgstr "Numër personash"
 
 #: djangopeople/models.py:75
 msgid "Countries"
-msgstr "Países"
+msgstr "Vende"
 
 #: djangopeople/models.py:86
 msgid "Code"
-msgstr "Código"
+msgstr "Kod"
 
 #: djangopeople/models.py:89
 msgid "Flag"
-msgstr "Bandera"
+msgstr "Flamur"
 
 #: djangopeople/models.py:108 djangopeople/templates/country.html:86
 msgid "Regions"
-msgstr "Regiones"
+msgstr "Rajone"
 
 #: djangopeople/models.py:130 djangopeople/templates/edit_location.html:49
 msgid "Latitude"
-msgstr "Latitud"
+msgstr "Gjerësi Gjeografike"
 
 #: djangopeople/models.py:131 djangopeople/templates/edit_location.html:54
 msgid "Longitude"
-msgstr "Longitud"
+msgstr "Gjatësi Gjeografike"
 
 #: djangopeople/models.py:138
 msgid "Profile views"
-msgstr "Vistas del perfil"
+msgstr "Parje profili"
 
 #: djangopeople/models.py:145
 msgid "OpenID server"
-msgstr "Servidor OpenID"
+msgstr "Shërbyes OpenID"
 
 #: djangopeople/models.py:147
 msgid "OpenID delegate"
-msgstr "Delegación OpenID"
+msgstr "Delegim OpenID"
 
 #: djangopeople/models.py:151
 msgid "Last active on IRC"
-msgstr "Activo por última vez en IRC"
+msgstr "Aktiv së fundi në IRC"
 
 #: djangopeople/models.py:159
 msgid "<none>"
-msgstr "<ninguno>"
+msgstr "<asnjë>"
 
 #: djangopeople/models.py:220
 msgid "Django person"
-msgstr "Persona Django"
+msgstr "Person Django"
 
 #: djangopeople/models.py:221
 msgid "Django people"
-msgstr "Gente Django"
+msgstr "Persona Django"
 
 #: djangopeople/models.py:235 djangopeople/models.py:250
 msgid "Title"
-msgstr "Título"
+msgstr "Titull"
 
 #: djangopeople/models.py:236 djangopeople/models.py:251
 msgid "URL"
@@ -405,53 +406,53 @@ msgstr "URL"
 
 #: djangopeople/models.py:238
 msgid "Contributor"
-msgstr "Contribuidor"
+msgstr "Kontribues"
 
 #: djangopeople/models.py:244
 msgid "Portfolio site"
-msgstr "Portfolio"
+msgstr "Sajt portofoli"
 
 #: djangopeople/models.py:245
 msgid "Portfolio sites"
-msgstr "Portfolios"
+msgstr "Sajte portofoli"
 
 #: djangopeople/models.py:258
 msgid "Country site"
-msgstr "Web del País"
+msgstr "Sajt vendi"
 
 #: djangopeople/models.py:259
 msgid "Country sites"
-msgstr "Web de los Países"
+msgstr "Sajte vendi"
 
 #: djangopeople/views.py:553
 #, python-format
 msgid "No Tag found matching \"%s\"."
-msgstr "No se encontró una etiqueta que coincida con \"%s\"."
+msgstr "S’u gjet Etiketë që përputhet me \"%s\"."
 
 #: djangopeople/templates/404.html:3 djangopeople/templates/404.html.py:9
 msgid "404 error"
-msgstr "Error 404"
+msgstr "Gabim 404"
 
 #: djangopeople/templates/404.html:13
 msgid "Page not found."
-msgstr "Página no encontrada."
+msgstr "Faqja nuk u gjet."
 
 #: djangopeople/templates/500.html:3 djangopeople/templates/500.html.py:9
 msgid "500 error"
-msgstr "Error 500"
+msgstr "Gabim 500"
 
 #: djangopeople/templates/500.html:13
 msgid ""
 "Internal server error. This has been reported to the site administrator."
-msgstr "Error interno del servidor. El error ha sido notificado al administrador de la web."
+msgstr "Gabim i brendshëm shërbyesi. Kjo i është bërë e ditur përgjegjësit të sajtit."
 
 #: djangopeople/templates/about.html:4
 msgid "About"
-msgstr "Sobre"
+msgstr "Rreth"
 
 #: djangopeople/templates/about.html:9
 msgid "About Django People"
-msgstr "Sobre Django People"
+msgstr "Rreth Personave Django"
 
 #: djangopeople/templates/about.html:14
 #, python-format
@@ -461,7 +462,7 @@ msgid ""
 "the world, in %(countries)s different countries. The aim of the site is to "
 "help Django developers find like-minded souls near them, and hopefully kick-"
 "start some local meet-ups and user groups."
-msgstr "Django People muestra %(count)s desarolladores <a href=\"https://www.djangoproject.com/\">Django</a> de todo el mundo, en %(countries)s paises diferentes. El objetivo del sitio es ayudar a los desarrolladores Django a encontrar almas comunes cerca de elos, y con suerte, iniciar grupos y encuentros locales."
+msgstr "Persona Django paraqet programues %(count)s <a href=\"https://www.djangoproject.com/\">Django</a> nga anembanë bota, nga %(countries)s vende të ndryshme. Qëllimi i sajtit është të ndihmojë programues Django të gjejnë të ngjashëm, afër tyre, dhe me shpresë se mund nisin kështu takime dhe grupe përdoruesish vendorë."
 
 #: djangopeople/templates/about.html:16
 msgid ""
@@ -470,11 +471,11 @@ msgid ""
 "href=\"https://github.com/brutasse/djangopeople\">available on github</a>, "
 "you can post feedback and bug reports on the repository's <a "
 "href=\"https://github.com/brutasse/djangopeople/issues\">issues page</a>."
-msgstr "Esta web fue desarrollada originalmente y cedida como código abierto por <a href=\"/simon/\">Simon Willison</a> y <a href=\"/natbat/\">Natalie Downe</a>. El código está <a href=\"https://github.com/brutasse/djangopeople\">disponible en githut</a>, puedes enviar errores y comentarios <a href=\"https://github.com/brutasse/djangopeople/issues\">la página de incidencias</a> del repositorio."
+msgstr "Sajti fillimisht qe krijuar dhe kaluar nën burimin e hapur nga <a href=\"/simon/\">Simon Willison</a> dhe <a href=\"/natbat/\">Natalie Downe</a>. Kodi <a href=\"https://github.com/brutasse/djangopeople\">gjendet në github</a>, përshtypjet dhe njoftimet mbi të metat mund t’i dërgoni te <a href=\"https://github.com/brutasse/djangopeople/issues\">faqja e problemeve</a>."
 
 #: djangopeople/templates/about.html:18
 msgid "Colophon"
-msgstr "Colofón"
+msgstr "Kolofon"
 
 #: djangopeople/templates/about.html:20
 msgid ""
@@ -486,7 +487,7 @@ msgid ""
 " <a href=\"http://en.wikipedia.org/wiki/Flags_of_the_U.S._states\" "
 "title=\"Flags of the U.S. states\">from Wikipedia</a>. Profile pictures come"
 " from <a href=\"http://en.gravatar.com/\">Gravatar</a>."
-msgstr "Los datos de paises y búsquedas provienen de <a href=\"http://www.geonames.org/\">GeoNames</a>, mientras que los mapas en sí se generan gracias a la <a href=\"https://developers.google.com/maps/\">API de Google Maps</a>. Las banderas de los países e iconos son de <a href=\"http://famfamfam.com/lab/icons/\">Mark James</a>; Las banderas de los estados de EUA son <a href=\"http://en.wikipedia.org/wiki/Flags_of_the_U.S._states\" title=\"Flags of the U.S. states\">la Wikipedia</a>. Las imágenes de los perfiles provienen de <a href=\"http://en.gravatar.com/\">Gravatar</a>."
+msgstr "Të dhënat mbi vendet dhe kërkime vendndodhjesh vijnë prej <a href=\"http://www.geonames.org/\">GeoNames</a>, ndërkohë që vetë hartat ndërtohen mbi bazën e <a href=\"https://developers.google.com/maps/\">API-t Google për Hartat</a>. Flamujt dhe ikonat e vendeve janë të <a href=\"http://famfamfam.com/lab/icons/\">Mark James-it</a>; flamujt e shteteve të ShBA-ve vijnë <a href=\"http://en.wikipedia.org/wiki/Flags_of_the_U.S._states\" title=\"Flags of the U.S. states\">prej Wikipedia-s</a>. Fotot e profileve vijnë nga <a href=\"http://en.gravatar.com/\">Gravatar-i</a>."
 
 #: djangopeople/templates/about.html:22
 #, python-format
@@ -499,92 +500,92 @@ msgid ""
 "%(openid_users)s people) depends on <a href=\"http://openidenabled.com"
 "/python-openid/\">python-openid</a> (version 2.2.5)  and <a "
 "href=\"http://code.google.com/p/django-openid/\">django-openid</a>."
-msgstr "La web utiliza <a href=\"http://code.google.com/p/django-tagging/\">django-tagging</a> de <a href=\"/insin/\">Jonathan Buchanan</a> para la <a href=\"/skills/\">gestión de habilidades</a>. <a href=\"http://simonwillison.net/2008/Jan/24/upgrade/\" title=\"Django People: OpenID and microformats\">El soporte de OpenID</a> (utilizado por la gente %(openid_users)s ) depende de <a href=\"http://openidenabled.com/python-openid/\">python-openid</a> (version 2.2.5) y <a href=\"http://code.google.com/p/django-openid/\">django-openid</a>."
+msgstr "Sajti përdor <a href=\"http://code.google.com/p/django-tagging/\">django-tagging</a> nga <a href=\"/insin/\">Jonathan Buchanan</a> për <a href=\"/skills/\">mekanizmin mbi aftësitë</a>. <a href=\"http://simonwillison.net/2008/Jan/24/upgrade/\" title=\"Django People: OpenID and microformats\">Mbulimi i OpenID-ve</a> (përdorur nga persona %(openid_users)s) varet nga <a href=\"http://openidenabled.com/python-openid/\">python-openid</a> (version 2.2.5)  dhe <a href=\"http://code.google.com/p/django-openid/\">django-openid</a>."
 
 #: djangopeople/templates/about.html:24
 msgid ""
 "Deployment is <a href=\"http://gunicorn.org\">gunicorn</a>, hosted on <a "
 "href=\"http://www.heroku.com/\">Heroku</a>."
-msgstr "El despliegue se ha hecho sobre<a href=\"http://gunicorn.org\">gunicorn</a>, hospedado en <a href=\"http://www.heroku.com/\">Heroku</a>."
+msgstr "Ndërtimi është kryer përmes <a href=\"http://gunicorn.org\">gunicorn-it</a>, strehuar te <a href=\"http://www.heroku.com/\">Heroku</a>."
 
 #: djangopeople/templates/about.html:26
 msgid "A Django joint."
-msgstr "A Django joint."
+msgstr "Një grup Django"
 
 #: djangopeople/templates/base.html:24
 msgid "home"
-msgstr "Inicio"
+msgstr "faqe hyrëse"
 
 #: djangopeople/templates/base.html:25
 msgid "about"
-msgstr "sobre"
+msgstr "rreth"
 
 #: djangopeople/templates/base.html:26
 msgid "search"
-msgstr "buscar"
+msgstr "kërkoni"
 
 #: djangopeople/templates/base.html:30
 msgid "sign up as a django person"
-msgstr "identifícate como una persona django"
+msgstr "regjistrohuni si person django"
 
 #: djangopeople/templates/base.html:33
 #, python-format
 msgid "You are logged in as <strong>%(user)s</strong>"
-msgstr "Estás identificado como <strong>%(user)s</strong>"
+msgstr "Jeni i futur si <strong>%(user)s</strong>"
 
 #: djangopeople/templates/base.html:34
 msgid "your profile"
-msgstr "tu perfil"
+msgstr "profili juaj"
 
 #: djangopeople/templates/base.html:35
 msgid "your account"
-msgstr "tu cuenta"
+msgstr "llogaria juaj"
 
 #: djangopeople/templates/base.html:36
 msgid "log out"
-msgstr "salir"
+msgstr "dilni"
 
 #: djangopeople/templates/base.html:41 djangopeople/templates/login.html:4
 #: djangopeople/templates/login.html:43 djangopeople/templates/login.html:65
 msgid "Log in"
-msgstr "Entrar"
+msgstr "Hyni"
 
 #: djangopeople/templates/base.html:43
 #, python-format
 msgid "Or <a href=\"%(openid_url)s\">log in with <strong>OpenID</strong>"
-msgstr "O <a href=\"%(openid_url)s\">identificarte con<strong>OpenID</strong>"
+msgstr "Ose <a href=\"%(openid_url)s\">hyni me <strong>OpenID</strong>"
 
 #: djangopeople/templates/base.html:49
 msgid "Django People"
-msgstr "Gente Django"
+msgstr "Persona Django"
 
 #: djangopeople/templates/base.html:50
 msgid ""
 "Discover users of the <a href=\"https://www.djangoproject.com/\">Django Web "
 "framework</a> near you"
-msgstr "Descubre usuarios de <a href=\"https://www.djangoproject.com/\">Django</a> cerca de ti"
+msgstr "Gjeni përdorues të <a href=\"https://www.djangoproject.com/\">platformës Django për Web</a> pranë jush"
 
 #: djangopeople/templates/base.html:61
 msgid "Hosted on <span class=\"heroku\">Heroku</span>"
-msgstr "Hospedado en  <span class=\"heroku\">Heroku</span>"
+msgstr "Strehuar te <span class=\"heroku\">Heroku</span>"
 
 #: djangopeople/templates/country.html:36
 #: djangopeople/templates/country.html:38
 #, python-format
 msgid "%(counter)s Django person"
 msgid_plural "%(counter)s Django people"
-msgstr[0] " %(counter)s persona Django"
-msgstr[1] "%(counter)s personas Django"
+msgstr[0] "%(counter)s person Django"
+msgstr[1] "%(counter)s persona Django"
 
 #: djangopeople/templates/country.html:53
 #, python-format
 msgid "Django community sites in %(country)s"
-msgstr "Sitios de la comundad Django en %(country)s"
+msgstr "Sajte nga bashkësia Django në %(country)s"
 
 #: djangopeople/templates/country.html:64
 #, python-format
 msgid "Page %(num)s of %(total)s"
-msgstr "Página %(num)s de %(total)s"
+msgstr "Faqja e %(num)s nga %(total)s gjithsej"
 
 #: djangopeople/templates/country.html:90 djangopeople/templates/index.html:46
 #: djangopeople/templates/irc_active.html:8
@@ -592,146 +593,146 @@ msgstr "Página %(num)s de %(total)s"
 #, python-format
 msgid "%(counter)s person"
 msgid_plural "%(counter)s people"
-msgstr[0] "%(counter)s persona"
-msgstr[1] "%(counter)s personas"
+msgstr[0] "%(counter)s person"
+msgstr[1] "%(counter)s persona"
 
 #: djangopeople/templates/country_looking_for.html:3
 #, python-format
 msgid "People in %(country)s looking for %(looking_for)s"
-msgstr "Gente en %(country)s buscando %(looking_for)s"
+msgstr "Persona nga %(country)s që kërkojnë për %(looking_for)s"
 
 #: djangopeople/templates/country_looking_for.html:9
 #, python-format
 msgid "%(country)s, seeking %(looking_for)s work"
-msgstr "%(country)s, buscando trabajo de %(looking_for)s"
+msgstr "%(country)s, kërkojnë punësim në %(looking_for)s"
 
 #: djangopeople/templates/country_sites.html:4
 #: djangopeople/templates/country_sites.html:10
 #, python-format
 msgid "Sites in %(country)s"
-msgstr "Sitios en %(country)s"
+msgstr "Sajte nga %(country)s"
 
 #: djangopeople/templates/country_sites.html:19
 #, python-format
 msgid "<a href=\"%(url)s\">%(title)s</a> by <a href=\"%(author_url)s\">%(author)s</a>"
-msgstr "<a href=\"%(url)s\">%(title)s</a> por <a href=\"%(author_url)s\">%(author)s</a>"
+msgstr "<a href=\"%(url)s\">%(title)s</a> nga <a href=\"%(author_url)s\">%(author)s</a>"
 
 #: djangopeople/templates/delete_account.html:4
 msgid ""
 "Please enter your password to confirm your ownership of this account. You "
 "account removal will be effective immediately and permanently after you "
 "submit this form."
-msgstr "Por favor, introduce tu clave para confirmar tu propiedad sobre esta cuenta. La eliminación de tu cuenta será efectiva, inmediata y permanente una vez hayas enviado este formulario."
+msgstr "Ju lutemi, jepni fjalëkalimin tuaj që të ripohoni pronësinë e kësaj llogarie. Heqja e llogarisë suaj do të ketë efekt menjëherë dhe përgjithmonë pasi të keni parashtruar këtë formular."
 
 #: djangopeople/templates/delete_account.html:7
 msgid "Delete my account"
-msgstr "Borrar mi cuenta"
+msgstr "Fshije llogarinë time"
 
 #: djangopeople/templates/delete_account.txt:1
 #, python-format
 msgid "Dear %(name)s,"
-msgstr "Apreciado/a %(name)s,"
+msgstr "I/e dashur %(name)s,"
 
 #: djangopeople/templates/delete_account.txt:3
 #, python-format
 msgid ""
 "It seems you're willing to delete your account from %(domain)s. You can "
 "delete your account by following the instructions on the link below:"
-msgstr "Parece que quieres borrar tu cuenta de %(domain)s. Puedes borrar tu cuenta siguiendo las instrucciones del enlaces siguiente:"
+msgstr "Duket se doni që të fshihet llogaria juaj te %(domain)s. Llogarinë tuaj mund ta fshini duke ndjekur udhëzimet te lidhja më poshtë:"
 
 #: djangopeople/templates/delete_account.txt:7
 msgid "For security reasons, this link will stay valid for only 5 minutes."
-msgstr "Por razones de seguridad, este enlace sólo será válido durante 5 minutos."
+msgstr "Për arsye sigurie, kjo lidhje do të mbesë e vlefshme vetëm për 5 minuta."
 
 #: djangopeople/templates/delete_account_done.html:3
 msgid "Account deleted"
-msgstr "Cuenta borrada"
+msgstr "Llogaria u fshi"
 
 #: djangopeople/templates/delete_account_done.html:6
 msgid "It's sad to see you go, but your account was successfully deleted."
-msgstr "Es triste verte partir, pero tu cuenta se ha borrado satisfactoriamente."
+msgstr "Është e trishtueshme t’ju shohësh që po ikni, por llogaria juaj u fshi me sukses."
 
 #: djangopeople/templates/delete_account_next.html:4
 msgid ""
 "Check your email! An email was just sent to you, follow the link in it to "
 "finalize your account deletion."
-msgstr "Revisa tu correo! Te acabamos de enviar un correo, sigue el enlace que encontrarás y finaliza el borrado de tu cuenta."
+msgstr "Kontrolloni email-in tuaj! Sapo ju është dërguar një email, ndiqni lidhjen në të që të përfundoni fshirjen e llogarisë suaj."
 
 #: djangopeople/templates/delete_account_request.html:3
 #: djangopeople/templates/delete_account_request.html:5
 msgid "Account deletion"
-msgstr "Borrado de cuenta"
+msgstr "Fshirje llogarie"
 
 #: djangopeople/templates/delete_account_request.html:8
 msgid ""
 "You are about to request complete removal of your account and data from this"
 " site. This will be done using the following process:"
-msgstr "Estás a punto de solicitar el borrado completo de tu cuenta y datos de esta web. Esto se hará utilizando el siguiente procedimiento:"
+msgstr "Ju ndan një hap nga kërkimi i heqjes së plotë të llogarisë dhe të dhënave tuaja nga ky sajt. Kjo do të kryhet duke përdorur procesin vijues:"
 
 #: djangopeople/templates/delete_account_request.html:10
 msgid ""
 "When you submit the following form, you will receive an email with a private"
 " link."
-msgstr "Cuando envies el siguiente formulario recibirás un correo con un enlace privado."
+msgstr "Kur të parashtroni formularin vijues, do të merrni një email me një lidhje private."
 
 #: djangopeople/templates/delete_account_request.html:11
 msgid ""
 "This link (valid for 5 minutes only) will take you to a page where you can "
 "enter your password to actually delete your account."
-msgstr "Este enlace (válido durante sólo 5 minutos) te llevará a una página donde deberás introducir tu clave para borrar tu cuenta definitivamente."
+msgstr "Kjo lidhje (e vlefshme vetëm për 5 minuta) do t’ju shpjerë te një faqe ku mund të jepni fjalëkalimin që të fshihet faktikisht llogaria juaj."
 
 #: djangopeople/templates/delete_account_request.html:13
 msgid "If you are ready to proceed, submit the form below."
-msgstr "Si estás listo para continuar, envía el siguiente formulario."
+msgstr "Nëse jeni gati të ecet më tej, parashtroni formularin e mëposhtëm."
 
 #: djangopeople/templates/delete_account_request.html:16
 msgid "Request account deletion"
-msgstr "Solicita el borrado de la cuenta"
+msgstr "Kërkoni fshirjen e llogarisë"
 
 #: djangopeople/templates/delete_account_subject.txt:1
 #, python-format
 msgid "Account deletion on %(domain)s"
-msgstr "Borrado de la cuenta en %(domain)s"
+msgstr "Fshirje llogarie te %(domain)s"
 
 #: djangopeople/templates/edit_account.html:3
 #: djangopeople/templates/edit_account.html:11
 msgid "Account settings"
-msgstr "Configuración de la cuenta"
+msgstr "Rregullime llogarie"
 
 #: djangopeople/templates/edit_account.html:16
 #: djangopeople/templates/edit_location.html:4
 #: djangopeople/templates/edit_location.html:18
 msgid "Change your location"
-msgstr "Cambiar tu localidad"
+msgstr "Ndryshoni vendndodhjen tuaj"
 
 #: djangopeople/templates/edit_account.html:17
 msgid "Update your contact details"
-msgstr "Actualiza tus datos de contacto"
+msgstr "Përditësoni hollësitë tuaja të kontaktit"
 
 #: djangopeople/templates/edit_account.html:18
 msgid "Change your privacy settings"
-msgstr "Cambia tu configuración de privacidad"
+msgstr "Ndryshoni rregullimet tuaja mbi privatësinë"
 
 #: djangopeople/templates/edit_account.html:19
 msgid "Add sites to your portfolio"
-msgstr "Añade webs a tu portfolio"
+msgstr "Shtoni sajte te portofoli juaj"
 
 #: djangopeople/templates/edit_account.html:20
 #: djangopeople/templates/edit_password.html:3
 #: djangopeople/templates/edit_password.html:11
 msgid "Change your password"
-msgstr "Cambia tu clave"
+msgstr "Ndryshoni fjalëkalimin tuaj"
 
 #: djangopeople/templates/edit_account.html:20
 #, python-format
 msgid ""
 "You do not have a password set - <a href=\"%(password_url)s\">set one "
 "now?</a>"
-msgstr "No has establecido una clave. <a href=\"%(password_url)s\">¿Quieres crear una ahora?</a>"
+msgstr "Nuk keni caktuar ndonjë fjalëkalim - <a href=\"%(password_url)s\">të caktohet një tani?</a>"
 
 #: djangopeople/templates/edit_account.html:21
 msgid "Delete your account"
-msgstr "Borra tu cuenta"
+msgstr "Fshini llogarinë tuaj"
 
 #: djangopeople/templates/edit_account.html:27
 #, python-format
@@ -741,8 +742,8 @@ msgid ""
 msgid_plural ""
 "You have %(counter)s OpenIDs associated with your account. <a "
 "href=\"%(openid_url)s\">Manage your OpenIDs</a>"
-msgstr[0] "Tienes %(counter)s OpenID asociado a tu cuenta.<a href=\"%(openid_url)s\">Gestiona tu OpenID</a>"
-msgstr[1] "Tienes %(counter)s OpenID asociados a tu cuenta.<a href=\"%(openid_url)s\">Gestiona tus OpenIDs</a>"
+msgstr[0] "Keni %(counter)s OpenID të përshoqëruar me llogarinë tuaj. <a href=\"%(openid_url)s\">Administroni OpenID-në tuaj</a>"
+msgstr[1] "Keni %(counter)s OpenID-ra të përshoqëruara me llogarinë tuaj. <a href=\"%(openid_url)s\">Administroni OpenID-të tuaja</a>"
 
 #: djangopeople/templates/edit_account.html:30
 #, python-format
@@ -750,89 +751,89 @@ msgid ""
 "If you have an <a href=\"http://openid.net/\">OpenID</a>, you can <a "
 "href=\"%(openid_url)s\">associate it with your account</a>. This will allow "
 "you to log in using your OpenID instead of your password."
-msgstr " Si tienes un <a href=\"http://openid.net/\">OpenID</a>, puedes <a href=\"%(openid_url)s\">asociarlo con tu cuenta</a>. Esto te permitirá entrar en el sistema con tu OpenID en lugar de con tu clave."
+msgstr "Nëse keni një <a href=\"http://openid.net/\">OpenID</a>, mund t'ia <a href=\"%(openid_url)s\">përshoqëroni atë llogarisë suaj</a>. Kjo do t'ju lejojë të hyni duke përdorur OpenID-në tuaj në vend të fjalëkalimit tuaj."
 
 #: djangopeople/templates/edit_account.html:34
 msgid "Advanced: Use your profile page as an OpenID"
-msgstr "Avancado: Utiliza tu página de perfil como un OpenID"
+msgstr "E përparuar: Përdorni faqen tuaj të profilit si një OpenID"
 
 #: djangopeople/templates/edit_account.html:37
 msgid ""
 "If you already have an OpenID, you can configure your Django People profile "
 "page to delegate to it. This means you'll be able to use your profile page "
 "as an OpenID, without having to sign in to Django People first."
-msgstr "Si ya tienes un OpenID, puedes configurar tu perfil de Django People para establecer la delegación. De este modo podrás utilizar tu página de perfil como OpenID, sin tener que entrar primero en Django People.."
+msgstr "Nëse keni tashmë një OpenID, mund ta formësoni profilin tuaj te Persona Django që ta delegojnë atë. Kjo do të thotë që do të jeni në gjendje të përdorni faqen tuaj të profilit si një OpenID, pa u dashur të hyni te Persona Django së pari."
 
 #: djangopeople/templates/edit_account.html:40
 msgid ""
 "Read <a href=\"http://simonwillison.net/2006/Dec/19/openid/\">more about "
 "delegation</a> to learn how to use this form."
-msgstr "Lee <a href=\"http://simonwillison.net/2006/Dec/19/openid/\">más sobre dlegación</a> para aprender cómo utilizar este formulario."
+msgstr "Lexoni <a href=\"http://simonwillison.net/2006/Dec/19/openid/\">më tepër rreth delegimit</a> që të mësoni se si përdoret ky formular."
 
 #: djangopeople/templates/edit_account.html:45
 msgid "Update OpenID delegation"
-msgstr "Actualiza la delegación OpenID"
+msgstr "Përditësoni delegim OpenID-sh"
 
 #: djangopeople/templates/edit_bio.html:3
 #: djangopeople/templates/edit_bio.html:9
 msgid "Edit your bio"
-msgstr "Edita tu biografía"
+msgstr "Përpunoni jetëshkrimin tuaj"
 
 #: djangopeople/templates/edit_bio.html:14
 msgid ""
 "No HTML allowed, but paragraph tags will be added automatically and URLs "
 "will be turned in to links."
-msgstr "No se permite HTML, pero los marcadores de párrafo serán añadidos automáticamente y las URL se convertirán en enlaces"
+msgstr "Nuk lejohet HTML, por do të shtohen vetvetiu etiketa paragrafësh dhe URL-të do të shndërrohen në lidhje."
 
 #: djangopeople/templates/edit_bio.html:18
 msgid "Update bio"
-msgstr "Actualiza tu biografía"
+msgstr "Përditësoni jetëshkrimin"
 
 #: djangopeople/templates/edit_finding.html:3
 #: djangopeople/templates/edit_finding.html:9
 msgid "Edit contact information"
-msgstr "Edita la información de contacto"
+msgstr "Përpunoni të dhëna kontakti"
 
 #: djangopeople/templates/edit_finding.html:15
 msgid "Contact details"
-msgstr "Detalles de contacto"
+msgstr "Hollësi kontakti"
 
 #: djangopeople/templates/edit_finding.html:29
 msgid "E-mail *"
-msgstr "Correo electrónico *"
+msgstr "E-mail *"
 
 #: djangopeople/templates/edit_finding.html:43
 msgid "Other profiles"
-msgstr "Otros perfiles"
+msgstr "Profile të tjerë"
 
 #: djangopeople/templates/edit_finding.html:45
 #: djangopeople/templates/signup.html:102
 msgid "Got profiles on other sites? Enter the URLs below:"
-msgstr "¿Tienes perfiles en otras webs? Introduce las URLs aquí: "
+msgstr "Keni profile në sajte të tjerë? Jepini URL-të më poshtë:"
 
 #: djangopeople/templates/edit_finding.html:54
 msgid "Instant messaging"
-msgstr "Mensajería instantánea"
+msgstr "Mesazhe të atypëratyshëm"
 
 #: djangopeople/templates/edit_finding.html:56
 #: djangopeople/templates/signup.html:113
 msgid "Use any instant messaging software?"
-msgstr "¿Utilizas algun sistema de mensajería instantánea?"
+msgstr "Të përdoret ndonjë software për mesazhe të atypëratyshëm?"
 
 #: djangopeople/templates/edit_finding.html:66
 msgid "Privacy settings"
-msgstr "Configuración de privacidad"
+msgstr "Rregullime privatësie"
 
 #: djangopeople/templates/edit_finding.html:68
 #: djangopeople/templates/signup.html:125
 msgid ""
 "You can set your profile page not to show up in external search engine "
 "results (such as Google or Yahoo!)"
-msgstr "Puedes hacer que tus datos de perfil no sean visibles para los buscadores externos (como Google y Yahoo!)"
+msgstr "Mund ta bëni faqen e profilit tuaj të mos shfaqet në përfundime kërkimesh te motorë të jashtëm kërkimi (të tillë si Google ose Yahoo!)"
 
 #: djangopeople/templates/edit_finding.html:91
 msgid "Save changes"
-msgstr "Guardar cambios"
+msgstr "Ruani ndryshimet"
 
 #: djangopeople/templates/edit_location.html:25
 #: djangopeople/templates/signup.html:57
@@ -840,11 +841,11 @@ msgid ""
 "<strong>Zoom and center the map on your location</strong>. Your map location"
 " will be shared in public, so only make it as accurate as makes you "
 "comfortable."
-msgstr "<strong>Haz zoom y centra el mapa en tu localidad</strong>. Tu localización en el mapa será pública, así que sólo la debes establecer con exactitud si lo consideras conveniente."
+msgstr "<strong>Zmadhojeni dhe vendoseni qendrën e hartës te vendndodhja juaj</strong>. Vendndodhja juaj në hartë do të ndahet me publikun, ndaj bëjeni vetëm aq të përpiktë sa ju vjen ndoresh."
 
 #: djangopeople/templates/edit_location.html:38
 msgid "Location *"
-msgstr "Localidad *"
+msgstr "Vendndodhje *"
 
 #: djangopeople/templates/edit_location.html:41
 #: djangopeople/templates/signup.html:75
@@ -852,134 +853,134 @@ msgid ""
 "A short textual description of your location will be displayed on the site. "
 "We attempt to derive this from your position on the map, but you can "
 "customise it if you like."
-msgstr "Una pequeña descripción de tu localidad se mostrará en la web. Intentamos establecerla de tu posición en el mapa, pero puedes personalizarla si lo deseas."
+msgstr "Te sajti do të shfaqet një përshkrim i shkurtër kontekstual i vendndodhje suaj. Këtë përpiqemi ta nxjerrim nga pozicioni juaj në hartë, por, nëse dëshironi, mund ta personalizoni."
 
 #: djangopeople/templates/edit_location.html:63
 msgid "Change location"
-msgstr "Cambiar localidad"
+msgstr "Ndryshoni vendndodhjen"
 
 #: djangopeople/templates/edit_password.html:17
 msgid "Change password"
-msgstr "Cambiar clave"
+msgstr "Ndryshoni fjalëkalimin"
 
 #: djangopeople/templates/edit_portfolio.html:3
 #: djangopeople/templates/edit_portfolio.html:17
 msgid "Update your portfolio"
-msgstr "Actualiza tu portfolio"
+msgstr "Përditësoni portofolin tuaj"
 
 #: djangopeople/templates/edit_portfolio.html:21
 msgid ""
 "Show off the sites and projects you've personally built (or contributed to) "
 "using Django."
-msgstr "Muestra las webs y projectos en los que has realizado (o en los que has contribuido) utilizando Django."
+msgstr "Paraqitni sajtet dhe projektet që keni ndërtuar ju vetë (ose ku keni kontribuar) duke përdorur Django-n."
 
 #: djangopeople/templates/edit_portfolio.html:24
 msgid "Update portfolio"
-msgstr "Actualiza el portfolio."
+msgstr "Përditësoje portofolin"
 
 #: djangopeople/templates/edit_skills.html:3
 #: djangopeople/templates/edit_skills.html:9
 msgid "Update your skills"
-msgstr "Actualiza tus habilidades."
+msgstr "Përditësoni aftësitë tuaja"
 
 #: djangopeople/templates/edit_skills.html:15
 msgid "Update skills"
-msgstr "Actualizar habilidades"
+msgstr "Përditësoji aftësitë"
 
 #: djangopeople/templates/form.html:3
 msgid "Please correct the errors below and submit the form again."
-msgstr "Por favor corrige los siguientes errores y vuelve a enviar el formulario."
+msgstr "Ju lutemi, ndreqni gabimet më poshtë dhe parashtrojeni sërish."
 
 #: djangopeople/templates/index.html:33
 #, python-format
 msgid "Showing %(counter)s recent signups (out of %(total_people)s)"
-msgstr "Mostrando %(counter)s subscripciones recientes (de un total de %(total_people)s)"
+msgstr "Po shfaqen %(counter)s regjistrimet e fundit (nga %(total_people)s gjithsej)"
 
 #: djangopeople/templates/index.html:33
 #, python-format
 msgid ""
 "if you're a Django developer, why not <a href=\"%(signup_url)s\">add "
 "yourself</a> to the site?"
-msgstr "Si eres un desarrollador Django, ¿por qué no <a href=\"%(signup_url)s\">te unes</a> a este sitio?"
+msgstr "Nëse jeni programues Django, pse të mos <a href=\"%(signup_url)s\">shtonit veten</a> te sajti?"
 
 #: djangopeople/templates/index.html:50
 msgid ""
 "Looking for a Django job? check out <a "
 "href=\"http://djangogigs.com/\">Djangogigs.com</a>"
-msgstr "¿Estás buscando un trabajo Django? Dale un vistazo a <a href=\"http://djangogigs.com/\">Djangogigs.com</a>"
+msgstr "Po kërkoni punësim që lidhet me Django-n? Shihni te <a href=\"http://djangogigs.com/\">Djangogigs.com</a>"
 
 #: djangopeople/templates/irc_active.html:4
 #: djangopeople/templates/irc_active.html:7
 msgid "Active on IRC in the past hour"
-msgstr "Activo en el IRC en la última hora"
+msgstr "Aktiv në IRC orën e kaluar"
 
 #: djangopeople/templates/irc_active.html:8
 msgid "No one is currently active"
-msgstr "No hay nadie activo."
+msgstr "Tani nuk ka asnjë aktiv"
 
 #: djangopeople/templates/irc_active.html:26
 #, python-format
 msgid "<strong>%(nick)s</strong>, active %(since)s ago"
-msgstr "<strong>%(nick)s</strong>, activo desde %(since)s"
+msgstr "<strong>%(nick)s</strong>, aktiv që pre %(since)s"
 
 #: djangopeople/templates/login.html:50
 msgid "Your login attempt failed."
-msgstr "Falló tu intento de entrar"
+msgstr "Përpjekja juaj për hyrje dështoi."
 
 #: djangopeople/templates/login.html:58
 msgid "Lost your password?"
-msgstr "¿Olvidaste tu clave?"
+msgstr "Humbët fjalëkalimin tuaj?"
 
 #: djangopeople/templates/login.html:69
 msgid "Or sign in with your OpenID"
-msgstr "O entra con tu OpenID"
+msgstr "Ose hyni me OpenID-në tuaj"
 
 #: djangopeople/templates/login.html:78
 msgid "OpenID not working?"
-msgstr "¿el OpenID no está funcionando?"
+msgstr "Nuk punon OpenID-ja?"
 
 #: djangopeople/templates/login.html:81
 msgid "Log in with OpenID"
-msgstr "Entra con OpenID"
+msgstr "Hyni me OpenID"
 
 #: djangopeople/templates/profile.html:53
 msgid "(change)"
-msgstr "(cambiar)"
+msgstr "(ndryshoje)"
 
 #: djangopeople/templates/profile.html:66
 msgid "(edit bio)"
-msgstr "(editar biografía)"
+msgstr "(përpunoni jetëshkrimin)"
 
 #: djangopeople/templates/profile.html:66
 msgid "Create your bio"
-msgstr "Crea tu biografía"
+msgstr "Krijoni jetëshkrimin tuaj"
 
 #: djangopeople/templates/profile.html:73
 msgid "(edit skills)"
-msgstr "(editar habilidades)"
+msgstr "(përpunoni aftësitë)"
 
 #: djangopeople/templates/profile.html:78
 msgid "Save"
-msgstr "Guardar"
+msgstr "Ruaje"
 
 #: djangopeople/templates/profile.html:81
 #, python-format
 msgid "Looking for <strong>%(type)s</strong> work"
-msgstr "Buscando un trabajo de <strong>%(type)s</strong>"
+msgstr "Kërkojnë punësim në <strong>%(type)s</strong>"
 
 #: djangopeople/templates/profile.html:86
 #, python-format
 msgid "Finding %(name)s"
-msgstr "Buscando %(name)s"
+msgstr "Po kërkohet për %(name)s"
 
 #: djangopeople/templates/profile.html:86
 #: djangopeople/templates/profile.html:109
 msgid "(edit)"
-msgstr "(editar)"
+msgstr "(përpunojeni)"
 
 #: djangopeople/templates/profile.html:88
 msgid "email:"
-msgstr "correo electrónico:"
+msgstr "email:"
 
 #: djangopeople/templates/profile.html:91
 msgid "blog:"
@@ -988,82 +989,82 @@ msgstr "blog:"
 #: djangopeople/templates/profile.html:95
 #, python-format
 msgid "(active %(since)s ago)"
-msgstr "(activo desde  %(since)s)"
+msgstr "(aktiv që prej %(since)s)"
 
 #: djangopeople/templates/profile.html:109
 #, python-format
 msgid "%(name)s's Django portfolio"
-msgstr "Porfolio Django de %(name)s"
+msgstr "Portofoli Django i %(name)s"
 
 #: djangopeople/templates/profile.html:110
 #, python-format
 msgid "Django projects %(name)s has contributed to"
-msgstr "Proyectos Django a los que %(name)s ha contribuido"
+msgstr "Projekte Django te të cilët %(name)s ka dhënë ndihmesë"
 
 #: djangopeople/templates/profile.html:116
 #, python-format
 msgid "<a href=\"%(portfolio_url)s\">Add some sites</a> to your portfolio"
-msgstr "<a href=\"%(portfolio_url)s\">Añade algunas webs</a> a tu porfolio"
+msgstr "<a href=\"%(portfolio_url)s\">Shtoni ca sajte</a> te portofoli juaj"
 
 #: djangopeople/templates/profile.html:123
 #, python-format
 msgid "People near %(name)s"
-msgstr "Gente cerca de  %(name)s"
+msgstr "Persona afër %(name)s"
 
 #: djangopeople/templates/profile.html:130
 #, python-format
 msgid "%(counter)s mile away"
 msgid_plural "%(counter)s miles away"
-msgstr[0] "a %(counter)s milla"
-msgstr[1] "a %(counter)s millas"
+msgstr[0] "%(counter)s km larg"
+msgstr[1] "%(counter)s km larg"
 
 #: djangopeople/templates/recent.html:3 djangopeople/templates/recent.html:9
 msgid "Recent people"
-msgstr "Gente reciente"
+msgstr "Persona së fundi"
 
 #: djangopeople/templates/search.html:3 djangopeople/templates/search.html:9
 #, python-format
 msgid "Search: %(q)s"
-msgstr "Buscar:  %(q)s"
+msgstr "Kërkim: %(q)s"
 
 #: djangopeople/templates/search.html:3 djangopeople/templates/search.html:9
 #: djangopeople/templates/search.html:12
 msgid "Search"
-msgstr "Buscar"
+msgstr "Kërkoni"
 
 #: djangopeople/templates/search.html:10
 #, python-format
 msgid "%(counter)s result"
 msgid_plural "%(counter)s results"
-msgstr[0] "%(counter)s resultado"
-msgstr[1] "%(counter)s resultados"
+msgstr[0] "%(counter)s përfundim"
+msgstr[1] "%(counter)s përfundime"
 
 #: djangopeople/templates/search.html:11
 msgid "Terms must be three or more characters"
-msgstr "Los términos deben ser de tres o más caracteres"
+msgstr "Termat duhet të jenë nga tre shenja e sipër"
 
 #: djangopeople/templates/search.html:13
 msgid "This tool searches by username, first name and last name."
-msgstr "Esta herramienta busca por nombre de usuario, nombre y apellido."
+msgstr "Me këtë mjet kërkohet sipas emrash përdoruesi, emrash dhe mbiemrash."
 
 #: djangopeople/templates/search.html:27
 msgid "No users found."
-msgstr "No se encontraron usuarios"
+msgstr "S’u gjetën përdoruesa."
 
 #: djangopeople/templates/signup.html:4
 msgid "Sign up"
-msgstr "Regístrate"
+msgstr "Regjistrohuni"
 
 #: djangopeople/templates/signup.html:15
 msgid "Sign up as a Django Person"
-msgstr "Regístrate cono una persona Django"
+msgstr "Regjistrohuni si Person Django"
 
 #: djangopeople/templates/signup.html:21
 #, python-format
 msgid ""
 "Got an <strong class=\"openid\">OpenID</strong>? <a "
 "href=\"%(openid_url)s\">Sign up with your OpenID now!</a>"
-msgstr "¿Tienes un <strong class=\"openid\">OpenID</strong>?<a href=\"%(openid_url)s\">Regístrate con tu OpenID ahora!</a>"
+msgstr "Keni <strong class=\"openid\">OpenID</strong>? <a href=\"%(openid_url)s\">Regjistrohuni me OpenID-në tuaj!</a>"
 
 #: djangopeople/templates/signup.html:23
 #, python-format
@@ -1071,103 +1072,103 @@ msgid ""
 "Your new account will be associated with with your OpenID: <strong "
 "class=\"openid\">%(openid)s</strong> (<a "
 "href=\"%(openid_signout)s?next=%(signup_url)s\">don't associate</a>)"
-msgstr "Tu nueva cuenta será asociada con tu OpenID: OpenID: <strong class=\"openid\">%(openid)s</strong> (<a href=\"%(openid_signout)s?next=%(signup_url)s\">no asociar</a>)"
+msgstr "Llogaria juaj e re do të përshoqërohet me OpenID-në tuaj: <strong class=\"openid\">%(openid)s</strong> (<a href=\"%(openid_signout)s?next=%(signup_url)s\">mos e përshoqëro</a>)"
 
 #: djangopeople/templates/signup.html:26
 msgid "1. Tell us who you are"
-msgstr "1. Dinos quien eres"
+msgstr "1. Tregonani se kush jeni"
 
 #: djangopeople/templates/signup.html:56
 msgid "2. Tell us where you live"
-msgstr "2. Dinos dónde vives"
+msgstr "2. Tregonani se ku banoni"
 
 #: djangopeople/templates/signup.html:60
 msgid ""
 "Latitude and longitude are missing. Please use the map to provide your "
 "location."
-msgstr "Faltan la latitud y la longitud. Por favor, utiliza el mapa para darnos tu localización."
+msgstr "Mungojnë gjerësia dhe gjatësia gjeografike. Ju lutemi, përdorni hartën që të jepni vendndodhjen tuaj."
 
 #: djangopeople/templates/signup.html:90
 msgid "3. And a bit about you …"
-msgstr "3. Y un poco sobre ti"
+msgstr "3. Dhe pakëz rreth jush …"
 
 #: djangopeople/templates/signup.html:123
 msgid "4. Your privacy settings"
-msgstr "4. Tu configuración de privacidad"
+msgstr "4. Rregullimet tuaja mbi privatësinë"
 
 #: djangopeople/templates/signup.html:139
 msgid "5. Your skills and interests"
-msgstr "5. Tus habilidades e intereses"
+msgstr "5. Aftësitë dhe interesat tuaja"
 
 #: djangopeople/templates/signup.html:141
 msgid ""
 "Tag yourself with your particular skills and interests, e.g. postgresql, "
 "nginx, css. Separate them with commas; spaces are allowed."
-msgstr "Defínete a ti mismo con tus habilidades e intereses, por ejemplo postgres, ngnix, css. Sepáralos con comas, puedes utilizar espacios."
+msgstr "Vini ca etiketa rreth jush lidhur me aftësi dhe interesa të veçanta, p.sh. postgresql, nginx, css. Ndajini ato me presje; lejohen dhe hapësira."
 
 #: djangopeople/templates/signup.html:150
 msgid "Sign me up"
-msgstr "Inscríbeme"
+msgstr "Regjistromë"
 
 #: djangopeople/templates/skill.html:8
 #, python-format
 msgid "%(counter)s Django Person mention this skill"
 msgid_plural "%(counter)s Django People mention this skill"
-msgstr[0] "%(counter)s persona mencionó esta habilidad"
-msgstr[1] "%(counter)s personas mencionaron esta habilidad"
+msgstr[0] "Këtë aftësi e përmend %(counter)s Person Django"
+msgstr[1] "Këtë aftësi e përmendin %(counter)s Persona Django"
 
 #: djangopeople/templates/skills.html:4
 msgid "Skills"
-msgstr "Habilidades"
+msgstr "Aftësi"
 
 #: djangopeople/templates/password_reset/recovery_done.html:3
 #: djangopeople/templates/password_reset/recovery_done.html:5
 msgid "New password set"
-msgstr "Nueva clave establecida"
+msgstr "Fjalëkalimi i ri u caktua"
 
 #: djangopeople/templates/password_reset/recovery_done.html:9
 #, python-format
 msgid ""
 "Your password has successfully been reset. You can use it right now on the "
 "<a href=\"%(login_url)s\">login page</a>."
-msgstr "Tu contraseña ha sido restablecida con éxito. Puedes utilizarla de inmediato en la <a href=\"%(login_url)s\">página de inicio de sesión</a>."
+msgstr "Fjalëkalimi jua u ricaktua me sukses. Mund ta përdorni që tani te <a href=\"%(login_url)s\">faqja e hyrjeve</a>."
 
 #: djangopeople/templates/password_reset/recovery_form.html:3
 #: djangopeople/templates/password_reset/recovery_form.html:5
 #: djangopeople/templates/password_reset/reset.html:3
 #: djangopeople/templates/password_reset/reset.html:5
 msgid "Recover your account"
-msgstr "Recupera tu cuenta"
+msgstr "Rimerrni llogarinë tuaj"
 
 #: djangopeople/templates/password_reset/recovery_form.html:9
 msgid ""
 "Enter your username and we'll send an account recovery link to the e-mail "
 "address associated with your account."
-msgstr "Introduce tu nombre de usuario y te enviaremos un enlace para recuperar tu cuenta al e-mail asociado a tu cuenta."
+msgstr "Jepni emrin tuaj të përdoruesi dhe te adresa email përshoqëruar llogarisë suaj do t’ju dërgojmë një lidhje riregullimi llogarie."
 
 #: djangopeople/templates/password_reset/recovery_form.html:13
 msgid "Recover account"
-msgstr "Recuperar cuenta"
+msgstr "Rimarrje llogarie"
 
 #: djangopeople/templates/password_reset/recovery_form.html:17
 #, python-format
 msgid ""
 "An email has just been sent to <strong>%(email)s</strong>. Use the link in "
 "it to set a new password."
-msgstr "Acabamos de enviar un correo electrónico a <strong>%(email)s</strong>. Utiliza el enlace que encontrarás en el para establecer una nueva clave."
+msgstr "Sapo u dërgua një email te <strong>%(email)s</strong>. Përdoreni lidhjen në të që të caktoni një fjalëkalim të ri."
 
 #: djangopeople/templates/password_reset/reset.html:9
 #, python-format
 msgid ""
 "Sorry, this password reset link is invalid. You can still <a "
 "href=\"%(recovery_url)s\">request a new one</a>."
-msgstr "Lo sentimos, el enlace para restablecer la clave ya no es válido. Puedes <a href=\"%(recovery_url)s\">solicitar uno nuevo</a>."
+msgstr "Na ndjeni, kjo lidhje ricaktimi fjalëkalimi është e pavlefshme. Mundeni prapë <a href=\"%(recovery_url)s\">të kërkoni një të re</a>."
 
 #: djangopeople/templates/password_reset/reset.html:11
 #, python-format
 msgid "Hi, <strong>%(username)s</strong>. Please choose your new password."
-msgstr "Hola, <strong>%(username)s</strong>. Por favor, elige tu nueva clave"
+msgstr "Tungjatjeta, <strong>%(username)s</strong>. Ju lutemi, zgjidhni fjalëkalimin tuaj të ri."
 
 #: djangopeople/templates/password_reset/reset.html:14
 msgid "Set new password"
-msgstr "Establece tu nueva clave"
+msgstr "Caktoni një fjalëkalim të ri"

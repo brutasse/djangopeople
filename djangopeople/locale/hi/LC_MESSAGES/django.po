@@ -3,28 +3,32 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Antoni Aloy <aaloy@apsl.net>, 2012
+# alkuma <alok.kumar@gmail.com>, 2013
+# Paras Nath Chaudhary <opnchaudhary@gmail.com>, 2012
+# Piyush Kumar Chauhan <piyushkumarchauhan@live.in>, 2012
+# Surit Aryal <surit_people@hotmail.com>, 2012
+# Umesh Agarwal <umesh.agarwal1@gmail.com>, 2012-2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Django People\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-10 08:03+0000\n"
 "PO-Revision-Date: 2013-11-20 10:29+0000\n"
-"Last-Translator: Antoni Aloy <aaloy@apsl.net>\n"
-"Language-Team: Spanish (http://www.transifex.com/django/djangopeople/language/es/)\n"
+"Last-Translator: Umesh Agarwal <umesh.agarwal1@gmail.com>\n"
+"Language-Team: Hindi (http://www.transifex.com/django/djangopeople/language/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
+"Language: hi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: default_settings.py:40
 msgid "English"
-msgstr "Inglés"
+msgstr "अंगरेज़ी"
 
 #: django_openidauth/models.py:8 djangopeople/models.py:123
 msgid "User"
-msgstr "Usuario"
+msgstr "प्रयोक्ता"
 
 #: django_openidauth/models.py:9
 #: django_openidconsumer/templates/openid_failure.html:27
@@ -35,44 +39,44 @@ msgstr "OpenID"
 
 #: django_openidauth/models.py:10
 msgid "Creation date"
-msgstr "Fecha de creación"
+msgstr "बनाने की तारीख़"
 
 #: django_openidauth/views.py:69 django_openidauth/views.py:88
 #, python-format
 msgid "%s has been associated with your account"
-msgstr "%s ha sido asociado a tu cuenta"
+msgstr "%s आपके खाते के साथ संबद्ध किया गया"
 
 #: django_openidauth/views.py:74 django_openidauth/views.py:93
 #, python-format
 msgid ""
 "%s could not be associated with your account, as it is already associated "
 "with a different account"
-msgstr "%s no ha podido ser asociado a tu cuenta, ya está asociado con una cuenta diferente."
+msgstr "%s आपके खाते के साथ नहीं जुड़ सकता है, क्योंकि यह पहले से ही एक अलग खाते के साथ जुड़ा हुआ है"
 
 #: django_openidauth/views.py:105
 msgid "You need to set a password if you want to remove all of your OpenIDs"
-msgstr "Necesitas establecer una clave si quieres eliminar todos tus OpenIDs"
+msgstr "आपको एक पासवर्ड सेट करने की जरूरत है अगर आप को अपने सभी OpenIDs हटाना चाहते हैं"
 
 #: django_openidauth/views.py:111
 #, python-format
 msgid "%s has been removed from your account"
-msgstr "%s ha sido eliminado de tu cuenta"
+msgstr "%s आपके खाते से हटा दिया गया है"
 
 #: django_openidauth/templates/openid_associations.html:2
 #: django_openidauth/templates/openid_associations.html:19
 msgid "OpenID associations"
-msgstr "Asociaciones OpenID"
+msgstr "OpenID संगठन"
 
 #: django_openidauth/templates/openid_associations.html:32
 msgid "Your account is currently associated with the following OpenID:"
 msgid_plural ""
 "Your account is currently associated with the following OpenIDs:"
-msgstr[0] "Tu cuenta está actualmente asociada al siguiente OpenID"
-msgstr[1] "Tu cuenta está actualmente asociada a los siguientes OpenIDs"
+msgstr[0] "आपका खाता वर्तमान में निम्न OpenID के साथ जुड़े है:"
+msgstr[1] "आपका खाता वर्तमान में निम्न OpenIDs के साथ जुड़े है:"
 
 #: django_openidauth/templates/openid_associations.html:35
 msgid "Remove association"
-msgstr "Eliminar asociación"
+msgstr "संगठन हटाएँ"
 
 #: django_openidauth/templates/openid_associations.html:41
 msgid ""
@@ -81,377 +85,377 @@ msgid ""
 msgid_plural ""
 "You are currently logged with the following OpenIDs. Click \"associate\" to "
 "allow an OpenID to be used to sign in to your account."
-msgstr[0] "Estás actualmente registrado con el siguientes OpenID. Pulsa sobre \"asociar\" para poder ser usado para entrar en tu cuenta."
-msgstr[1] "Estás actualmente registrado con los siguientes OpenIDs. Pulsa sobre \"asociar\" para permitir a un OpenID ser usado para entrar en tu cuenta."
+msgstr[0] "आप वर्तमान में निम्नलिखित OpenID के साथ लॉग इन हो चुके है. \"associate\" पर क्लिक करें"
+msgstr[1] "You are currently logged with the following OpenIDs. Click \"associate\" to allow an OpenID to be used to sign in to your account."
 
 #: django_openidauth/templates/openid_associations.html:44
 msgid "Associate"
-msgstr "Asociar"
+msgstr "सहयोगी"
 
 #: django_openidauth/templates/openid_associations.html:50
 msgid "To associate a new OpenID with this account, sign in with it here:"
-msgstr "Para asociar un nuevo OpenID con esta cuenta, identifícate con él aquí:"
+msgstr "इस खाते के साथ एक नया OpenID को संघटित करने के लिए, यहाँ से साइन इन करे:"
 
 #: django_openidauth/templates/openid_associations.html:55
 msgid "Authenticate and associate with this account"
-msgstr "Autenticar y asociar con esta cuenta"
+msgstr "इस खाते को सत्यापित और सहयोग करें"
 
 #: django_openidconsumer/views.py:89
 msgid "i-names are not supported"
-msgstr "Los i-names no están soportados"
+msgstr "i-names समर्थित नहीं हैं"
 
 #: django_openidconsumer/views.py:95
 msgid "The OpenID was invalid"
-msgstr "El OpenID no es válido"
+msgstr "OpenID अमान्य था"
 
 #: django_openidconsumer/views.py:121
 msgid "The request was cancelled"
-msgstr "La petición fue cancelada"
+msgstr "अनुरोध रद्द कर दिया गया था"
 
 #: django_openidconsumer/views.py:125
 msgid "Setup needed"
-msgstr "Se necesita configurar"
+msgstr "सेटअप की जरूरत"
 
 #: django_openidconsumer/templates/openid_failure.html:3
 msgid "Open ID failed, Sign in with your OpenID"
-msgstr "Falló OpenID. Identifícate con tu OpenID"
+msgstr "OpenID विफल, अपने OpenID के साथ साइन इन करे"
 
 #: django_openidconsumer/templates/openid_failure.html:19
 #: django_openidconsumer/templates/openid_signin.html:3
 #: django_openidconsumer/templates/openid_signin.html:19
 msgid "Sign in with your OpenID"
-msgstr "Identifícate con tu OpenID"
+msgstr "अपने OpenID के साथ साइन इन करे"
 
 #: django_openidconsumer/templates/openid_failure.html:23
 msgid "OpenID failed"
-msgstr "Falló OpenID"
+msgstr "OpenID विफल"
 
 #: django_openidconsumer/templates/openid_failure.html:31
 #: django_openidconsumer/templates/openid_signin.html:29
 msgid "Sign in"
-msgstr "Identificación"
+msgstr "साइन इन"
 
 #: djangopeople/constants.py:28
 msgid "#django IRC"
-msgstr "#django IRC"
+msgstr "#django आईआरसी"
 
 #: djangopeople/forms.py:49
 msgid "Drag and zoom the map until the crosshair matches your location"
-msgstr "Arrastra y amplía el mapa hasta que la cruz esté situada en tu localidad"
+msgstr "खींचें और ज़ूम करना नक्शा जब तक क्रॉसहेर अपने स्थान से मेल खाता है"
 
 #: djangopeople/forms.py:112 djangopeople/templates/base.html:41
 msgid "Username"
-msgstr "Usuario"
+msgstr "उपयोगकर्ता नाम"
 
 #: djangopeople/forms.py:114 djangopeople/forms.py:350
 msgid "First name"
-msgstr "Nombre"
+msgstr "पहला नाम"
 
 #: djangopeople/forms.py:115 djangopeople/forms.py:351
 msgid "Last name"
-msgstr "Apellido"
+msgstr "अंतिम नाम"
 
 #: djangopeople/forms.py:116 djangopeople/forms.py:352
 msgid "E-mail"
-msgstr "Correo electrónico"
+msgstr "ई-मेल"
 
 #: djangopeople/forms.py:117 djangopeople/forms.py:540
 #: djangopeople/templates/base.html:41
 msgid "Password"
-msgstr "Clave"
+msgstr "कूटशब्द"
 
 #: djangopeople/forms.py:119
 msgid "Password (again)"
-msgstr "Clave (otra vez)"
+msgstr "कूटशब्द (फिर)"
 
 #: djangopeople/forms.py:123 djangopeople/models.py:124
 msgid "Bio"
-msgstr "Biografía"
+msgstr "जैव"
 
 #: djangopeople/forms.py:125 djangopeople/forms.py:353
 #: djangopeople/templates/edit_finding.html:34
 msgid "Blog URL"
-msgstr "URL del Blog"
+msgstr "ब्लॉग यूआरएल"
 
 #: djangopeople/forms.py:127 djangopeople/forms.py:267
 #: djangopeople/models.py:74 djangopeople/models.py:88
 #: djangopeople/models.py:127 djangopeople/models.py:252
 #: djangopeople/templates/edit_location.html:44
 msgid "Country"
-msgstr "País"
+msgstr "देश"
 
 #: djangopeople/forms.py:130 djangopeople/forms.py:271
 #: djangopeople/models.py:132
 msgid "Location"
-msgstr "Localidad"
+msgstr "स्थान"
 
 #: djangopeople/forms.py:132 djangopeople/forms.py:268
 #: djangopeople/models.py:107 djangopeople/models.py:128
 #: djangopeople/templates/edit_location.html:59
 msgid "Region"
-msgstr "Región"
+msgstr "क्षेत्र"
 
 #: djangopeople/forms.py:135 djangopeople/forms.py:355
 #: djangopeople/templates/edit_finding.html:71
 msgid "Search visibility"
-msgstr "Visibilidad de búsqueda"
+msgstr "खोज दृश्यता"
 
 #: djangopeople/forms.py:143 djangopeople/forms.py:363
 #: djangopeople/templates/edit_finding.html:76
 msgid "E-mail privacy"
-msgstr "Privacidad de correo electrónico"
+msgstr "ई-मेल की गोपनीयता"
 
 #: djangopeople/forms.py:151 djangopeople/forms.py:371
 #: djangopeople/templates/edit_finding.html:81
 msgid "IM privacy"
-msgstr "Privacidad MI"
+msgstr "आईएम गोपनीयता"
 
 #: djangopeople/forms.py:158 djangopeople/forms.py:378
 #: djangopeople/templates/edit_finding.html:86
 msgid "IRC tracking"
-msgstr "Registro de IRPC"
+msgstr "आईआरसी ट्रैकिंग"
 
 #: djangopeople/forms.py:166 djangopeople/forms.py:386
 #: djangopeople/templates/edit_finding.html:39
 msgid "Looking for work?"
-msgstr "Buscando trabajo?"
+msgstr "काम करने के लिए देख रहे हैं?"
 
 #: djangopeople/forms.py:174
 msgid "Your skills"
-msgstr "Conocimientos"
+msgstr "आपके कौशल"
 
 #: djangopeople/forms.py:182
 msgid "Password is required"
-msgstr "La clave es obligatoria"
+msgstr "कूटशब्द जरूरी है"
 
 #: djangopeople/forms.py:189
 msgid "Passwords must match"
-msgstr "Las claves debe coincidir"
+msgstr "कूटशब्द आपस में मेल होने चाहिए"
 
 #: djangopeople/forms.py:193
 msgid "That username is unavailable"
-msgstr "Este nombre de usuario no está disponible"
+msgstr "यह उपयोक्तानाम अनुपलब्ध है"
 
 #: djangopeople/forms.py:217 djangopeople/forms.py:399
 msgid "That e-mail is already in use"
-msgstr "Esta dirección de correo electrónico ya está en uso"
+msgstr "यह ई-मेल का उपयोग पहले से ही है"
 
 #: djangopeople/forms.py:230 djangopeople/forms.py:300
 msgid "The region you selected does not match the country"
-msgstr "La región que has seleccionado no se corresponde con el país"
+msgstr "आपके द्वारा चयनित क्षेत्र देश से मेल नहीं खाता है"
 
 #: djangopeople/forms.py:238
 msgid "Change skills"
-msgstr "Cambiar habilidades"
+msgstr "कौशल बदलें"
 
 #: djangopeople/forms.py:286
 msgid "The ISO code of the country you selected is invalid."
-msgstr "El código ISO para el país que has seleccionado no es válido"
+msgstr "आपके द्वारा चयनित देश के आईएसओ कोड अमान्य है"
 
 #: djangopeople/forms.py:439
 #, python-format
 msgid "URL %d"
-msgstr "URL %d"
+msgstr "यूआरएल %d"
 
 #: djangopeople/forms.py:442
 #, python-format
 msgid "Title %d"
-msgstr "Título %d"
+msgstr "शीर्षक %d"
 
 #: djangopeople/forms.py:472
 msgid "You need to provide a URL"
-msgstr "Necesitas introducir una URL"
+msgstr "आपको एक यूआरएल प्रदान करने की आवश्यकता है"
 
 #: djangopeople/forms.py:478
 msgid "Current Password"
-msgstr "Clave actual"
+msgstr "वर्तमान कूटशब्द"
 
 #: djangopeople/forms.py:480
 msgid "New Password"
-msgstr "Nueva clave"
+msgstr "नया कूटशब्द"
 
 #: djangopeople/forms.py:481
 msgid "New Password (again)"
-msgstr "Nueva clave (de nuevo)"
+msgstr "नया कूटशब्द (दुबारा)"
 
 #: djangopeople/forms.py:493
 msgid "Please submit your current password."
-msgstr "Por favor, introduce tu clave actual"
+msgstr "अपने वर्तमान कूटशब्द जमा करें"
 
 #: djangopeople/forms.py:504
 msgid "The passwords did not match."
-msgstr "Las claves no coinciden."
+msgstr "The passwords did not match."
 
 #: djangopeople/forms.py:545
 msgid "Your password was invalid"
-msgstr "Tu clave no es válida."
+msgstr "आपका कूटशब्द अमान्य था"
 
 #: djangopeople/groupedselect.py:81
 msgid ""
 "Select a valid choice. That choice is not one of the available choices."
-msgstr "Selecciona una opción válida. Esta opción no está entre las disponibles."
+msgstr "कृपया वैध विकल्प चुनें। चुना विकल्प वैध नहीं है।"
 
 #: djangopeople/models.py:40 djangopeople/models.py:87
 msgid "Name"
-msgstr "Nombre"
+msgstr "नाम"
 
 #: djangopeople/models.py:41
 msgid "ISO code"
-msgstr "Código ISO"
+msgstr "आईएसओ कोड"
 
 #: djangopeople/models.py:42
 msgid "ISO numeric code"
-msgstr "Código ISO numérico"
+msgstr "आईएसओ सांख्यिक कोड"
 
 #: djangopeople/models.py:44
 msgid "ISO alpha-3"
-msgstr "ISO alpha-3"
+msgstr "आईएसओ अल्फा-3"
 
 #: djangopeople/models.py:45
 msgid "FIPS code"
-msgstr "Código FIPS"
+msgstr "FIPS कोड"
 
 #: djangopeople/models.py:46
 msgid "Continent"
-msgstr "Continente"
+msgstr "महाद्वीप"
 
 #: djangopeople/models.py:48
 msgid "Capital"
-msgstr "Capital"
+msgstr "राजधानी"
 
 #: djangopeople/models.py:49
 msgid "Area in square kilometers"
-msgstr "Área en quilómetros cuadrados"
+msgstr "वर्ग किलोमीटर में क्षेत्रफल"
 
 #: djangopeople/models.py:50
 msgid "Population"
-msgstr "Población"
+msgstr "आबादी"
 
 #: djangopeople/models.py:51
 msgid "Currency code"
-msgstr "Código de moneda"
+msgstr "मुद्रा कूट"
 
 #: djangopeople/models.py:53
 msgid "Languages"
-msgstr "Idiomas"
+msgstr "भाषा "
 
 #: djangopeople/models.py:54
 msgid "Geonames ID"
-msgstr "Geonombres ID"
+msgstr "जियोनेम्स क्रमांक"
 
 #: djangopeople/models.py:63 djangopeople/models.py:96
 msgid "Number of people"
-msgstr "Población"
+msgstr "लोगों की संख्या"
 
 #: djangopeople/models.py:75
 msgid "Countries"
-msgstr "Países"
+msgstr "देशों"
 
 #: djangopeople/models.py:86
 msgid "Code"
-msgstr "Código"
+msgstr "कूट"
 
 #: djangopeople/models.py:89
 msgid "Flag"
-msgstr "Bandera"
+msgstr "ध्वजा"
 
 #: djangopeople/models.py:108 djangopeople/templates/country.html:86
 msgid "Regions"
-msgstr "Regiones"
+msgstr "इलाके"
 
 #: djangopeople/models.py:130 djangopeople/templates/edit_location.html:49
 msgid "Latitude"
-msgstr "Latitud"
+msgstr "अक्षांश"
 
 #: djangopeople/models.py:131 djangopeople/templates/edit_location.html:54
 msgid "Longitude"
-msgstr "Longitud"
+msgstr "देशांतर"
 
 #: djangopeople/models.py:138
 msgid "Profile views"
-msgstr "Vistas del perfil"
+msgstr "रूपरेखा दृश्य"
 
 #: djangopeople/models.py:145
 msgid "OpenID server"
-msgstr "Servidor OpenID"
+msgstr "ओपनाईडी सेवक"
 
 #: djangopeople/models.py:147
 msgid "OpenID delegate"
-msgstr "Delegación OpenID"
+msgstr "ओपनाइडी नुमाइंदा"
 
 #: djangopeople/models.py:151
 msgid "Last active on IRC"
-msgstr "Activo por última vez en IRC"
+msgstr "आईआरसी पर पिछली गतिविधि"
 
 #: djangopeople/models.py:159
 msgid "<none>"
-msgstr "<ninguno>"
+msgstr "<कोई नहीं>"
 
 #: djangopeople/models.py:220
 msgid "Django person"
-msgstr "Persona Django"
+msgstr "ज्यांगो व्यक्ति"
 
 #: djangopeople/models.py:221
 msgid "Django people"
-msgstr "Gente Django"
+msgstr "ज्यांगो व्यक्ति"
 
 #: djangopeople/models.py:235 djangopeople/models.py:250
 msgid "Title"
-msgstr "Título"
+msgstr "शीर्षक"
 
 #: djangopeople/models.py:236 djangopeople/models.py:251
 msgid "URL"
-msgstr "URL"
+msgstr "यूआरएल"
 
 #: djangopeople/models.py:238
 msgid "Contributor"
-msgstr "Contribuidor"
+msgstr "योगदाता"
 
 #: djangopeople/models.py:244
 msgid "Portfolio site"
-msgstr "Portfolio"
+msgstr "विभाग का स्थल"
 
 #: djangopeople/models.py:245
 msgid "Portfolio sites"
-msgstr "Portfolios"
+msgstr "विभागों के स्थल"
 
 #: djangopeople/models.py:258
 msgid "Country site"
-msgstr "Web del País"
+msgstr "देश का स्थल"
 
 #: djangopeople/models.py:259
 msgid "Country sites"
-msgstr "Web de los Países"
+msgstr "देशों के स्थल"
 
 #: djangopeople/views.py:553
 #, python-format
 msgid "No Tag found matching \"%s\"."
-msgstr "No se encontró una etiqueta que coincida con \"%s\"."
+msgstr "\"%s\" से मेल खाती कोई चिप्पी नहीं मिली"
 
 #: djangopeople/templates/404.html:3 djangopeople/templates/404.html.py:9
 msgid "404 error"
-msgstr "Error 404"
+msgstr "404 त्रुटि"
 
 #: djangopeople/templates/404.html:13
 msgid "Page not found."
-msgstr "Página no encontrada."
+msgstr "पन्ना न मिला।"
 
 #: djangopeople/templates/500.html:3 djangopeople/templates/500.html.py:9
 msgid "500 error"
-msgstr "Error 500"
+msgstr "500 त्रुटि"
 
 #: djangopeople/templates/500.html:13
 msgid ""
 "Internal server error. This has been reported to the site administrator."
-msgstr "Error interno del servidor. El error ha sido notificado al administrador de la web."
+msgstr "आंतरिक सेवक त्रुटि। इसकी सूचना स्थल प्रबंधक को दे दी गई है।"
 
 #: djangopeople/templates/about.html:4
 msgid "About"
-msgstr "Sobre"
+msgstr "परिचय"
 
 #: djangopeople/templates/about.html:9
 msgid "About Django People"
-msgstr "Sobre Django People"
+msgstr "ज्यांगो लोगों के बारे में"
 
 #: djangopeople/templates/about.html:14
 #, python-format
@@ -461,7 +465,7 @@ msgid ""
 "the world, in %(countries)s different countries. The aim of the site is to "
 "help Django developers find like-minded souls near them, and hopefully kick-"
 "start some local meet-ups and user groups."
-msgstr "Django People muestra %(count)s desarolladores <a href=\"https://www.djangoproject.com/\">Django</a> de todo el mundo, en %(countries)s paises diferentes. El objetivo del sitio es ayudar a los desarrolladores Django a encontrar almas comunes cerca de elos, y con suerte, iniciar grupos y encuentros locales."
+msgstr "Django लोगों की सूची %(count)s <a href=\"https://www.djangoproject.com/\">Django</a> दुनिया भर से डेवलपर्स, in %(countries)s विभिन्न देशों. साइट का उद्देश्य Django डेवलपर्स उनके पास समान विचारधारा वाले आत्माओं को लगता है, और उम्मीद है कि लात शुरू करने में मदद के लिए कुछ स्थानीय अप और उपयोगकर्ता समूहों से मिलने."
 
 #: djangopeople/templates/about.html:16
 msgid ""
@@ -470,11 +474,11 @@ msgid ""
 "href=\"https://github.com/brutasse/djangopeople\">available on github</a>, "
 "you can post feedback and bug reports on the repository's <a "
 "href=\"https://github.com/brutasse/djangopeople/issues\">issues page</a>."
-msgstr "Esta web fue desarrollada originalmente y cedida como código abierto por <a href=\"/simon/\">Simon Willison</a> y <a href=\"/natbat/\">Natalie Downe</a>. El código está <a href=\"https://github.com/brutasse/djangopeople\">disponible en githut</a>, puedes enviar errores y comentarios <a href=\"https://github.com/brutasse/djangopeople/issues\">la página de incidencias</a> del repositorio."
+msgstr "साइट मूल रूप से बनाया गया था और खुले-स्रोत <a href=\"/simon/\">Simon Willison</a> and <a href=\"/natbat/\">Natalie Downe</a>. The code is <a href=\"https://github.com/brutasse/djangopeople\">available on github</a>, आप रिपोजिटरी पर प्रतिक्रिया और बग रिपोर्ट पोस्ट कर सकते हैं<a href=\"https://github.com/brutasse/djangopeople/issues\">issues page</a>."
 
 #: djangopeople/templates/about.html:18
 msgid "Colophon"
-msgstr "Colofón"
+msgstr "पुष्पिका"
 
 #: djangopeople/templates/about.html:20
 msgid ""
@@ -486,7 +490,7 @@ msgid ""
 " <a href=\"http://en.wikipedia.org/wiki/Flags_of_the_U.S._states\" "
 "title=\"Flags of the U.S. states\">from Wikipedia</a>. Profile pictures come"
 " from <a href=\"http://en.gravatar.com/\">Gravatar</a>."
-msgstr "Los datos de paises y búsquedas provienen de <a href=\"http://www.geonames.org/\">GeoNames</a>, mientras que los mapas en sí se generan gracias a la <a href=\"https://developers.google.com/maps/\">API de Google Maps</a>. Las banderas de los países e iconos son de <a href=\"http://famfamfam.com/lab/icons/\">Mark James</a>; Las banderas de los estados de EUA son <a href=\"http://en.wikipedia.org/wiki/Flags_of_the_U.S._states\" title=\"Flags of the U.S. states\">la Wikipedia</a>. Las imágenes de los perfiles provienen de <a href=\"http://en.gravatar.com/\">Gravatar</a>."
+msgstr "देश डेटा और स्थान लुकअप आते हैं<a href=\"http://www.geonames.org/\">GeoNames</a>, जबकि नक्शे खुद संचालित होते हैं द्वारा<a href=\"https://developers.google.com/maps/\">गूगल मैप्स एपीआई</a>. देशों के झंडे और चिह्न हैं द्वारा<a href=\"http://famfamfam.com/lab/icons/\">मार्क जेम्स</a>; यूएस राज्य झंडे आते हैं <a href=\"http://en.wikipedia.org/wiki/Flags_of_the_U.S._states\" title=\"Flags of the U.S. states\">विकिपीडिया से</a>. प्रोफ़ाइल चित्र आते हैं <a href=\"http://en.gravatar.com/\">जीआरअवतार</a>."
 
 #: djangopeople/templates/about.html:22
 #, python-format
@@ -499,92 +503,92 @@ msgid ""
 "%(openid_users)s people) depends on <a href=\"http://openidenabled.com"
 "/python-openid/\">python-openid</a> (version 2.2.5)  and <a "
 "href=\"http://code.google.com/p/django-openid/\">django-openid</a>."
-msgstr "La web utiliza <a href=\"http://code.google.com/p/django-tagging/\">django-tagging</a> de <a href=\"/insin/\">Jonathan Buchanan</a> para la <a href=\"/skills/\">gestión de habilidades</a>. <a href=\"http://simonwillison.net/2008/Jan/24/upgrade/\" title=\"Django People: OpenID and microformats\">El soporte de OpenID</a> (utilizado por la gente %(openid_users)s ) depende de <a href=\"http://openidenabled.com/python-openid/\">python-openid</a> (version 2.2.5) y <a href=\"http://code.google.com/p/django-openid/\">django-openid</a>."
+msgstr "साइट का उपयोग करता <a href=\"http://code.google.com/p/django-tagging/\">django-tagging</a> by <a href=\"/insin/\">Jonathan Buchanan</a> for the <a href=\"/skills/\">skills feature</a>. <a href=\"http://simonwillison.net/2008/Jan/24/upgrade/\" title=\"Django People: OpenID and microformats\">OpenID support</a> (used by %(openid_users)s people) depends on <a href=\"http://openidenabled.com/python-openid/\">python-openid</a> (version 2.2.5)  and <a href=\"http://code.google.com/p/django-openid/\">django-openid</a>."
 
 #: djangopeople/templates/about.html:24
 msgid ""
 "Deployment is <a href=\"http://gunicorn.org\">gunicorn</a>, hosted on <a "
 "href=\"http://www.heroku.com/\">Heroku</a>."
-msgstr "El despliegue se ha hecho sobre<a href=\"http://gunicorn.org\">gunicorn</a>, hospedado en <a href=\"http://www.heroku.com/\">Heroku</a>."
+msgstr "परिनियोजन है <a href=\"http://gunicorn.org\">gunicorn</a>, hosted on <a href=\"http://www.heroku.com/\">Heroku</a>."
 
 #: djangopeople/templates/about.html:26
 msgid "A Django joint."
-msgstr "A Django joint."
+msgstr "एक द्जंगो संयुक्त."
 
 #: djangopeople/templates/base.html:24
 msgid "home"
-msgstr "Inicio"
+msgstr "गृह "
 
 #: djangopeople/templates/base.html:25
 msgid "about"
-msgstr "sobre"
+msgstr "परिचय"
 
 #: djangopeople/templates/base.html:26
 msgid "search"
-msgstr "buscar"
+msgstr "खोज"
 
 #: djangopeople/templates/base.html:30
 msgid "sign up as a django person"
-msgstr "identifícate como una persona django"
+msgstr "एक द्जंगो व्यक्ति के रूप में साइन अप करने"
 
 #: djangopeople/templates/base.html:33
 #, python-format
 msgid "You are logged in as <strong>%(user)s</strong>"
-msgstr "Estás identificado como <strong>%(user)s</strong>"
+msgstr "आप के रूप में लॉग इन कर रहे हैं <strong>%(user)s</strong>"
 
 #: djangopeople/templates/base.html:34
 msgid "your profile"
-msgstr "tu perfil"
+msgstr "आपकी रूपरेखा"
 
 #: djangopeople/templates/base.html:35
 msgid "your account"
-msgstr "tu cuenta"
+msgstr "आपका खाता"
 
 #: djangopeople/templates/base.html:36
 msgid "log out"
-msgstr "salir"
+msgstr "बाहर आएँ"
 
 #: djangopeople/templates/base.html:41 djangopeople/templates/login.html:4
 #: djangopeople/templates/login.html:43 djangopeople/templates/login.html:65
 msgid "Log in"
-msgstr "Entrar"
+msgstr "प्रवेश"
 
 #: djangopeople/templates/base.html:43
 #, python-format
 msgid "Or <a href=\"%(openid_url)s\">log in with <strong>OpenID</strong>"
-msgstr "O <a href=\"%(openid_url)s\">identificarte con<strong>OpenID</strong>"
+msgstr "Or <a href=\"%(openid_url)s\">log in with <strong>OpenID</strong>"
 
 #: djangopeople/templates/base.html:49
 msgid "Django People"
-msgstr "Gente Django"
+msgstr "द्जंगो लोग"
 
 #: djangopeople/templates/base.html:50
 msgid ""
 "Discover users of the <a href=\"https://www.djangoproject.com/\">Django Web "
 "framework</a> near you"
-msgstr "Descubre usuarios de <a href=\"https://www.djangoproject.com/\">Django</a> cerca de ti"
+msgstr "उपयोगकर्ताओं की खोज  <a href=\"https://www.djangoproject.com/\">द्जंगो वेब रूपरेखा</a> आप के पास"
 
 #: djangopeople/templates/base.html:61
 msgid "Hosted on <span class=\"heroku\">Heroku</span>"
-msgstr "Hospedado en  <span class=\"heroku\">Heroku</span>"
+msgstr "पर होस्ट <span class=\"heroku\">Heroku</span>"
 
 #: djangopeople/templates/country.html:36
 #: djangopeople/templates/country.html:38
 #, python-format
 msgid "%(counter)s Django person"
 msgid_plural "%(counter)s Django people"
-msgstr[0] " %(counter)s persona Django"
-msgstr[1] "%(counter)s personas Django"
+msgstr[0] "%(counter)s Django व्यक्ति"
+msgstr[1] "%(counter)s Django लोग"
 
 #: djangopeople/templates/country.html:53
 #, python-format
 msgid "Django community sites in %(country)s"
-msgstr "Sitios de la comundad Django en %(country)s"
+msgstr "Django समुदाय में साइटों %(country)s"
 
 #: djangopeople/templates/country.html:64
 #, python-format
 msgid "Page %(num)s of %(total)s"
-msgstr "Página %(num)s de %(total)s"
+msgstr "पेज %(num)s of %(total)s"
 
 #: djangopeople/templates/country.html:90 djangopeople/templates/index.html:46
 #: djangopeople/templates/irc_active.html:8
@@ -592,146 +596,146 @@ msgstr "Página %(num)s de %(total)s"
 #, python-format
 msgid "%(counter)s person"
 msgid_plural "%(counter)s people"
-msgstr[0] "%(counter)s persona"
-msgstr[1] "%(counter)s personas"
+msgstr[0] "%(counter)s व्यक्ति"
+msgstr[1] "%(counter)s लोग"
 
 #: djangopeople/templates/country_looking_for.html:3
 #, python-format
 msgid "People in %(country)s looking for %(looking_for)s"
-msgstr "Gente en %(country)s buscando %(looking_for)s"
+msgstr "में लोग %(country)s के लिए देख %(looking_for)s"
 
 #: djangopeople/templates/country_looking_for.html:9
 #, python-format
 msgid "%(country)s, seeking %(looking_for)s work"
-msgstr "%(country)s, buscando trabajo de %(looking_for)s"
+msgstr "%(country)s, seeking %(looking_for)s work"
 
 #: djangopeople/templates/country_sites.html:4
 #: djangopeople/templates/country_sites.html:10
 #, python-format
 msgid "Sites in %(country)s"
-msgstr "Sitios en %(country)s"
+msgstr "%(country)s में स्थल"
 
 #: djangopeople/templates/country_sites.html:19
 #, python-format
 msgid "<a href=\"%(url)s\">%(title)s</a> by <a href=\"%(author_url)s\">%(author)s</a>"
-msgstr "<a href=\"%(url)s\">%(title)s</a> por <a href=\"%(author_url)s\">%(author)s</a>"
+msgstr "<a href=\"%(url)s\">%(title)s</a> by <a href=\"%(author_url)s\">%(author)s</a>"
 
 #: djangopeople/templates/delete_account.html:4
 msgid ""
 "Please enter your password to confirm your ownership of this account. You "
 "account removal will be effective immediately and permanently after you "
 "submit this form."
-msgstr "Por favor, introduce tu clave para confirmar tu propiedad sobre esta cuenta. La eliminación de tu cuenta será efectiva, inmediata y permanente una vez hayas enviado este formulario."
+msgstr "इस खाते के अपने स्वामित्व की पुष्टि करने के लिए अपना पासवर्ड दर्ज करें. आप खाते हटाने तुरंत और स्थायी रूप से प्रभावी होने के बाद आप इस प्रपत्र प्रस्तुत करेंगे."
 
 #: djangopeople/templates/delete_account.html:7
 msgid "Delete my account"
-msgstr "Borrar mi cuenta"
+msgstr "मेरा खाता मिटाएँ"
 
 #: djangopeople/templates/delete_account.txt:1
 #, python-format
 msgid "Dear %(name)s,"
-msgstr "Apreciado/a %(name)s,"
+msgstr "प्रिय %(name)s,"
 
 #: djangopeople/templates/delete_account.txt:3
 #, python-format
 msgid ""
 "It seems you're willing to delete your account from %(domain)s. You can "
 "delete your account by following the instructions on the link below:"
-msgstr "Parece que quieres borrar tu cuenta de %(domain)s. Puedes borrar tu cuenta siguiendo las instrucciones del enlaces siguiente:"
+msgstr "ऐसा लगता है आप %(domain)s से अपने खाते को नष्ट करने के लिए तैयार कर रहे हैं. आप नीचे दिए गए लिंक पर दिए गए निर्देशों का पालन करके अपने खाते को नष्ट कर सकते हैं:"
 
 #: djangopeople/templates/delete_account.txt:7
 msgid "For security reasons, this link will stay valid for only 5 minutes."
-msgstr "Por razones de seguridad, este enlace sólo será válido durante 5 minutos."
+msgstr "सुरक्षा कारणों के लिए, इस लिंक केवल 5 मिनट के लिए वैध रहना होगा."
 
 #: djangopeople/templates/delete_account_done.html:3
 msgid "Account deleted"
-msgstr "Cuenta borrada"
+msgstr "खाता मिटाया जा चुका है"
 
 #: djangopeople/templates/delete_account_done.html:6
 msgid "It's sad to see you go, but your account was successfully deleted."
-msgstr "Es triste verte partir, pero tu cuenta se ha borrado satisfactoriamente."
+msgstr "यह दुख की बात है देखने के लिए तुम जाओ, लेकिन आपके खाते को सफलतापूर्वक नष्ट कर दिया गया."
 
 #: djangopeople/templates/delete_account_next.html:4
 msgid ""
 "Check your email! An email was just sent to you, follow the link in it to "
 "finalize your account deletion."
-msgstr "Revisa tu correo! Te acabamos de enviar un correo, sigue el enlace que encontrarás y finaliza el borrado de tu cuenta."
+msgstr "अपने ईमेल की जाँच करें! एक ईमेल बस आप के लिए भेजा गया था, में लिंक का पालन करने के लिए अपने खाते विलोपन निश्चित."
 
 #: djangopeople/templates/delete_account_request.html:3
 #: djangopeople/templates/delete_account_request.html:5
 msgid "Account deletion"
-msgstr "Borrado de cuenta"
+msgstr "खाता हटाना"
 
 #: djangopeople/templates/delete_account_request.html:8
 msgid ""
 "You are about to request complete removal of your account and data from this"
 " site. This will be done using the following process:"
-msgstr "Estás a punto de solicitar el borrado completo de tu cuenta y datos de esta web. Esto se hará utilizando el siguiente procedimiento:"
+msgstr "आप इस साइट से अपने खाते और डेटा की पूरी हटाने का अनुरोध के बारे में हैं. यह निम्नलिखित प्रक्रिया का उपयोग किया जाएगा:"
 
 #: djangopeople/templates/delete_account_request.html:10
 msgid ""
 "When you submit the following form, you will receive an email with a private"
 " link."
-msgstr "Cuando envies el siguiente formulario recibirás un correo con un enlace privado."
+msgstr "जब आप निम्नलिखित फार्म सबमिट करते हैं, तो आप एक निजी लिंक के साथ एक ईमेल प्राप्त होगा."
 
 #: djangopeople/templates/delete_account_request.html:11
 msgid ""
 "This link (valid for 5 minutes only) will take you to a page where you can "
 "enter your password to actually delete your account."
-msgstr "Este enlace (válido durante sólo 5 minutos) te llevará a una página donde deberás introducir tu clave para borrar tu cuenta definitivamente."
+msgstr "इस लिंक (केवल 5 मिनट के लिए मान्य) आप एक पेज है जहां आप अपना पासवर्ड दर्ज करने के लिए वास्तव में अपने खाते को नष्ट कर सकते हैं के लिए ले जाएगा."
 
 #: djangopeople/templates/delete_account_request.html:13
 msgid "If you are ready to proceed, submit the form below."
-msgstr "Si estás listo para continuar, envía el siguiente formulario."
+msgstr "यदि आप आगे बढ़ने के लिए तैयार कर रहे हैं, नीचे के फार्म का प्रस्तुत."
 
 #: djangopeople/templates/delete_account_request.html:16
 msgid "Request account deletion"
-msgstr "Solicita el borrado de la cuenta"
+msgstr "खाता हटाने के लिए अनुरोध करें"
 
 #: djangopeople/templates/delete_account_subject.txt:1
 #, python-format
 msgid "Account deletion on %(domain)s"
-msgstr "Borrado de la cuenta en %(domain)s"
+msgstr "खाते पर विलोपन %(domain)s"
 
 #: djangopeople/templates/edit_account.html:3
 #: djangopeople/templates/edit_account.html:11
 msgid "Account settings"
-msgstr "Configuración de la cuenta"
+msgstr "खाता सेटिंग्स"
 
 #: djangopeople/templates/edit_account.html:16
 #: djangopeople/templates/edit_location.html:4
 #: djangopeople/templates/edit_location.html:18
 msgid "Change your location"
-msgstr "Cambiar tu localidad"
+msgstr "अपने स्थान को बदलें"
 
 #: djangopeople/templates/edit_account.html:17
 msgid "Update your contact details"
-msgstr "Actualiza tus datos de contacto"
+msgstr "अपने सम्पर्क अपडेट  करें"
 
 #: djangopeople/templates/edit_account.html:18
 msgid "Change your privacy settings"
-msgstr "Cambia tu configuración de privacidad"
+msgstr "अपनी निजता सेटिंग परिवर्तित करें"
 
 #: djangopeople/templates/edit_account.html:19
 msgid "Add sites to your portfolio"
-msgstr "Añade webs a tu portfolio"
+msgstr "अपने पोर्टफोलियो में साइटों जोड़ें"
 
 #: djangopeople/templates/edit_account.html:20
 #: djangopeople/templates/edit_password.html:3
 #: djangopeople/templates/edit_password.html:11
 msgid "Change your password"
-msgstr "Cambia tu clave"
+msgstr "अपना पासवर्ड बदलें"
 
 #: djangopeople/templates/edit_account.html:20
 #, python-format
 msgid ""
 "You do not have a password set - <a href=\"%(password_url)s\">set one "
 "now?</a>"
-msgstr "No has establecido una clave. <a href=\"%(password_url)s\">¿Quieres crear una ahora?</a>"
+msgstr "आप एक पासवर्ड सेट नहीं है - <a href=\"%(password_url)s\">अब एक निर्धारित?</a>"
 
 #: djangopeople/templates/edit_account.html:21
 msgid "Delete your account"
-msgstr "Borra tu cuenta"
+msgstr "अपने खाता हटाएं"
 
 #: djangopeople/templates/edit_account.html:27
 #, python-format
@@ -741,8 +745,8 @@ msgid ""
 msgid_plural ""
 "You have %(counter)s OpenIDs associated with your account. <a "
 "href=\"%(openid_url)s\">Manage your OpenIDs</a>"
-msgstr[0] "Tienes %(counter)s OpenID asociado a tu cuenta.<a href=\"%(openid_url)s\">Gestiona tu OpenID</a>"
-msgstr[1] "Tienes %(counter)s OpenID asociados a tu cuenta.<a href=\"%(openid_url)s\">Gestiona tus OpenIDs</a>"
+msgstr[0] "आपके पास है %(counter)sOpenID आपके खाते के साथ जुड़ा हुआ है. <a href=\"%(openid_url)s\">अपने OpenID प्रबंधन</a>"
+msgstr[1] "आपके पास है %(counter)s OpenID आपके खाते के साथ जुड़ा हुआ है. <a href=\"%(openid_url)s\">अपने OpenID प्रबंधन</a>"
 
 #: djangopeople/templates/edit_account.html:30
 #, python-format
@@ -750,89 +754,89 @@ msgid ""
 "If you have an <a href=\"http://openid.net/\">OpenID</a>, you can <a "
 "href=\"%(openid_url)s\">associate it with your account</a>. This will allow "
 "you to log in using your OpenID instead of your password."
-msgstr " Si tienes un <a href=\"http://openid.net/\">OpenID</a>, puedes <a href=\"%(openid_url)s\">asociarlo con tu cuenta</a>. Esto te permitirá entrar en el sistema con tu OpenID en lugar de con tu clave."
+msgstr "यदि आप एक है <a href=\"http://openid.net/\">OpenID</a>, you can <a href=\"%(openid_url)s\">आपके खाते से संबद्ध</a>. यह आप के बजाय अपना पासवर्ड OpenID का उपयोग करते हुए में प्रवेश करने की अनुमति होगी."
 
 #: djangopeople/templates/edit_account.html:34
 msgid "Advanced: Use your profile page as an OpenID"
-msgstr "Avancado: Utiliza tu página de perfil como un OpenID"
+msgstr "उन्नत: एक OpenID के रूप में अपने प्रोफाइल पेज का उपयोग"
 
 #: djangopeople/templates/edit_account.html:37
 msgid ""
 "If you already have an OpenID, you can configure your Django People profile "
 "page to delegate to it. This means you'll be able to use your profile page "
 "as an OpenID, without having to sign in to Django People first."
-msgstr "Si ya tienes un OpenID, puedes configurar tu perfil de Django People para establecer la delegación. De este modo podrás utilizar tu página de perfil como OpenID, sin tener que entrar primero en Django People.."
+msgstr "यदि आप पहले से ही एक OpenID है, तो आप अपने Django प्रोफाइल पेज कॉन्फ़िगर करने के लिए यह करने के लिए प्रतिनिधि कर सकते हैं. इसका मतलब यह है कि आप एक OpenID के रूप में Django लोगों को पहले साइन करने के लिए बिना अपने प्रोफाइल पेज का उपयोग करने में सक्षम हो जाएगा."
 
 #: djangopeople/templates/edit_account.html:40
 msgid ""
 "Read <a href=\"http://simonwillison.net/2006/Dec/19/openid/\">more about "
 "delegation</a> to learn how to use this form."
-msgstr "Lee <a href=\"http://simonwillison.net/2006/Dec/19/openid/\">más sobre dlegación</a> para aprender cómo utilizar este formulario."
+msgstr "पढ़ना <a href=\"http://simonwillison.net/2006/Dec/19/openid/\">प्रतिनिधिमंडल के बारे में अधिक</a> जानने के लिए कैसे इस फार्म का उपयोग करने के लिए."
 
 #: djangopeople/templates/edit_account.html:45
 msgid "Update OpenID delegation"
-msgstr "Actualiza la delegación OpenID"
+msgstr "अद्यतन OpenID प्रतिनिधिमंडल"
 
 #: djangopeople/templates/edit_bio.html:3
 #: djangopeople/templates/edit_bio.html:9
 msgid "Edit your bio"
-msgstr "Edita tu biografía"
+msgstr "आपके विवरण संपादित करें"
 
 #: djangopeople/templates/edit_bio.html:14
 msgid ""
 "No HTML allowed, but paragraph tags will be added automatically and URLs "
 "will be turned in to links."
-msgstr "No se permite HTML, pero los marcadores de párrafo serán añadidos automáticamente y las URL se convertirán en enlaces"
+msgstr "कोई HTML की अनुमति दी है, लेकिन पैरा टैग स्वचालित रूप से जोड़ दिया जाएगा और यूआरएल लिंक में बदल जाएगा."
 
 #: djangopeople/templates/edit_bio.html:18
 msgid "Update bio"
-msgstr "Actualiza tu biografía"
+msgstr "विवरण अपडेट करें"
 
 #: djangopeople/templates/edit_finding.html:3
 #: djangopeople/templates/edit_finding.html:9
 msgid "Edit contact information"
-msgstr "Edita la información de contacto"
+msgstr "संपर्क जानकारी संपादित करें"
 
 #: djangopeople/templates/edit_finding.html:15
 msgid "Contact details"
-msgstr "Detalles de contacto"
+msgstr "संपर्क जानकारी"
 
 #: djangopeople/templates/edit_finding.html:29
 msgid "E-mail *"
-msgstr "Correo electrónico *"
+msgstr "ई - मेल *"
 
 #: djangopeople/templates/edit_finding.html:43
 msgid "Other profiles"
-msgstr "Otros perfiles"
+msgstr "अन्य प्रोफाइल"
 
 #: djangopeople/templates/edit_finding.html:45
 #: djangopeople/templates/signup.html:102
 msgid "Got profiles on other sites? Enter the URLs below:"
-msgstr "¿Tienes perfiles en otras webs? Introduce las URLs aquí: "
+msgstr "अन्य साइटों पर प्रोफाइल है?URL नीचे दर्ज करें:"
 
 #: djangopeople/templates/edit_finding.html:54
 msgid "Instant messaging"
-msgstr "Mensajería instantánea"
+msgstr "त्वरित संदेश"
 
 #: djangopeople/templates/edit_finding.html:56
 #: djangopeople/templates/signup.html:113
 msgid "Use any instant messaging software?"
-msgstr "¿Utilizas algun sistema de mensajería instantánea?"
+msgstr "किसी भी त्वरित संदेश सॉफ्टवेयर का उपयोग करें?"
 
 #: djangopeople/templates/edit_finding.html:66
 msgid "Privacy settings"
-msgstr "Configuración de privacidad"
+msgstr "गोपनीयता सेटिंग्स"
 
 #: djangopeople/templates/edit_finding.html:68
 #: djangopeople/templates/signup.html:125
 msgid ""
 "You can set your profile page not to show up in external search engine "
 "results (such as Google or Yahoo!)"
-msgstr "Puedes hacer que tus datos de perfil no sean visibles para los buscadores externos (como Google y Yahoo!)"
+msgstr "आप अपने प्रोफाइल पेज सेट करने के लिए बाहरी खोज इंजन परिणामों में प्रदर्शित नहीं कर सकते हैं (जैसे गूगल या याहू के रूप में)"
 
 #: djangopeople/templates/edit_finding.html:91
 msgid "Save changes"
-msgstr "Guardar cambios"
+msgstr "परिवर्तन सहेजें"
 
 #: djangopeople/templates/edit_location.html:25
 #: djangopeople/templates/signup.html:57
@@ -840,11 +844,11 @@ msgid ""
 "<strong>Zoom and center the map on your location</strong>. Your map location"
 " will be shared in public, so only make it as accurate as makes you "
 "comfortable."
-msgstr "<strong>Haz zoom y centra el mapa en tu localidad</strong>. Tu localización en el mapa será pública, así que sólo la debes establecer con exactitud si lo consideras conveniente."
+msgstr "<strong> ज़ूम और केंद्र अपने स्थान पर नक्शा </ strong>. आपके मानचित्र स्थान सार्वजनिक में साझा किया जाएगा, तो केवल यह सटीक बनाने के रूप में आप सहज बना देता है."
 
 #: djangopeople/templates/edit_location.html:38
 msgid "Location *"
-msgstr "Localidad *"
+msgstr "स्थान *"
 
 #: djangopeople/templates/edit_location.html:41
 #: djangopeople/templates/signup.html:75
@@ -852,218 +856,218 @@ msgid ""
 "A short textual description of your location will be displayed on the site. "
 "We attempt to derive this from your position on the map, but you can "
 "customise it if you like."
-msgstr "Una pequeña descripción de tu localidad se mostrará en la web. Intentamos establecerla de tu posición en el mapa, pero puedes personalizarla si lo deseas."
+msgstr "अपने स्थान की एक छोटी शाब्दिक वर्णन साइट पर प्रदर्शित किया जाएगा. हम नक्शे पर अपनी स्थिति से निकाले जाते करने का प्रयास करते हैं, लेकिन आप इसे अनुकूलित अगर आप की तरह कर सकते हैं."
 
 #: djangopeople/templates/edit_location.html:63
 msgid "Change location"
-msgstr "Cambiar localidad"
+msgstr "स्थान बदलें"
 
 #: djangopeople/templates/edit_password.html:17
 msgid "Change password"
-msgstr "Cambiar clave"
+msgstr "पासवर्ड बदलें"
 
 #: djangopeople/templates/edit_portfolio.html:3
 #: djangopeople/templates/edit_portfolio.html:17
 msgid "Update your portfolio"
-msgstr "Actualiza tu portfolio"
+msgstr "अपने पोर्टफोलियो अद्यतन"
 
 #: djangopeople/templates/edit_portfolio.html:21
 msgid ""
 "Show off the sites and projects you've personally built (or contributed to) "
 "using Django."
-msgstr "Muestra las webs y projectos en los que has realizado (o en los que has contribuido) utilizando Django."
+msgstr "बंद दिखाएँ साइटों और परियोजनाओं आप व्यक्तिगत रूप से निर्माण किया है (या करने के लिए योगदान) Django का उपयोग."
 
 #: djangopeople/templates/edit_portfolio.html:24
 msgid "Update portfolio"
-msgstr "Actualiza el portfolio."
+msgstr "पोर्टफोलियो अद्यतन"
 
 #: djangopeople/templates/edit_skills.html:3
 #: djangopeople/templates/edit_skills.html:9
 msgid "Update your skills"
-msgstr "Actualiza tus habilidades."
+msgstr "अद्यतन करें अपने कौशल को"
 
 #: djangopeople/templates/edit_skills.html:15
 msgid "Update skills"
-msgstr "Actualizar habilidades"
+msgstr "अद्यतन करें कौशल"
 
 #: djangopeople/templates/form.html:3
 msgid "Please correct the errors below and submit the form again."
-msgstr "Por favor corrige los siguientes errores y vuelve a enviar el formulario."
+msgstr "कृपया नीचे त्रुटियां सुधारें और फार्म फिर से सबमिट करें."
 
 #: djangopeople/templates/index.html:33
 #, python-format
 msgid "Showing %(counter)s recent signups (out of %(total_people)s)"
-msgstr "Mostrando %(counter)s subscripciones recientes (de un total de %(total_people)s)"
+msgstr " दिखा रहा है  %(counter)s हाल ही में पंजीकरण (बाहर%(total_people)s)"
 
 #: djangopeople/templates/index.html:33
 #, python-format
 msgid ""
 "if you're a Django developer, why not <a href=\"%(signup_url)s\">add "
 "yourself</a> to the site?"
-msgstr "Si eres un desarrollador Django, ¿por qué no <a href=\"%(signup_url)s\">te unes</a> a este sitio?"
+msgstr "अगर आप एक Django डेवलपर, क्यों नहीं कर रहे हैं <a href=\"%(signup_url)s\">अपने आप को जोड़</a> साइट के लिए?"
 
 #: djangopeople/templates/index.html:50
 msgid ""
 "Looking for a Django job? check out <a "
 "href=\"http://djangogigs.com/\">Djangogigs.com</a>"
-msgstr "¿Estás buscando un trabajo Django? Dale un vistazo a <a href=\"http://djangogigs.com/\">Djangogigs.com</a>"
+msgstr "एक Django नौकरी के लिए खोज रहे हैं?चेक आउट <a href=\"http://djangogigs.com/\">Djangogigs.com</a>"
 
 #: djangopeople/templates/irc_active.html:4
 #: djangopeople/templates/irc_active.html:7
 msgid "Active on IRC in the past hour"
-msgstr "Activo en el IRC en la última hora"
+msgstr "पिछले एक घंटे में IRC पर सक्रिय"
 
 #: djangopeople/templates/irc_active.html:8
 msgid "No one is currently active"
-msgstr "No hay nadie activo."
+msgstr "कोई भी वर्तमान में सक्रिय नहीं है"
 
 #: djangopeople/templates/irc_active.html:26
 #, python-format
 msgid "<strong>%(nick)s</strong>, active %(since)s ago"
-msgstr "<strong>%(nick)s</strong>, activo desde %(since)s"
+msgstr "<strong>%(nick)s</strong>, active %(since)s ago"
 
 #: djangopeople/templates/login.html:50
 msgid "Your login attempt failed."
-msgstr "Falló tu intento de entrar"
+msgstr "आपका लॉगिन प्रयास में विफल रहा है."
 
 #: djangopeople/templates/login.html:58
 msgid "Lost your password?"
-msgstr "¿Olvidaste tu clave?"
+msgstr "अपना पासवर्ड खो गया?"
 
 #: djangopeople/templates/login.html:69
 msgid "Or sign in with your OpenID"
-msgstr "O entra con tu OpenID"
+msgstr "या अपने OpenID के साथ में साइन इन करें"
 
 #: djangopeople/templates/login.html:78
 msgid "OpenID not working?"
-msgstr "¿el OpenID no está funcionando?"
+msgstr " OpenID काम नहीं कर रहा?"
 
 #: djangopeople/templates/login.html:81
 msgid "Log in with OpenID"
-msgstr "Entra con OpenID"
+msgstr "OpenID के साथ में प्रवेश करें"
 
 #: djangopeople/templates/profile.html:53
 msgid "(change)"
-msgstr "(cambiar)"
+msgstr "(बदले)"
 
 #: djangopeople/templates/profile.html:66
 msgid "(edit bio)"
-msgstr "(editar biografía)"
+msgstr "(संपादित करें जैव)"
 
 #: djangopeople/templates/profile.html:66
 msgid "Create your bio"
-msgstr "Crea tu biografía"
+msgstr "अपने जैव बनाएँ"
 
 #: djangopeople/templates/profile.html:73
 msgid "(edit skills)"
-msgstr "(editar habilidades)"
+msgstr "(संपादित करें कौशल)"
 
 #: djangopeople/templates/profile.html:78
 msgid "Save"
-msgstr "Guardar"
+msgstr "सहेजें"
 
 #: djangopeople/templates/profile.html:81
 #, python-format
 msgid "Looking for <strong>%(type)s</strong> work"
-msgstr "Buscando un trabajo de <strong>%(type)s</strong>"
+msgstr "खोज रहें हैं <strong>%(type)s</strong> काम"
 
 #: djangopeople/templates/profile.html:86
 #, python-format
 msgid "Finding %(name)s"
-msgstr "Buscando %(name)s"
+msgstr "खोज %(name)s"
 
 #: djangopeople/templates/profile.html:86
 #: djangopeople/templates/profile.html:109
 msgid "(edit)"
-msgstr "(editar)"
+msgstr "(संपादित करें)"
 
 #: djangopeople/templates/profile.html:88
 msgid "email:"
-msgstr "correo electrónico:"
+msgstr "ईमेल:"
 
 #: djangopeople/templates/profile.html:91
 msgid "blog:"
-msgstr "blog:"
+msgstr "ब्लॉग:"
 
 #: djangopeople/templates/profile.html:95
 #, python-format
 msgid "(active %(since)s ago)"
-msgstr "(activo desde  %(since)s)"
+msgstr "(active %(since)s ago)"
 
 #: djangopeople/templates/profile.html:109
 #, python-format
 msgid "%(name)s's Django portfolio"
-msgstr "Porfolio Django de %(name)s"
+msgstr "%(name)s's Django पोर्टफोलियो"
 
 #: djangopeople/templates/profile.html:110
 #, python-format
 msgid "Django projects %(name)s has contributed to"
-msgstr "Proyectos Django a los que %(name)s ha contribuido"
+msgstr "Django परियोजनाओं %(name)s  के लिए योगदान दिया है"
 
 #: djangopeople/templates/profile.html:116
 #, python-format
 msgid "<a href=\"%(portfolio_url)s\">Add some sites</a> to your portfolio"
-msgstr "<a href=\"%(portfolio_url)s\">Añade algunas webs</a> a tu porfolio"
+msgstr "<a href=\"%(portfolio_url)s\">कुछ साइटों को जोड़ें</a> आपके पोर्टफोलियो के लिए"
 
 #: djangopeople/templates/profile.html:123
 #, python-format
 msgid "People near %(name)s"
-msgstr "Gente cerca de  %(name)s"
+msgstr "निकट लोग %(name)s"
 
 #: djangopeople/templates/profile.html:130
 #, python-format
 msgid "%(counter)s mile away"
 msgid_plural "%(counter)s miles away"
-msgstr[0] "a %(counter)s milla"
-msgstr[1] "a %(counter)s millas"
+msgstr[0] "%(counter)s मील दूर"
+msgstr[1] "%(counter)s मील दूर"
 
 #: djangopeople/templates/recent.html:3 djangopeople/templates/recent.html:9
 msgid "Recent people"
-msgstr "Gente reciente"
+msgstr "हाल ही में लोगों को"
 
 #: djangopeople/templates/search.html:3 djangopeople/templates/search.html:9
 #, python-format
 msgid "Search: %(q)s"
-msgstr "Buscar:  %(q)s"
+msgstr "खोजें: %(q)s"
 
 #: djangopeople/templates/search.html:3 djangopeople/templates/search.html:9
 #: djangopeople/templates/search.html:12
 msgid "Search"
-msgstr "Buscar"
+msgstr "खोजें"
 
 #: djangopeople/templates/search.html:10
 #, python-format
 msgid "%(counter)s result"
 msgid_plural "%(counter)s results"
-msgstr[0] "%(counter)s resultado"
-msgstr[1] "%(counter)s resultados"
+msgstr[0] "%(counter)s परिणाम"
+msgstr[1] "%(counter)s परिणाम"
 
 #: djangopeople/templates/search.html:11
 msgid "Terms must be three or more characters"
-msgstr "Los términos deben ser de tres o más caracteres"
+msgstr "शर्तें तीन या अधिक अक्षरों का होना चाहिए"
 
 #: djangopeople/templates/search.html:13
 msgid "This tool searches by username, first name and last name."
-msgstr "Esta herramienta busca por nombre de usuario, nombre y apellido."
+msgstr "उपयोक्तानाम, पहला नाम और अंतिम नाम से इस उपकरण खोजों."
 
 #: djangopeople/templates/search.html:27
 msgid "No users found."
-msgstr "No se encontraron usuarios"
+msgstr "कोई उपयोगकर्ता नहीं मिला."
 
 #: djangopeople/templates/signup.html:4
 msgid "Sign up"
-msgstr "Regístrate"
+msgstr "साइन अप करें"
 
 #: djangopeople/templates/signup.html:15
 msgid "Sign up as a Django Person"
-msgstr "Regístrate cono una persona Django"
+msgstr "एक Django व्यक्ति के रूप में साइन अप करें"
 
 #: djangopeople/templates/signup.html:21
 #, python-format
 msgid ""
 "Got an <strong class=\"openid\">OpenID</strong>? <a "
 "href=\"%(openid_url)s\">Sign up with your OpenID now!</a>"
-msgstr "¿Tienes un <strong class=\"openid\">OpenID</strong>?<a href=\"%(openid_url)s\">Regístrate con tu OpenID ahora!</a>"
+msgstr "समझे एक <strong class=\"openid\">OpenID</strong>? <a href=\"%(openid_url)s\">अपने OpenID के साथ साइन अप!</a>"
 
 #: djangopeople/templates/signup.html:23
 #, python-format
@@ -1071,103 +1075,103 @@ msgid ""
 "Your new account will be associated with with your OpenID: <strong "
 "class=\"openid\">%(openid)s</strong> (<a "
 "href=\"%(openid_signout)s?next=%(signup_url)s\">don't associate</a>)"
-msgstr "Tu nueva cuenta será asociada con tu OpenID: OpenID: <strong class=\"openid\">%(openid)s</strong> (<a href=\"%(openid_signout)s?next=%(signup_url)s\">no asociar</a>)"
+msgstr "आपका नया खाता अपने OpenID के साथ साथ संबद्ध किया जाएगा:<strong class=\"openid\">%(openid)s</strong> (<a href=\"%(openid_signout)s?next=%(signup_url)s\">सहयोगी नहीं है</a>)"
 
 #: djangopeople/templates/signup.html:26
 msgid "1. Tell us who you are"
-msgstr "1. Dinos quien eres"
+msgstr "1. हमें बताएं कि आप कौन हो"
 
 #: djangopeople/templates/signup.html:56
 msgid "2. Tell us where you live"
-msgstr "2. Dinos dónde vives"
+msgstr "2. हमें बताओ कि आप कहाँ रहते हैं"
 
 #: djangopeople/templates/signup.html:60
 msgid ""
 "Latitude and longitude are missing. Please use the map to provide your "
 "location."
-msgstr "Faltan la latitud y la longitud. Por favor, utiliza el mapa para darnos tu localización."
+msgstr "अक्षांश और देशांतर को याद कर रहे हैं. मानचित्र का उपयोग करने के लिए अपने स्थान प्रदान करें."
 
 #: djangopeople/templates/signup.html:90
 msgid "3. And a bit about you …"
-msgstr "3. Y un poco sobre ti"
+msgstr "3. और आप के बारे में एक बिट …"
 
 #: djangopeople/templates/signup.html:123
 msgid "4. Your privacy settings"
-msgstr "4. Tu configuración de privacidad"
+msgstr "4. आपकी गोपनीयता सेटिंग्स"
 
 #: djangopeople/templates/signup.html:139
 msgid "5. Your skills and interests"
-msgstr "5. Tus habilidades e intereses"
+msgstr "5. अपने कौशल और हितों"
 
 #: djangopeople/templates/signup.html:141
 msgid ""
 "Tag yourself with your particular skills and interests, e.g. postgresql, "
 "nginx, css. Separate them with commas; spaces are allowed."
-msgstr "Defínete a ti mismo con tus habilidades e intereses, por ejemplo postgres, ngnix, css. Sepáralos con comas, puedes utilizar espacios."
+msgstr "अपने आप को अपने विशेष कौशल और हितों के साथ टैग, जैसे postgresql, nginx, सीएसएस. उन्हें अल्पविराम से अलग करें, रिक्त स्थान की अनुमति दी जाती है."
 
 #: djangopeople/templates/signup.html:150
 msgid "Sign me up"
-msgstr "Inscríbeme"
+msgstr "मुझे साइन अप"
 
 #: djangopeople/templates/skill.html:8
 #, python-format
 msgid "%(counter)s Django Person mention this skill"
 msgid_plural "%(counter)s Django People mention this skill"
-msgstr[0] "%(counter)s persona mencionó esta habilidad"
-msgstr[1] "%(counter)s personas mencionaron esta habilidad"
+msgstr[0] "%(counter)s Django व्यक्ति इस कौशल का उल्लेख"
+msgstr[1] "%(counter)s Django लोग इस कौशल का उल्लेख"
 
 #: djangopeople/templates/skills.html:4
 msgid "Skills"
-msgstr "Habilidades"
+msgstr "कौशल"
 
 #: djangopeople/templates/password_reset/recovery_done.html:3
 #: djangopeople/templates/password_reset/recovery_done.html:5
 msgid "New password set"
-msgstr "Nueva clave establecida"
+msgstr "नया पासवर्ड सेट"
 
 #: djangopeople/templates/password_reset/recovery_done.html:9
 #, python-format
 msgid ""
 "Your password has successfully been reset. You can use it right now on the "
 "<a href=\"%(login_url)s\">login page</a>."
-msgstr "Tu contraseña ha sido restablecida con éxito. Puedes utilizarla de inmediato en la <a href=\"%(login_url)s\">página de inicio de sesión</a>."
+msgstr "आपका पासवर्ड सफलतापूर्वक रीसेट किया गया है. तुम उस पर अभी उपयोग कर सकते <a href=\"%(login_url)s\">पेज लॉगिन</a>."
 
 #: djangopeople/templates/password_reset/recovery_form.html:3
 #: djangopeople/templates/password_reset/recovery_form.html:5
 #: djangopeople/templates/password_reset/reset.html:3
 #: djangopeople/templates/password_reset/reset.html:5
 msgid "Recover your account"
-msgstr "Recupera tu cuenta"
+msgstr "आपके खाते पुनर्प्राप्त"
 
 #: djangopeople/templates/password_reset/recovery_form.html:9
 msgid ""
 "Enter your username and we'll send an account recovery link to the e-mail "
 "address associated with your account."
-msgstr "Introduce tu nombre de usuario y te enviaremos un enlace para recuperar tu cuenta al e-mail asociado a tu cuenta."
+msgstr "अपना उपयोगकर्ता नाम दर्ज है और हम अपने खाते के साथ जुड़े ई - मेल पते पर एक खाता पुनर्प्राप्ति लिंक भेज देंगे."
 
 #: djangopeople/templates/password_reset/recovery_form.html:13
 msgid "Recover account"
-msgstr "Recuperar cuenta"
+msgstr "खाता पुनर्प्राप्त"
 
 #: djangopeople/templates/password_reset/recovery_form.html:17
 #, python-format
 msgid ""
 "An email has just been sent to <strong>%(email)s</strong>. Use the link in "
 "it to set a new password."
-msgstr "Acabamos de enviar un correo electrónico a <strong>%(email)s</strong>. Utiliza el enlace que encontrarás en el para establecer una nueva clave."
+msgstr "एक ईमेल भेजा गया <strong>%(email)s</strong>. यह लिंक का उपयोग करने के लिए एक नया पासवर्ड सेट."
 
 #: djangopeople/templates/password_reset/reset.html:9
 #, python-format
 msgid ""
 "Sorry, this password reset link is invalid. You can still <a "
 "href=\"%(recovery_url)s\">request a new one</a>."
-msgstr "Lo sentimos, el enlace para restablecer la clave ya no es válido. Puedes <a href=\"%(recovery_url)s\">solicitar uno nuevo</a>."
+msgstr "क्षमा करें, इस पासवर्ड रीसेट लिंक अमान्य है. आप अभी भी कर सकते हैं<a href=\"%(recovery_url)s\">एक नया एक अनुरोध</a>."
 
 #: djangopeople/templates/password_reset/reset.html:11
 #, python-format
 msgid "Hi, <strong>%(username)s</strong>. Please choose your new password."
-msgstr "Hola, <strong>%(username)s</strong>. Por favor, elige tu nueva clave"
+msgstr "\t\nनमस्ते, <strong>%(username)s</strong>.अपना नया पासवर्ड का चयन करें."
 
 #: djangopeople/templates/password_reset/reset.html:14
 msgid "Set new password"
-msgstr "Establece tu nueva clave"
+msgstr "नया पासवर्ड सेट"

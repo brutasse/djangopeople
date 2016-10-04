@@ -3,28 +3,28 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Antoni Aloy <aaloy@apsl.net>, 2012
+# Nick Mavrakis <mavrakis.n@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Django People\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-10 08:03+0000\n"
-"PO-Revision-Date: 2013-11-20 10:29+0000\n"
-"Last-Translator: Antoni Aloy <aaloy@apsl.net>\n"
-"Language-Team: Spanish (http://www.transifex.com/django/djangopeople/language/es/)\n"
+"PO-Revision-Date: 2016-07-15 14:18+0000\n"
+"Last-Translator: Nick Mavrakis <mavrakis.n@gmail.com>\n"
+"Language-Team: Greek (http://www.transifex.com/django/djangopeople/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
+"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: default_settings.py:40
 msgid "English"
-msgstr "Inglés"
+msgstr "Αγγλικά"
 
 #: django_openidauth/models.py:8 djangopeople/models.py:123
 msgid "User"
-msgstr "Usuario"
+msgstr "Χρήστης"
 
 #: django_openidauth/models.py:9
 #: django_openidconsumer/templates/openid_failure.html:27
@@ -35,44 +35,44 @@ msgstr "OpenID"
 
 #: django_openidauth/models.py:10
 msgid "Creation date"
-msgstr "Fecha de creación"
+msgstr "Ημερομηνία δημιουργίας"
 
 #: django_openidauth/views.py:69 django_openidauth/views.py:88
 #, python-format
 msgid "%s has been associated with your account"
-msgstr "%s ha sido asociado a tu cuenta"
+msgstr "Το %s έχει συσχετιστεί με τον λογαριασμό σας"
 
 #: django_openidauth/views.py:74 django_openidauth/views.py:93
 #, python-format
 msgid ""
 "%s could not be associated with your account, as it is already associated "
 "with a different account"
-msgstr "%s no ha podido ser asociado a tu cuenta, ya está asociado con una cuenta diferente."
+msgstr "Το %s δεν μπόρεσε να συσχετιστεί με τον λογαριασμό σας, αφού είναι ήδη συνδεδεμένο με άλλο λογαριασμό"
 
 #: django_openidauth/views.py:105
 msgid "You need to set a password if you want to remove all of your OpenIDs"
-msgstr "Necesitas establecer una clave si quieres eliminar todos tus OpenIDs"
+msgstr "Θα χρειαστεί να θέσετε έναν κωδικό αν θέλετε να αφαιρέσετε όλα τα OpenIDs σας"
 
 #: django_openidauth/views.py:111
 #, python-format
 msgid "%s has been removed from your account"
-msgstr "%s ha sido eliminado de tu cuenta"
+msgstr "Το %s έχει αφαιρεθεί από τον λογαριασμό σας"
 
 #: django_openidauth/templates/openid_associations.html:2
 #: django_openidauth/templates/openid_associations.html:19
 msgid "OpenID associations"
-msgstr "Asociaciones OpenID"
+msgstr "OpenID συσχετίσεις"
 
 #: django_openidauth/templates/openid_associations.html:32
 msgid "Your account is currently associated with the following OpenID:"
 msgid_plural ""
 "Your account is currently associated with the following OpenIDs:"
-msgstr[0] "Tu cuenta está actualmente asociada al siguiente OpenID"
-msgstr[1] "Tu cuenta está actualmente asociada a los siguientes OpenIDs"
+msgstr[0] "Ο λογαριασμός σας είναι τώρα συσχετισμένος με το ακόλουθο OpenID:"
+msgstr[1] "Your account is currently associated with the following OpenIDs:"
 
 #: django_openidauth/templates/openid_associations.html:35
 msgid "Remove association"
-msgstr "Eliminar asociación"
+msgstr "Αφαίρεση συσχέτισης"
 
 #: django_openidauth/templates/openid_associations.html:41
 msgid ""
@@ -81,55 +81,55 @@ msgid ""
 msgid_plural ""
 "You are currently logged with the following OpenIDs. Click \"associate\" to "
 "allow an OpenID to be used to sign in to your account."
-msgstr[0] "Estás actualmente registrado con el siguientes OpenID. Pulsa sobre \"asociar\" para poder ser usado para entrar en tu cuenta."
-msgstr[1] "Estás actualmente registrado con los siguientes OpenIDs. Pulsa sobre \"asociar\" para permitir a un OpenID ser usado para entrar en tu cuenta."
+msgstr[0] "Τώρα είστε συνδεδεμένος με τα ακόλουθα OpenIDs. Κλικάρετε στο \"συσχέτιση\" για να επιτρέψετε σε ένα OpenID να χρησιμοποιηθεί για να κάνει sign in στον λογαριασμό σας."
+msgstr[1] "Τώρα είστε συνδεδεμένος με τα ακόλουθα OpenIDs. Κλικάρετε στο \"συσχέτιση\" για να επιτρέψετε σε ένα OpenID να χρησιμοποιηθεί για να κάνει sign in στον λογαριασμό σας."
 
 #: django_openidauth/templates/openid_associations.html:44
 msgid "Associate"
-msgstr "Asociar"
+msgstr "Συσχέτιση"
 
 #: django_openidauth/templates/openid_associations.html:50
 msgid "To associate a new OpenID with this account, sign in with it here:"
-msgstr "Para asociar un nuevo OpenID con esta cuenta, identifícate con él aquí:"
+msgstr "Για να συσχετίσετε ένα νέο OpenID με αυτό τον λογαριασμό, κάντε sign in με αυτό εδώ:"
 
 #: django_openidauth/templates/openid_associations.html:55
 msgid "Authenticate and associate with this account"
-msgstr "Autenticar y asociar con esta cuenta"
+msgstr "Πιστοποίηση και συσχέτιση με αυτό τον λογαριασμό"
 
 #: django_openidconsumer/views.py:89
 msgid "i-names are not supported"
-msgstr "Los i-names no están soportados"
+msgstr "Τα i-names δεν υποστηρίζονται"
 
 #: django_openidconsumer/views.py:95
 msgid "The OpenID was invalid"
-msgstr "El OpenID no es válido"
+msgstr "Το OpenID ήταν μη έγκυρο"
 
 #: django_openidconsumer/views.py:121
 msgid "The request was cancelled"
-msgstr "La petición fue cancelada"
+msgstr "Το request ακυρώθηκε"
 
 #: django_openidconsumer/views.py:125
 msgid "Setup needed"
-msgstr "Se necesita configurar"
+msgstr "Χρειάζεται ρύθμιση"
 
 #: django_openidconsumer/templates/openid_failure.html:3
 msgid "Open ID failed, Sign in with your OpenID"
-msgstr "Falló OpenID. Identifícate con tu OpenID"
+msgstr "Το OpenID απέτυχε, κάντε sign in με το OpenID σας"
 
 #: django_openidconsumer/templates/openid_failure.html:19
 #: django_openidconsumer/templates/openid_signin.html:3
 #: django_openidconsumer/templates/openid_signin.html:19
 msgid "Sign in with your OpenID"
-msgstr "Identifícate con tu OpenID"
+msgstr "Κάντε sign in με το OpenID σας"
 
 #: django_openidconsumer/templates/openid_failure.html:23
 msgid "OpenID failed"
-msgstr "Falló OpenID"
+msgstr "Το OpenID απέτυχε"
 
 #: django_openidconsumer/templates/openid_failure.html:31
 #: django_openidconsumer/templates/openid_signin.html:29
 msgid "Sign in"
-msgstr "Identificación"
+msgstr "Είσοδος"
 
 #: djangopeople/constants.py:28
 msgid "#django IRC"
@@ -137,116 +137,116 @@ msgstr "#django IRC"
 
 #: djangopeople/forms.py:49
 msgid "Drag and zoom the map until the crosshair matches your location"
-msgstr "Arrastra y amplía el mapa hasta que la cruz esté situada en tu localidad"
+msgstr "Σύρετε και εστιάστε στο χάρτη μέχρις ότου ο δείκτης ταιριάξει με την τοποθεσία σας"
 
 #: djangopeople/forms.py:112 djangopeople/templates/base.html:41
 msgid "Username"
-msgstr "Usuario"
+msgstr "Όνομα χρήστη"
 
 #: djangopeople/forms.py:114 djangopeople/forms.py:350
 msgid "First name"
-msgstr "Nombre"
+msgstr "Όνομα"
 
 #: djangopeople/forms.py:115 djangopeople/forms.py:351
 msgid "Last name"
-msgstr "Apellido"
+msgstr "Επώνυμο"
 
 #: djangopeople/forms.py:116 djangopeople/forms.py:352
 msgid "E-mail"
-msgstr "Correo electrónico"
+msgstr "E-mail"
 
 #: djangopeople/forms.py:117 djangopeople/forms.py:540
 #: djangopeople/templates/base.html:41
 msgid "Password"
-msgstr "Clave"
+msgstr "Κωδικός"
 
 #: djangopeople/forms.py:119
 msgid "Password (again)"
-msgstr "Clave (otra vez)"
+msgstr "Κωδικός (ξανά)"
 
 #: djangopeople/forms.py:123 djangopeople/models.py:124
 msgid "Bio"
-msgstr "Biografía"
+msgstr "Βιογραφικό"
 
 #: djangopeople/forms.py:125 djangopeople/forms.py:353
 #: djangopeople/templates/edit_finding.html:34
 msgid "Blog URL"
-msgstr "URL del Blog"
+msgstr "Blog URL"
 
 #: djangopeople/forms.py:127 djangopeople/forms.py:267
 #: djangopeople/models.py:74 djangopeople/models.py:88
 #: djangopeople/models.py:127 djangopeople/models.py:252
 #: djangopeople/templates/edit_location.html:44
 msgid "Country"
-msgstr "País"
+msgstr "Χώρα"
 
 #: djangopeople/forms.py:130 djangopeople/forms.py:271
 #: djangopeople/models.py:132
 msgid "Location"
-msgstr "Localidad"
+msgstr "Τοποθεσία"
 
 #: djangopeople/forms.py:132 djangopeople/forms.py:268
 #: djangopeople/models.py:107 djangopeople/models.py:128
 #: djangopeople/templates/edit_location.html:59
 msgid "Region"
-msgstr "Región"
+msgstr "Περιοχή"
 
 #: djangopeople/forms.py:135 djangopeople/forms.py:355
 #: djangopeople/templates/edit_finding.html:71
 msgid "Search visibility"
-msgstr "Visibilidad de búsqueda"
+msgstr "Εμφάνιση ή όχι του προφίλ μου"
 
 #: djangopeople/forms.py:143 djangopeople/forms.py:363
 #: djangopeople/templates/edit_finding.html:76
 msgid "E-mail privacy"
-msgstr "Privacidad de correo electrónico"
+msgstr "Ιδιωτικότητα του e-mail"
 
 #: djangopeople/forms.py:151 djangopeople/forms.py:371
 #: djangopeople/templates/edit_finding.html:81
 msgid "IM privacy"
-msgstr "Privacidad MI"
+msgstr "Ιδιωτικότητα του IM"
 
 #: djangopeople/forms.py:158 djangopeople/forms.py:378
 #: djangopeople/templates/edit_finding.html:86
 msgid "IRC tracking"
-msgstr "Registro de IRPC"
+msgstr "Παρακολούθηση IRC"
 
 #: djangopeople/forms.py:166 djangopeople/forms.py:386
 #: djangopeople/templates/edit_finding.html:39
 msgid "Looking for work?"
-msgstr "Buscando trabajo?"
+msgstr "Ψάχνετε για εργασία;"
 
 #: djangopeople/forms.py:174
 msgid "Your skills"
-msgstr "Conocimientos"
+msgstr "Οι δεξιότητές σας"
 
 #: djangopeople/forms.py:182
 msgid "Password is required"
-msgstr "La clave es obligatoria"
+msgstr "Ο κωδικός είναι απαραίτητος"
 
 #: djangopeople/forms.py:189
 msgid "Passwords must match"
-msgstr "Las claves debe coincidir"
+msgstr "Οι κωδικοί πρέπει να ταιριάζουν"
 
 #: djangopeople/forms.py:193
 msgid "That username is unavailable"
-msgstr "Este nombre de usuario no está disponible"
+msgstr "Το όνομα χρήστη δεν είναι διαθέσιμο"
 
 #: djangopeople/forms.py:217 djangopeople/forms.py:399
 msgid "That e-mail is already in use"
-msgstr "Esta dirección de correo electrónico ya está en uso"
+msgstr "Αυτό το e-mail χρησιμοποιείται ήδη"
 
 #: djangopeople/forms.py:230 djangopeople/forms.py:300
 msgid "The region you selected does not match the country"
-msgstr "La región que has seleccionado no se corresponde con el país"
+msgstr "Η περιοχή που διαλέξατε δεν αντιστοιχεί με την χώρα"
 
 #: djangopeople/forms.py:238
 msgid "Change skills"
-msgstr "Cambiar habilidades"
+msgstr "Αλλάξτε τις δεξιότητες"
 
 #: djangopeople/forms.py:286
 msgid "The ISO code of the country you selected is invalid."
-msgstr "El código ISO para el país que has seleccionado no es válido"
+msgstr "Ο κωδικός ISO της χώρας που επιλέξατε δεν είναι έγκυρος"
 
 #: djangopeople/forms.py:439
 #, python-format
@@ -256,52 +256,52 @@ msgstr "URL %d"
 #: djangopeople/forms.py:442
 #, python-format
 msgid "Title %d"
-msgstr "Título %d"
+msgstr "Τίτλος %d"
 
 #: djangopeople/forms.py:472
 msgid "You need to provide a URL"
-msgstr "Necesitas introducir una URL"
+msgstr "Πρέπει να εισάγετε ένα URL"
 
 #: djangopeople/forms.py:478
 msgid "Current Password"
-msgstr "Clave actual"
+msgstr "Τρέχον κωδικός"
 
 #: djangopeople/forms.py:480
 msgid "New Password"
-msgstr "Nueva clave"
+msgstr "Νέος κωδικός"
 
 #: djangopeople/forms.py:481
 msgid "New Password (again)"
-msgstr "Nueva clave (de nuevo)"
+msgstr "Νέο κωδικός (ξανά)"
 
 #: djangopeople/forms.py:493
 msgid "Please submit your current password."
-msgstr "Por favor, introduce tu clave actual"
+msgstr "Παρακαλούμε υποβάλλετε τον τρέχον κωδικό σας."
 
 #: djangopeople/forms.py:504
 msgid "The passwords did not match."
-msgstr "Las claves no coinciden."
+msgstr "Οι κωδικοί δεν ταιριάζουν μεταξύ τους."
 
 #: djangopeople/forms.py:545
 msgid "Your password was invalid"
-msgstr "Tu clave no es válida."
+msgstr "Ο κωδικός σας δεν είναι έγκυρος"
 
 #: djangopeople/groupedselect.py:81
 msgid ""
 "Select a valid choice. That choice is not one of the available choices."
-msgstr "Selecciona una opción válida. Esta opción no está entre las disponibles."
+msgstr "Επιλέξτε μια έγκυρη επιλογή. Αυτή η επιλογή δεν είναι μια από τις διαθέσιμες."
 
 #: djangopeople/models.py:40 djangopeople/models.py:87
 msgid "Name"
-msgstr "Nombre"
+msgstr "Όνομα"
 
 #: djangopeople/models.py:41
 msgid "ISO code"
-msgstr "Código ISO"
+msgstr "Κωδικός ISO"
 
 #: djangopeople/models.py:42
 msgid "ISO numeric code"
-msgstr "Código ISO numérico"
+msgstr "Αριθμητικός κωδικός ISO"
 
 #: djangopeople/models.py:44
 msgid "ISO alpha-3"
@@ -309,95 +309,95 @@ msgstr "ISO alpha-3"
 
 #: djangopeople/models.py:45
 msgid "FIPS code"
-msgstr "Código FIPS"
+msgstr "Κωδικός FIPS"
 
 #: djangopeople/models.py:46
 msgid "Continent"
-msgstr "Continente"
+msgstr "Ήπειρος"
 
 #: djangopeople/models.py:48
 msgid "Capital"
-msgstr "Capital"
+msgstr "Πρωτεύουσα"
 
 #: djangopeople/models.py:49
 msgid "Area in square kilometers"
-msgstr "Área en quilómetros cuadrados"
+msgstr "Εμβαδόν σε τετραγωνικά χιλιόμετρα"
 
 #: djangopeople/models.py:50
 msgid "Population"
-msgstr "Población"
+msgstr "Πληθυσμός"
 
 #: djangopeople/models.py:51
 msgid "Currency code"
-msgstr "Código de moneda"
+msgstr "Κωδικός νομίσματος"
 
 #: djangopeople/models.py:53
 msgid "Languages"
-msgstr "Idiomas"
+msgstr "Γλώσσες"
 
 #: djangopeople/models.py:54
 msgid "Geonames ID"
-msgstr "Geonombres ID"
+msgstr "Geonames ID"
 
 #: djangopeople/models.py:63 djangopeople/models.py:96
 msgid "Number of people"
-msgstr "Población"
+msgstr "Αριθμός ατόμων"
 
 #: djangopeople/models.py:75
 msgid "Countries"
-msgstr "Países"
+msgstr "Χώρες"
 
 #: djangopeople/models.py:86
 msgid "Code"
-msgstr "Código"
+msgstr "Κωδικός"
 
 #: djangopeople/models.py:89
 msgid "Flag"
-msgstr "Bandera"
+msgstr "Σημαία"
 
 #: djangopeople/models.py:108 djangopeople/templates/country.html:86
 msgid "Regions"
-msgstr "Regiones"
+msgstr "Περιοχές"
 
 #: djangopeople/models.py:130 djangopeople/templates/edit_location.html:49
 msgid "Latitude"
-msgstr "Latitud"
+msgstr "Γεωγραφικό πλάτος"
 
 #: djangopeople/models.py:131 djangopeople/templates/edit_location.html:54
 msgid "Longitude"
-msgstr "Longitud"
+msgstr "Γεωγραφικό μήκος"
 
 #: djangopeople/models.py:138
 msgid "Profile views"
-msgstr "Vistas del perfil"
+msgstr "Προβολές του προφίλ"
 
 #: djangopeople/models.py:145
 msgid "OpenID server"
-msgstr "Servidor OpenID"
+msgstr "OpenID server"
 
 #: djangopeople/models.py:147
 msgid "OpenID delegate"
-msgstr "Delegación OpenID"
+msgstr "Αντιπρόσωπος OpenID"
 
 #: djangopeople/models.py:151
 msgid "Last active on IRC"
-msgstr "Activo por última vez en IRC"
+msgstr "Τελευταία ενέργεια στο IRC"
 
 #: djangopeople/models.py:159
 msgid "<none>"
-msgstr "<ninguno>"
+msgstr "<none>"
 
 #: djangopeople/models.py:220
 msgid "Django person"
-msgstr "Persona Django"
+msgstr "Django άτομο"
 
 #: djangopeople/models.py:221
 msgid "Django people"
-msgstr "Gente Django"
+msgstr "Django people"
 
 #: djangopeople/models.py:235 djangopeople/models.py:250
 msgid "Title"
-msgstr "Título"
+msgstr "Τίτλος"
 
 #: djangopeople/models.py:236 djangopeople/models.py:251
 msgid "URL"
@@ -405,53 +405,53 @@ msgstr "URL"
 
 #: djangopeople/models.py:238
 msgid "Contributor"
-msgstr "Contribuidor"
+msgstr "Συνεισφέρων"
 
 #: djangopeople/models.py:244
 msgid "Portfolio site"
-msgstr "Portfolio"
+msgstr "Portfolio site"
 
 #: djangopeople/models.py:245
 msgid "Portfolio sites"
-msgstr "Portfolios"
+msgstr "Portfolio sites"
 
 #: djangopeople/models.py:258
 msgid "Country site"
-msgstr "Web del País"
+msgstr "Site χώρας"
 
 #: djangopeople/models.py:259
 msgid "Country sites"
-msgstr "Web de los Países"
+msgstr "Sites χωρών"
 
 #: djangopeople/views.py:553
 #, python-format
 msgid "No Tag found matching \"%s\"."
-msgstr "No se encontró una etiqueta que coincida con \"%s\"."
+msgstr "Δε βρέθηκε το Tag που να ταιριάζει με \"%s\"."
 
 #: djangopeople/templates/404.html:3 djangopeople/templates/404.html.py:9
 msgid "404 error"
-msgstr "Error 404"
+msgstr "Σφάλμα 404"
 
 #: djangopeople/templates/404.html:13
 msgid "Page not found."
-msgstr "Página no encontrada."
+msgstr "Η σελίδα δεν βρέθηκε."
 
 #: djangopeople/templates/500.html:3 djangopeople/templates/500.html.py:9
 msgid "500 error"
-msgstr "Error 500"
+msgstr "Σφάλμα 500"
 
 #: djangopeople/templates/500.html:13
 msgid ""
 "Internal server error. This has been reported to the site administrator."
-msgstr "Error interno del servidor. El error ha sido notificado al administrador de la web."
+msgstr "Εσωτερικό σφάλμα του server. Αναφέρθηκε στον διαχειριστή του site."
 
 #: djangopeople/templates/about.html:4
 msgid "About"
-msgstr "Sobre"
+msgstr "Σχετικά"
 
 #: djangopeople/templates/about.html:9
 msgid "About Django People"
-msgstr "Sobre Django People"
+msgstr "Σχετικά με τα άτομα του Django"
 
 #: djangopeople/templates/about.html:14
 #, python-format
@@ -461,7 +461,7 @@ msgid ""
 "the world, in %(countries)s different countries. The aim of the site is to "
 "help Django developers find like-minded souls near them, and hopefully kick-"
 "start some local meet-ups and user groups."
-msgstr "Django People muestra %(count)s desarolladores <a href=\"https://www.djangoproject.com/\">Django</a> de todo el mundo, en %(countries)s paises diferentes. El objetivo del sitio es ayudar a los desarrolladores Django a encontrar almas comunes cerca de elos, y con suerte, iniciar grupos y encuentros locales."
+msgstr "Το Django People προβάλλει %(count)s <a href=\"https://www.djangoproject.com/\">Django</a> developers ανά τον κόσμο, από %(countries)s διαφορετικές χώρες. Ο στόχος του site είναι να βοηθήσει τους Django developers να βρουν κοντά τους άτομα με τα ίδια ενδιαφέροντα και ενδεχομένως να δημιουργήσουν ομάδες για να ανταλλάξουν απόψεις ή και να ξεκινήσουν κάποιο project από κοινού."
 
 #: djangopeople/templates/about.html:16
 msgid ""
@@ -470,11 +470,11 @@ msgid ""
 "href=\"https://github.com/brutasse/djangopeople\">available on github</a>, "
 "you can post feedback and bug reports on the repository's <a "
 "href=\"https://github.com/brutasse/djangopeople/issues\">issues page</a>."
-msgstr "Esta web fue desarrollada originalmente y cedida como código abierto por <a href=\"/simon/\">Simon Willison</a> y <a href=\"/natbat/\">Natalie Downe</a>. El código está <a href=\"https://github.com/brutasse/djangopeople\">disponible en githut</a>, puedes enviar errores y comentarios <a href=\"https://github.com/brutasse/djangopeople/issues\">la página de incidencias</a> del repositorio."
+msgstr "Το site φτιάχτηκε αρχικά και έγινε ανοιχτού λογισμικού από τον <a href=\"/simon/\">Simon Willison</a> και την <a href=\"/natbat/\">Natalie Downe</a>. Ο κώδικας είναι <a href=\"https://github.com/brutasse/djangopeople\">διαθέσιμος στο github</a>, όπου μπορείτε να κάνετε τα δικά σας σχόλια για τυχόν bugs στην <a href=\"https://github.com/brutasse/djangopeople/issues\">αντίστοιχη σελίδα</a>."
 
 #: djangopeople/templates/about.html:18
 msgid "Colophon"
-msgstr "Colofón"
+msgstr "Colophon"
 
 #: djangopeople/templates/about.html:20
 msgid ""
@@ -486,7 +486,7 @@ msgid ""
 " <a href=\"http://en.wikipedia.org/wiki/Flags_of_the_U.S._states\" "
 "title=\"Flags of the U.S. states\">from Wikipedia</a>. Profile pictures come"
 " from <a href=\"http://en.gravatar.com/\">Gravatar</a>."
-msgstr "Los datos de paises y búsquedas provienen de <a href=\"http://www.geonames.org/\">GeoNames</a>, mientras que los mapas en sí se generan gracias a la <a href=\"https://developers.google.com/maps/\">API de Google Maps</a>. Las banderas de los países e iconos son de <a href=\"http://famfamfam.com/lab/icons/\">Mark James</a>; Las banderas de los estados de EUA son <a href=\"http://en.wikipedia.org/wiki/Flags_of_the_U.S._states\" title=\"Flags of the U.S. states\">la Wikipedia</a>. Las imágenes de los perfiles provienen de <a href=\"http://en.gravatar.com/\">Gravatar</a>."
+msgstr "Τα δεδομένα των χωρών και οι ευρέσεις των τοποθεσιών προέρχονται από τα <a href=\"http://www.geonames.org/\">GeoNames</a>, ενώ οι χάρτες υποστηρίζονται από το <a href=\"https://developers.google.com/maps/\">Google Maps API</a>. Οι σημαίες των χωρών και τα εικονίδια έχουν φτιαχτεί από τον <a href=\"http://famfamfam.com/lab/icons/\">Mark James</a>; οι σημαίες των Ηνωμένων Πολιτειών της Αμερικής είναι από <a href=\"http://en.wikipedia.org/wiki/Flags_of_the_U.S._states\" title=\"Flags of the U.S. states\">τη Wikipedia</a>. Οι εικόνες των προφίλ είναι από το <a href=\"http://en.gravatar.com/\">Gravatar</a>."
 
 #: djangopeople/templates/about.html:22
 #, python-format
@@ -499,92 +499,92 @@ msgid ""
 "%(openid_users)s people) depends on <a href=\"http://openidenabled.com"
 "/python-openid/\">python-openid</a> (version 2.2.5)  and <a "
 "href=\"http://code.google.com/p/django-openid/\">django-openid</a>."
-msgstr "La web utiliza <a href=\"http://code.google.com/p/django-tagging/\">django-tagging</a> de <a href=\"/insin/\">Jonathan Buchanan</a> para la <a href=\"/skills/\">gestión de habilidades</a>. <a href=\"http://simonwillison.net/2008/Jan/24/upgrade/\" title=\"Django People: OpenID and microformats\">El soporte de OpenID</a> (utilizado por la gente %(openid_users)s ) depende de <a href=\"http://openidenabled.com/python-openid/\">python-openid</a> (version 2.2.5) y <a href=\"http://code.google.com/p/django-openid/\">django-openid</a>."
+msgstr "Το site χρησιμοποιεί το <a href=\"http://code.google.com/p/django-tagging/\">django-tagging</a> από τον <a href=\"/insin/\">Jonathan Buchanan</a> για το πεδίο των <a href=\"/skills/\">δεξιοτήτων</a>. <a href=\"http://simonwillison.net/2008/Jan/24/upgrade/\" title=\"Django People: OpenID and microformats\">Η υποστήριξη του OpenID</a> (το οποίο χρησιμοποιείται από %(openid_users)s ανθρώπους) εξαρτάται από το <a href=\"http://openidenabled.com/python-openid/\">python-openid</a> (έκδοση 2.2.5) και από το <a href=\"http://code.google.com/p/django-openid/\">django-openid</a>."
 
 #: djangopeople/templates/about.html:24
 msgid ""
 "Deployment is <a href=\"http://gunicorn.org\">gunicorn</a>, hosted on <a "
 "href=\"http://www.heroku.com/\">Heroku</a>."
-msgstr "El despliegue se ha hecho sobre<a href=\"http://gunicorn.org\">gunicorn</a>, hospedado en <a href=\"http://www.heroku.com/\">Heroku</a>."
+msgstr "Το site βασίζεται στο <a href=\"http://gunicorn.org\">gunicorn</a>, φιλοξενείται στο <a href=\"http://www.heroku.com/\">Heroku</a>."
 
 #: djangopeople/templates/about.html:26
 msgid "A Django joint."
-msgstr "A Django joint."
+msgstr "Ένα Django joint."
 
 #: djangopeople/templates/base.html:24
 msgid "home"
-msgstr "Inicio"
+msgstr "αρχική"
 
 #: djangopeople/templates/base.html:25
 msgid "about"
-msgstr "sobre"
+msgstr "σχετικά"
 
 #: djangopeople/templates/base.html:26
 msgid "search"
-msgstr "buscar"
+msgstr "αναζήτηση"
 
 #: djangopeople/templates/base.html:30
 msgid "sign up as a django person"
-msgstr "identifícate como una persona django"
+msgstr "εγγραγή ως django άτομο"
 
 #: djangopeople/templates/base.html:33
 #, python-format
 msgid "You are logged in as <strong>%(user)s</strong>"
-msgstr "Estás identificado como <strong>%(user)s</strong>"
+msgstr "Είστε συνδεδεμένος ως <strong>%(user)s</strong>"
 
 #: djangopeople/templates/base.html:34
 msgid "your profile"
-msgstr "tu perfil"
+msgstr "το προφίλ σας"
 
 #: djangopeople/templates/base.html:35
 msgid "your account"
-msgstr "tu cuenta"
+msgstr "ο λογαριασμός σας"
 
 #: djangopeople/templates/base.html:36
 msgid "log out"
-msgstr "salir"
+msgstr "έξοδος"
 
 #: djangopeople/templates/base.html:41 djangopeople/templates/login.html:4
 #: djangopeople/templates/login.html:43 djangopeople/templates/login.html:65
 msgid "Log in"
-msgstr "Entrar"
+msgstr "είσοδος"
 
 #: djangopeople/templates/base.html:43
 #, python-format
 msgid "Or <a href=\"%(openid_url)s\">log in with <strong>OpenID</strong>"
-msgstr "O <a href=\"%(openid_url)s\">identificarte con<strong>OpenID</strong>"
+msgstr "Ή <a href=\"%(openid_url)s\">κάντε log in με το <strong>OpenID</strong>"
 
 #: djangopeople/templates/base.html:49
 msgid "Django People"
-msgstr "Gente Django"
+msgstr "Django People"
 
 #: djangopeople/templates/base.html:50
 msgid ""
 "Discover users of the <a href=\"https://www.djangoproject.com/\">Django Web "
 "framework</a> near you"
-msgstr "Descubre usuarios de <a href=\"https://www.djangoproject.com/\">Django</a> cerca de ti"
+msgstr "Ανακαλύπτει χρήστες που χρησιμοποιούν το <a href=\"https://www.djangoproject.com/\">Django Web framework</a> κοντά σας"
 
 #: djangopeople/templates/base.html:61
 msgid "Hosted on <span class=\"heroku\">Heroku</span>"
-msgstr "Hospedado en  <span class=\"heroku\">Heroku</span>"
+msgstr "Φιλοξενείται από το <span class=\"heroku\">Heroku</span>"
 
 #: djangopeople/templates/country.html:36
 #: djangopeople/templates/country.html:38
 #, python-format
 msgid "%(counter)s Django person"
 msgid_plural "%(counter)s Django people"
-msgstr[0] " %(counter)s persona Django"
-msgstr[1] "%(counter)s personas Django"
+msgstr[0] "%(counter)s Django άτομο"
+msgstr[1] "%(counter)s Django άτομα"
 
 #: djangopeople/templates/country.html:53
 #, python-format
 msgid "Django community sites in %(country)s"
-msgstr "Sitios de la comundad Django en %(country)s"
+msgstr "Django community sites στη χώρα %(country)s"
 
 #: djangopeople/templates/country.html:64
 #, python-format
 msgid "Page %(num)s of %(total)s"
-msgstr "Página %(num)s de %(total)s"
+msgstr "Σελίδα %(num)s από %(total)s"
 
 #: djangopeople/templates/country.html:90 djangopeople/templates/index.html:46
 #: djangopeople/templates/irc_active.html:8
@@ -592,146 +592,146 @@ msgstr "Página %(num)s de %(total)s"
 #, python-format
 msgid "%(counter)s person"
 msgid_plural "%(counter)s people"
-msgstr[0] "%(counter)s persona"
-msgstr[1] "%(counter)s personas"
+msgstr[0] "%(counter)s άτομο"
+msgstr[1] "%(counter)s άτομα"
 
 #: djangopeople/templates/country_looking_for.html:3
 #, python-format
 msgid "People in %(country)s looking for %(looking_for)s"
-msgstr "Gente en %(country)s buscando %(looking_for)s"
+msgstr "Τα άτομα στη χώρα %(country)s ψάχνουν για %(looking_for)s"
 
 #: djangopeople/templates/country_looking_for.html:9
 #, python-format
 msgid "%(country)s, seeking %(looking_for)s work"
-msgstr "%(country)s, buscando trabajo de %(looking_for)s"
+msgstr "%(country)s, ψάχνει %(looking_for)s εργασία"
 
 #: djangopeople/templates/country_sites.html:4
 #: djangopeople/templates/country_sites.html:10
 #, python-format
 msgid "Sites in %(country)s"
-msgstr "Sitios en %(country)s"
+msgstr "Σελίδες στη χώρα %(country)s"
 
 #: djangopeople/templates/country_sites.html:19
 #, python-format
 msgid "<a href=\"%(url)s\">%(title)s</a> by <a href=\"%(author_url)s\">%(author)s</a>"
-msgstr "<a href=\"%(url)s\">%(title)s</a> por <a href=\"%(author_url)s\">%(author)s</a>"
+msgstr "<a href=\"%(url)s\">%(title)s</a> από <a href=\"%(author_url)s\">%(author)s</a>"
 
 #: djangopeople/templates/delete_account.html:4
 msgid ""
 "Please enter your password to confirm your ownership of this account. You "
 "account removal will be effective immediately and permanently after you "
 "submit this form."
-msgstr "Por favor, introduce tu clave para confirmar tu propiedad sobre esta cuenta. La eliminación de tu cuenta será efectiva, inmediata y permanente una vez hayas enviado este formulario."
+msgstr "Παρακαλούμε εισάγεται τον κωδικό σας για να επιβεβαιωθεί η κυριότητα αυτού του λογαριασμού. Η αφαίρεση αυτού του λογαριασμού θα πραγματοποιηθεί αμέσως μόλις καταθέσετε αυτή τη φόρμα."
 
 #: djangopeople/templates/delete_account.html:7
 msgid "Delete my account"
-msgstr "Borrar mi cuenta"
+msgstr "Διαγραφή του λογαριασμού μου"
 
 #: djangopeople/templates/delete_account.txt:1
 #, python-format
 msgid "Dear %(name)s,"
-msgstr "Apreciado/a %(name)s,"
+msgstr "Αγαπητέ/ή %(name)s,"
 
 #: djangopeople/templates/delete_account.txt:3
 #, python-format
 msgid ""
 "It seems you're willing to delete your account from %(domain)s. You can "
 "delete your account by following the instructions on the link below:"
-msgstr "Parece que quieres borrar tu cuenta de %(domain)s. Puedes borrar tu cuenta siguiendo las instrucciones del enlaces siguiente:"
+msgstr "Φαίνεται ότι θέλετε να διαγράψετε το λογαριασμό σας από το %(domain)s. Μπορείτε να το κάνετε ακολουθώντας τις οδηγίες στο σύνδεσμο, παρακάτω:"
 
 #: djangopeople/templates/delete_account.txt:7
 msgid "For security reasons, this link will stay valid for only 5 minutes."
-msgstr "Por razones de seguridad, este enlace sólo será válido durante 5 minutos."
+msgstr "Για λόγους ασφαλείας, αυτός ο σύνδεσμος θα είναι έγκυρος για μόλις 5 λεπτά."
 
 #: djangopeople/templates/delete_account_done.html:3
 msgid "Account deleted"
-msgstr "Cuenta borrada"
+msgstr "Ο λαγαριασμός διαγράφηκε"
 
 #: djangopeople/templates/delete_account_done.html:6
 msgid "It's sad to see you go, but your account was successfully deleted."
-msgstr "Es triste verte partir, pero tu cuenta se ha borrado satisfactoriamente."
+msgstr "Είναι λυπηρό που φεύγετε, αλλά ο λογαριασμός σας έχει διαγραφεί επιτυχώς."
 
 #: djangopeople/templates/delete_account_next.html:4
 msgid ""
 "Check your email! An email was just sent to you, follow the link in it to "
 "finalize your account deletion."
-msgstr "Revisa tu correo! Te acabamos de enviar un correo, sigue el enlace que encontrarás y finaliza el borrado de tu cuenta."
+msgstr "Ελέγξτε το email σας! Στο email που σας έχει σταλεί υπάρχει ένας σύνδεσμος που πρέπει να κλικάρετε για να ολοκληρωθεί η διαγραφή του λογαρισμού σας."
 
 #: djangopeople/templates/delete_account_request.html:3
 #: djangopeople/templates/delete_account_request.html:5
 msgid "Account deletion"
-msgstr "Borrado de cuenta"
+msgstr "Διαγραφή λογαριασμού"
 
 #: djangopeople/templates/delete_account_request.html:8
 msgid ""
 "You are about to request complete removal of your account and data from this"
 " site. This will be done using the following process:"
-msgstr "Estás a punto de solicitar el borrado completo de tu cuenta y datos de esta web. Esto se hará utilizando el siguiente procedimiento:"
+msgstr "Πρόκειται να διαγράψετε το λογαριασμό σας και τυχόν δεδομένα σας από αυτό το site. Αυτό θα γίνει ακολουθώντας την παρακάτω διαδικασία:"
 
 #: djangopeople/templates/delete_account_request.html:10
 msgid ""
 "When you submit the following form, you will receive an email with a private"
 " link."
-msgstr "Cuando envies el siguiente formulario recibirás un correo con un enlace privado."
+msgstr "Όταν καταθέσετε την ακόλουθη φόρμα, θα λάβετε ένα email με έναν ιδιωτικό σύνδεσμο."
 
 #: djangopeople/templates/delete_account_request.html:11
 msgid ""
 "This link (valid for 5 minutes only) will take you to a page where you can "
 "enter your password to actually delete your account."
-msgstr "Este enlace (válido durante sólo 5 minutos) te llevará a una página donde deberás introducir tu clave para borrar tu cuenta definitivamente."
+msgstr "Αυτός ο σύνδεσμος (έγκυρος για μόλις 5 λεπτά) θα σας μεταφέρει σε μια σελίδα όπου μπορείτε να εισάγετε τον κωδικό σας για να πραγματοποιηθεί η διαγραφή του λογαριασμού σας."
 
 #: djangopeople/templates/delete_account_request.html:13
 msgid "If you are ready to proceed, submit the form below."
-msgstr "Si estás listo para continuar, envía el siguiente formulario."
+msgstr "Όταν είστε έτοιμοι να προχωρήσετε, καταθέστε τη φόρμα παρακάτω."
 
 #: djangopeople/templates/delete_account_request.html:16
 msgid "Request account deletion"
-msgstr "Solicita el borrado de la cuenta"
+msgstr "Αίτηση διαγραφής λογαριασμού"
 
 #: djangopeople/templates/delete_account_subject.txt:1
 #, python-format
 msgid "Account deletion on %(domain)s"
-msgstr "Borrado de la cuenta en %(domain)s"
+msgstr "Διαγραφή λογαριασμού στο %(domain)s"
 
 #: djangopeople/templates/edit_account.html:3
 #: djangopeople/templates/edit_account.html:11
 msgid "Account settings"
-msgstr "Configuración de la cuenta"
+msgstr "Ρυθμίσεις λογαριασμού"
 
 #: djangopeople/templates/edit_account.html:16
 #: djangopeople/templates/edit_location.html:4
 #: djangopeople/templates/edit_location.html:18
 msgid "Change your location"
-msgstr "Cambiar tu localidad"
+msgstr "Αλλαγή της τοποθεσίας σας"
 
 #: djangopeople/templates/edit_account.html:17
 msgid "Update your contact details"
-msgstr "Actualiza tus datos de contacto"
+msgstr "Ενημερώστε τις λεπτομέρεις επικοινωνίας"
 
 #: djangopeople/templates/edit_account.html:18
 msgid "Change your privacy settings"
-msgstr "Cambia tu configuración de privacidad"
+msgstr "Αλλαγή των ρυθμίσεων απορρήτου σας"
 
 #: djangopeople/templates/edit_account.html:19
 msgid "Add sites to your portfolio"
-msgstr "Añade webs a tu portfolio"
+msgstr "Προσθήκη ιστοσελίδων στο portfolio σας"
 
 #: djangopeople/templates/edit_account.html:20
 #: djangopeople/templates/edit_password.html:3
 #: djangopeople/templates/edit_password.html:11
 msgid "Change your password"
-msgstr "Cambia tu clave"
+msgstr "Αλλαγή του κωδικού σας"
 
 #: djangopeople/templates/edit_account.html:20
 #, python-format
 msgid ""
 "You do not have a password set - <a href=\"%(password_url)s\">set one "
 "now?</a>"
-msgstr "No has establecido una clave. <a href=\"%(password_url)s\">¿Quieres crear una ahora?</a>"
+msgstr "Δεν έχετε ορίσει κάποιον κωδικό - <a href=\"%(password_url)s\">θέλετε να ορίσετε έναν τώρα;</a>"
 
 #: djangopeople/templates/edit_account.html:21
 msgid "Delete your account"
-msgstr "Borra tu cuenta"
+msgstr "Διαγραφή του λογαριασμού σας"
 
 #: djangopeople/templates/edit_account.html:27
 #, python-format
@@ -741,8 +741,8 @@ msgid ""
 msgid_plural ""
 "You have %(counter)s OpenIDs associated with your account. <a "
 "href=\"%(openid_url)s\">Manage your OpenIDs</a>"
-msgstr[0] "Tienes %(counter)s OpenID asociado a tu cuenta.<a href=\"%(openid_url)s\">Gestiona tu OpenID</a>"
-msgstr[1] "Tienes %(counter)s OpenID asociados a tu cuenta.<a href=\"%(openid_url)s\">Gestiona tus OpenIDs</a>"
+msgstr[0] "Έχετε %(counter)s OpenID συσχετισμένο με το λογαριασμό σας. <a href=\"%(openid_url)s\">Διαχειριστείτε το OpenIDs σας</a>"
+msgstr[1] "Έχετε %(counter)s OpenIDs συσχετισμένα με το λογαριασμό σας. <a href=\"%(openid_url)s\">Διαχειριστείτε τα OpenIDs σας</a>"
 
 #: djangopeople/templates/edit_account.html:30
 #, python-format
@@ -750,89 +750,89 @@ msgid ""
 "If you have an <a href=\"http://openid.net/\">OpenID</a>, you can <a "
 "href=\"%(openid_url)s\">associate it with your account</a>. This will allow "
 "you to log in using your OpenID instead of your password."
-msgstr " Si tienes un <a href=\"http://openid.net/\">OpenID</a>, puedes <a href=\"%(openid_url)s\">asociarlo con tu cuenta</a>. Esto te permitirá entrar en el sistema con tu OpenID en lugar de con tu clave."
+msgstr "Αν έχετε ένα <a href=\"http://openid.net/\">OpenID</a>, μπορείτε να το <a href=\"%(openid_url)s\">συσχετίσετε με τον λογαριασμό σας</a>. Αυτό θα σας επιτρέψει να κάνετε log in χρησιμοποιώντας το OpenID αντί του κωδικού σας."
 
 #: djangopeople/templates/edit_account.html:34
 msgid "Advanced: Use your profile page as an OpenID"
-msgstr "Avancado: Utiliza tu página de perfil como un OpenID"
+msgstr "Για προχωρημένους: Χρησιμοποιήστε τη σελίδα του προφίλ σας ως ένα OpenID"
 
 #: djangopeople/templates/edit_account.html:37
 msgid ""
 "If you already have an OpenID, you can configure your Django People profile "
 "page to delegate to it. This means you'll be able to use your profile page "
 "as an OpenID, without having to sign in to Django People first."
-msgstr "Si ya tienes un OpenID, puedes configurar tu perfil de Django People para establecer la delegación. De este modo podrás utilizar tu página de perfil como OpenID, sin tener que entrar primero en Django People.."
+msgstr "Αν έχετε ήδη ένα OpenID, μπορείτε να παραμετροποιήσετε τη σελίδα του προφίλ σας του Django People για να χρησιμοποιηθεί αυτή ως OpenID. Αυτό σημαίνει ότι μπορείτε να χρησιμοποιήσετε τη σελίδα του προφίλ σας ως OpenID, χωρίς να χρειάζεται να κάνετε sign in στο Django People."
 
 #: djangopeople/templates/edit_account.html:40
 msgid ""
 "Read <a href=\"http://simonwillison.net/2006/Dec/19/openid/\">more about "
 "delegation</a> to learn how to use this form."
-msgstr "Lee <a href=\"http://simonwillison.net/2006/Dec/19/openid/\">más sobre dlegación</a> para aprender cómo utilizar este formulario."
+msgstr "Διαβάστε στο <a href=\"http://simonwillison.net/2006/Dec/19/openid/\">περισσότερα σχετικά με το delegation</a> για να μάθετε πως να χρησιμοποιήσετε αυτή τη φόρμα."
 
 #: djangopeople/templates/edit_account.html:45
 msgid "Update OpenID delegation"
-msgstr "Actualiza la delegación OpenID"
+msgstr "Ενημέρωση της αντιπροσώπησης του OpenID"
 
 #: djangopeople/templates/edit_bio.html:3
 #: djangopeople/templates/edit_bio.html:9
 msgid "Edit your bio"
-msgstr "Edita tu biografía"
+msgstr "Επεξεργασία του βιογραφικού σας"
 
 #: djangopeople/templates/edit_bio.html:14
 msgid ""
 "No HTML allowed, but paragraph tags will be added automatically and URLs "
 "will be turned in to links."
-msgstr "No se permite HTML, pero los marcadores de párrafo serán añadidos automáticamente y las URL se convertirán en enlaces"
+msgstr "Δεν επιτρέπεται η σύνταξη HTML, αλλά τα tags των παραγράφων θα προστεθούν αυτόματα και τα URLs θα μετατραπούν σε συνδέσμους."
 
 #: djangopeople/templates/edit_bio.html:18
 msgid "Update bio"
-msgstr "Actualiza tu biografía"
+msgstr "Ενημέρωση βιογραφικού"
 
 #: djangopeople/templates/edit_finding.html:3
 #: djangopeople/templates/edit_finding.html:9
 msgid "Edit contact information"
-msgstr "Edita la información de contacto"
+msgstr "Επεξεργασία πληροφοριών επικοινωνίας"
 
 #: djangopeople/templates/edit_finding.html:15
 msgid "Contact details"
-msgstr "Detalles de contacto"
+msgstr "Λεπτομέρειες επικοινωνίας"
 
 #: djangopeople/templates/edit_finding.html:29
 msgid "E-mail *"
-msgstr "Correo electrónico *"
+msgstr "E-mail *"
 
 #: djangopeople/templates/edit_finding.html:43
 msgid "Other profiles"
-msgstr "Otros perfiles"
+msgstr "Άλλα προφίλ"
 
 #: djangopeople/templates/edit_finding.html:45
 #: djangopeople/templates/signup.html:102
 msgid "Got profiles on other sites? Enter the URLs below:"
-msgstr "¿Tienes perfiles en otras webs? Introduce las URLs aquí: "
+msgstr "Μήπως έχετε προφιλ σε άλλα sites; Εισάγετε τα URLs παρακάτω:"
 
 #: djangopeople/templates/edit_finding.html:54
 msgid "Instant messaging"
-msgstr "Mensajería instantánea"
+msgstr "Instant messaging"
 
 #: djangopeople/templates/edit_finding.html:56
 #: djangopeople/templates/signup.html:113
 msgid "Use any instant messaging software?"
-msgstr "¿Utilizas algun sistema de mensajería instantánea?"
+msgstr "Χρησιμοποιείτε κάποιο λογισμικό instant messaging;"
 
 #: djangopeople/templates/edit_finding.html:66
 msgid "Privacy settings"
-msgstr "Configuración de privacidad"
+msgstr "Ρυθμίσεις απορρήτου"
 
 #: djangopeople/templates/edit_finding.html:68
 #: djangopeople/templates/signup.html:125
 msgid ""
 "You can set your profile page not to show up in external search engine "
 "results (such as Google or Yahoo!)"
-msgstr "Puedes hacer que tus datos de perfil no sean visibles para los buscadores externos (como Google y Yahoo!)"
+msgstr "Μπορείτε να ρυθμίσετε τη σελίδα του προφίλ σας ούτως ώστε να μην εμφανίζεται στα αποτελέσματα των μηχανών αναζήτησης (όπως Google ή Yahoo!)"
 
 #: djangopeople/templates/edit_finding.html:91
 msgid "Save changes"
-msgstr "Guardar cambios"
+msgstr "Αποθήκευση αλλαγών"
 
 #: djangopeople/templates/edit_location.html:25
 #: djangopeople/templates/signup.html:57
@@ -840,11 +840,11 @@ msgid ""
 "<strong>Zoom and center the map on your location</strong>. Your map location"
 " will be shared in public, so only make it as accurate as makes you "
 "comfortable."
-msgstr "<strong>Haz zoom y centra el mapa en tu localidad</strong>. Tu localización en el mapa será pública, así que sólo la debes establecer con exactitud si lo consideras conveniente."
+msgstr "<strong>Εστιάστε και κεντράρετε την τοποθεσία σας στο χάρτη</strong>. Η τοποθεσία σας θα μοιραστεί με άλλους δημοσίως, οπότε επιλέξτε μια τοποθεσία που να αισθάνεστε άνετα με αυτή."
 
 #: djangopeople/templates/edit_location.html:38
 msgid "Location *"
-msgstr "Localidad *"
+msgstr "Τοποθεσία *"
 
 #: djangopeople/templates/edit_location.html:41
 #: djangopeople/templates/signup.html:75
@@ -852,134 +852,134 @@ msgid ""
 "A short textual description of your location will be displayed on the site. "
 "We attempt to derive this from your position on the map, but you can "
 "customise it if you like."
-msgstr "Una pequeña descripción de tu localidad se mostrará en la web. Intentamos establecerla de tu posición en el mapa, pero puedes personalizarla si lo deseas."
+msgstr "Μια μικρή περιγραφή της τοποθεσία σας που θα εμφανίζεται στο site. Προσπαθούμε να το αντλήσουμε αυτό από τη θέση σας στο χάρτη αλλά μπορείτε να το παραμετροποιήσετε αν θέλετε."
 
 #: djangopeople/templates/edit_location.html:63
 msgid "Change location"
-msgstr "Cambiar localidad"
+msgstr "Αλλαγή τοποθεσίας"
 
 #: djangopeople/templates/edit_password.html:17
 msgid "Change password"
-msgstr "Cambiar clave"
+msgstr "Αλλαγή κωδικού"
 
 #: djangopeople/templates/edit_portfolio.html:3
 #: djangopeople/templates/edit_portfolio.html:17
 msgid "Update your portfolio"
-msgstr "Actualiza tu portfolio"
+msgstr "Ενημερώστε το portfolio σας"
 
 #: djangopeople/templates/edit_portfolio.html:21
 msgid ""
 "Show off the sites and projects you've personally built (or contributed to) "
 "using Django."
-msgstr "Muestra las webs y projectos en los que has realizado (o en los que has contribuido) utilizando Django."
+msgstr "Δείξτε τα sites και τα projects που έχετε εσείς φτιάξει (ή συνεισφέρει) χρησιμοποιώντας το Django."
 
 #: djangopeople/templates/edit_portfolio.html:24
 msgid "Update portfolio"
-msgstr "Actualiza el portfolio."
+msgstr "Ενημέρωση portfolio"
 
 #: djangopeople/templates/edit_skills.html:3
 #: djangopeople/templates/edit_skills.html:9
 msgid "Update your skills"
-msgstr "Actualiza tus habilidades."
+msgstr "Ενημέρωση των δεξιοτήτων σας"
 
 #: djangopeople/templates/edit_skills.html:15
 msgid "Update skills"
-msgstr "Actualizar habilidades"
+msgstr "Ενημέρωση δεξιοτήτων"
 
 #: djangopeople/templates/form.html:3
 msgid "Please correct the errors below and submit the form again."
-msgstr "Por favor corrige los siguientes errores y vuelve a enviar el formulario."
+msgstr "Παρακαλούμε διορθώστε τα λάθη παρακάτω και καταθέστε ξανά τη φόρμα."
 
 #: djangopeople/templates/index.html:33
 #, python-format
 msgid "Showing %(counter)s recent signups (out of %(total_people)s)"
-msgstr "Mostrando %(counter)s subscripciones recientes (de un total de %(total_people)s)"
+msgstr "Εμφανίζονται %(counter)s πρόσφατες εγγραφές (από %(total_people)s)"
 
 #: djangopeople/templates/index.html:33
 #, python-format
 msgid ""
 "if you're a Django developer, why not <a href=\"%(signup_url)s\">add "
 "yourself</a> to the site?"
-msgstr "Si eres un desarrollador Django, ¿por qué no <a href=\"%(signup_url)s\">te unes</a> a este sitio?"
+msgstr "αν είστε ένας Django developer, γιατί να μην <a href=\"%(signup_url)s\">προσθέσετε τον εαυτό σας</a> στο site;"
 
 #: djangopeople/templates/index.html:50
 msgid ""
 "Looking for a Django job? check out <a "
 "href=\"http://djangogigs.com/\">Djangogigs.com</a>"
-msgstr "¿Estás buscando un trabajo Django? Dale un vistazo a <a href=\"http://djangogigs.com/\">Djangogigs.com</a>"
+msgstr "Ψάχνετε για κάποια Django εργασία; Δείτε στο <a href=\"http://djangogigs.com/\">Djangogigs.com</a>"
 
 #: djangopeople/templates/irc_active.html:4
 #: djangopeople/templates/irc_active.html:7
 msgid "Active on IRC in the past hour"
-msgstr "Activo en el IRC en la última hora"
+msgstr "Ενεργοί στο IRC την τελευταία ώρα"
 
 #: djangopeople/templates/irc_active.html:8
 msgid "No one is currently active"
-msgstr "No hay nadie activo."
+msgstr "Κανείς δεν είναι αυτή τη στιγμή ενεργός"
 
 #: djangopeople/templates/irc_active.html:26
 #, python-format
 msgid "<strong>%(nick)s</strong>, active %(since)s ago"
-msgstr "<strong>%(nick)s</strong>, activo desde %(since)s"
+msgstr "<strong>%(nick)s</strong>, ενεργοί πριν από %(since)s"
 
 #: djangopeople/templates/login.html:50
 msgid "Your login attempt failed."
-msgstr "Falló tu intento de entrar"
+msgstr "Η προσπάθεια εισόδου σας απέτυχε."
 
 #: djangopeople/templates/login.html:58
 msgid "Lost your password?"
-msgstr "¿Olvidaste tu clave?"
+msgstr "Ξεχάσατε τον κωδικό σας;"
 
 #: djangopeople/templates/login.html:69
 msgid "Or sign in with your OpenID"
-msgstr "O entra con tu OpenID"
+msgstr "Ή κάντε sign in με το OpenID σας"
 
 #: djangopeople/templates/login.html:78
 msgid "OpenID not working?"
-msgstr "¿el OpenID no está funcionando?"
+msgstr "Δε δουλεύει το OpenID;"
 
 #: djangopeople/templates/login.html:81
 msgid "Log in with OpenID"
-msgstr "Entra con OpenID"
+msgstr "Κάντε log in με το OpenID"
 
 #: djangopeople/templates/profile.html:53
 msgid "(change)"
-msgstr "(cambiar)"
+msgstr "(αλλαγή)"
 
 #: djangopeople/templates/profile.html:66
 msgid "(edit bio)"
-msgstr "(editar biografía)"
+msgstr "(επεξεργασία βιογραφικού)"
 
 #: djangopeople/templates/profile.html:66
 msgid "Create your bio"
-msgstr "Crea tu biografía"
+msgstr "Δημιουργήστε το βιογραφικό σας"
 
 #: djangopeople/templates/profile.html:73
 msgid "(edit skills)"
-msgstr "(editar habilidades)"
+msgstr "(επεξεργασία δεξιοτήτων)"
 
 #: djangopeople/templates/profile.html:78
 msgid "Save"
-msgstr "Guardar"
+msgstr "Αποθήκευση"
 
 #: djangopeople/templates/profile.html:81
 #, python-format
 msgid "Looking for <strong>%(type)s</strong> work"
-msgstr "Buscando un trabajo de <strong>%(type)s</strong>"
+msgstr "Ψάχνετε για <strong>%(type)s</strong> εργασία"
 
 #: djangopeople/templates/profile.html:86
 #, python-format
 msgid "Finding %(name)s"
-msgstr "Buscando %(name)s"
+msgstr "Βρίσκοντας %(name)s"
 
 #: djangopeople/templates/profile.html:86
 #: djangopeople/templates/profile.html:109
 msgid "(edit)"
-msgstr "(editar)"
+msgstr "(επεξεργασία)"
 
 #: djangopeople/templates/profile.html:88
 msgid "email:"
-msgstr "correo electrónico:"
+msgstr "email:"
 
 #: djangopeople/templates/profile.html:91
 msgid "blog:"
@@ -988,82 +988,82 @@ msgstr "blog:"
 #: djangopeople/templates/profile.html:95
 #, python-format
 msgid "(active %(since)s ago)"
-msgstr "(activo desde  %(since)s)"
+msgstr "(ενεργός πριν από %(since)s)"
 
 #: djangopeople/templates/profile.html:109
 #, python-format
 msgid "%(name)s's Django portfolio"
-msgstr "Porfolio Django de %(name)s"
+msgstr "%(name)s's Django portfolio"
 
 #: djangopeople/templates/profile.html:110
 #, python-format
 msgid "Django projects %(name)s has contributed to"
-msgstr "Proyectos Django a los que %(name)s ha contribuido"
+msgstr "Django projects %(name)s έχουν συνεισφέρει στο"
 
 #: djangopeople/templates/profile.html:116
 #, python-format
 msgid "<a href=\"%(portfolio_url)s\">Add some sites</a> to your portfolio"
-msgstr "<a href=\"%(portfolio_url)s\">Añade algunas webs</a> a tu porfolio"
+msgstr "<a href=\"%(portfolio_url)s\">Προσθέστε μερικά sites</a> στο portfolio σας"
 
 #: djangopeople/templates/profile.html:123
 #, python-format
 msgid "People near %(name)s"
-msgstr "Gente cerca de  %(name)s"
+msgstr "Άτομα κοντά %(name)s"
 
 #: djangopeople/templates/profile.html:130
 #, python-format
 msgid "%(counter)s mile away"
 msgid_plural "%(counter)s miles away"
-msgstr[0] "a %(counter)s milla"
-msgstr[1] "a %(counter)s millas"
+msgstr[0] "%(counter)s μίλι μακριά"
+msgstr[1] "%(counter)s μίλια μακριά"
 
 #: djangopeople/templates/recent.html:3 djangopeople/templates/recent.html:9
 msgid "Recent people"
-msgstr "Gente reciente"
+msgstr "Πρόσφατα άτομα"
 
 #: djangopeople/templates/search.html:3 djangopeople/templates/search.html:9
 #, python-format
 msgid "Search: %(q)s"
-msgstr "Buscar:  %(q)s"
+msgstr "Αναζήτηση: %(q)s"
 
 #: djangopeople/templates/search.html:3 djangopeople/templates/search.html:9
 #: djangopeople/templates/search.html:12
 msgid "Search"
-msgstr "Buscar"
+msgstr "Αναζήτηση"
 
 #: djangopeople/templates/search.html:10
 #, python-format
 msgid "%(counter)s result"
 msgid_plural "%(counter)s results"
-msgstr[0] "%(counter)s resultado"
-msgstr[1] "%(counter)s resultados"
+msgstr[0] "%(counter)s αποτελέσμα"
+msgstr[1] "%(counter)s αποτελέσματα"
 
 #: djangopeople/templates/search.html:11
 msgid "Terms must be three or more characters"
-msgstr "Los términos deben ser de tres o más caracteres"
+msgstr "Οι όροι πρέπει να είναι τρεις ή περισσότεροι χαρακτήρες"
 
 #: djangopeople/templates/search.html:13
 msgid "This tool searches by username, first name and last name."
-msgstr "Esta herramienta busca por nombre de usuario, nombre y apellido."
+msgstr "Αυτό το εργαλείο ψάχνει βάση ονόματος χρήστη, ονόματος και επιθέτου."
 
 #: djangopeople/templates/search.html:27
 msgid "No users found."
-msgstr "No se encontraron usuarios"
+msgstr "Δεν βρέθηκαν χρήστες"
 
 #: djangopeople/templates/signup.html:4
 msgid "Sign up"
-msgstr "Regístrate"
+msgstr "Εγγραφή"
 
 #: djangopeople/templates/signup.html:15
 msgid "Sign up as a Django Person"
-msgstr "Regístrate cono una persona Django"
+msgstr "Εγγραφή ως ένα Django άτομο"
 
 #: djangopeople/templates/signup.html:21
 #, python-format
 msgid ""
 "Got an <strong class=\"openid\">OpenID</strong>? <a "
 "href=\"%(openid_url)s\">Sign up with your OpenID now!</a>"
-msgstr "¿Tienes un <strong class=\"openid\">OpenID</strong>?<a href=\"%(openid_url)s\">Regístrate con tu OpenID ahora!</a>"
+msgstr "Έχετε ένα <strong class=\"openid\">OpenID</strong>; <a href=\"%(openid_url)s\">Εγγραφείτε με το δικό σας OpenID τώρα!</a>"
 
 #: djangopeople/templates/signup.html:23
 #, python-format
@@ -1071,103 +1071,103 @@ msgid ""
 "Your new account will be associated with with your OpenID: <strong "
 "class=\"openid\">%(openid)s</strong> (<a "
 "href=\"%(openid_signout)s?next=%(signup_url)s\">don't associate</a>)"
-msgstr "Tu nueva cuenta será asociada con tu OpenID: OpenID: <strong class=\"openid\">%(openid)s</strong> (<a href=\"%(openid_signout)s?next=%(signup_url)s\">no asociar</a>)"
+msgstr "Ο καινούργιος σας λογαριασμός θα συσχετιστεί με το δικό σας OpenID: <strong class=\"openid\">%(openid)s</strong> (<a href=\"%(openid_signout)s?next=%(signup_url)s\">να μην γίνει συσχέτιση</a>)"
 
 #: djangopeople/templates/signup.html:26
 msgid "1. Tell us who you are"
-msgstr "1. Dinos quien eres"
+msgstr "1. Πείτε μας ποιος/ποια είστε"
 
 #: djangopeople/templates/signup.html:56
 msgid "2. Tell us where you live"
-msgstr "2. Dinos dónde vives"
+msgstr "2. Πείτε μας που μένετε"
 
 #: djangopeople/templates/signup.html:60
 msgid ""
 "Latitude and longitude are missing. Please use the map to provide your "
 "location."
-msgstr "Faltan la latitud y la longitud. Por favor, utiliza el mapa para darnos tu localización."
+msgstr "Το γεωγραφικό πλάτος και μήκος λείπουν. Παρακαλούμε χρησιμοποιήστε το χάρτη για να καθορίσετε τη θέση σας."
 
 #: djangopeople/templates/signup.html:90
 msgid "3. And a bit about you …"
-msgstr "3. Y un poco sobre ti"
+msgstr "3. Και λίγα λόγια για εσάς ..."
 
 #: djangopeople/templates/signup.html:123
 msgid "4. Your privacy settings"
-msgstr "4. Tu configuración de privacidad"
+msgstr "4. Οι ρυθμίσεις του απορρήτου σας"
 
 #: djangopeople/templates/signup.html:139
 msgid "5. Your skills and interests"
-msgstr "5. Tus habilidades e intereses"
+msgstr "5. Οι δεξιότητες και τα ενδιαφέροντα σας"
 
 #: djangopeople/templates/signup.html:141
 msgid ""
 "Tag yourself with your particular skills and interests, e.g. postgresql, "
 "nginx, css. Separate them with commas; spaces are allowed."
-msgstr "Defínete a ti mismo con tus habilidades e intereses, por ejemplo postgres, ngnix, css. Sepáralos con comas, puedes utilizar espacios."
+msgstr "Κάντε tag τον εαυτό σας με συγκεκριμένες δεξιότητες και ενδιαφέροντα, π.χ postgresql, nginx, css. Διαχωρίστε τα με κόμματα ή κενά."
 
 #: djangopeople/templates/signup.html:150
 msgid "Sign me up"
-msgstr "Inscríbeme"
+msgstr "Εγγραφή"
 
 #: djangopeople/templates/skill.html:8
 #, python-format
 msgid "%(counter)s Django Person mention this skill"
 msgid_plural "%(counter)s Django People mention this skill"
-msgstr[0] "%(counter)s persona mencionó esta habilidad"
-msgstr[1] "%(counter)s personas mencionaron esta habilidad"
+msgstr[0] "%(counter)s Django People αναφέρουν αυτή τη δεξιότητα"
+msgstr[1] "%(counter)s Django People αναφέρει αυτή τη δεξιότητα"
 
 #: djangopeople/templates/skills.html:4
 msgid "Skills"
-msgstr "Habilidades"
+msgstr "Δεξιότητες"
 
 #: djangopeople/templates/password_reset/recovery_done.html:3
 #: djangopeople/templates/password_reset/recovery_done.html:5
 msgid "New password set"
-msgstr "Nueva clave establecida"
+msgstr "Νέο σετ κωδικών"
 
 #: djangopeople/templates/password_reset/recovery_done.html:9
 #, python-format
 msgid ""
 "Your password has successfully been reset. You can use it right now on the "
 "<a href=\"%(login_url)s\">login page</a>."
-msgstr "Tu contraseña ha sido restablecida con éxito. Puedes utilizarla de inmediato en la <a href=\"%(login_url)s\">página de inicio de sesión</a>."
+msgstr "Ο κωδικός σας άλλαξε με επιτυχία. Μπορείτε να τον χρησιμοποιήσετε τώρα στη σελίδα <a href=\"%(login_url)s\">login</a>."
 
 #: djangopeople/templates/password_reset/recovery_form.html:3
 #: djangopeople/templates/password_reset/recovery_form.html:5
 #: djangopeople/templates/password_reset/reset.html:3
 #: djangopeople/templates/password_reset/reset.html:5
 msgid "Recover your account"
-msgstr "Recupera tu cuenta"
+msgstr "Επανακτήστε το λογαριασμό σας"
 
 #: djangopeople/templates/password_reset/recovery_form.html:9
 msgid ""
 "Enter your username and we'll send an account recovery link to the e-mail "
 "address associated with your account."
-msgstr "Introduce tu nombre de usuario y te enviaremos un enlace para recuperar tu cuenta al e-mail asociado a tu cuenta."
+msgstr "Εισάγετε το όνομα χρήστη και θα σας στείλουμε έναν σύνδεσμο επανάκτησης του λογαριασμού σας στη διεύθυνση e-mail που είναι συσχετισμένη με τον λογαρισμό σας."
 
 #: djangopeople/templates/password_reset/recovery_form.html:13
 msgid "Recover account"
-msgstr "Recuperar cuenta"
+msgstr "Επανάκτηση λογαριασμού"
 
 #: djangopeople/templates/password_reset/recovery_form.html:17
 #, python-format
 msgid ""
 "An email has just been sent to <strong>%(email)s</strong>. Use the link in "
 "it to set a new password."
-msgstr "Acabamos de enviar un correo electrónico a <strong>%(email)s</strong>. Utiliza el enlace que encontrarás en el para establecer una nueva clave."
+msgstr "Ένα email έχει σταλεί στο<strong>%(email)s</strong>. Χρησιμοποιήστε τον σύνδεσμο μέσα στο email για να ορίσετε ένα νέο κωδικό."
 
 #: djangopeople/templates/password_reset/reset.html:9
 #, python-format
 msgid ""
 "Sorry, this password reset link is invalid. You can still <a "
 "href=\"%(recovery_url)s\">request a new one</a>."
-msgstr "Lo sentimos, el enlace para restablecer la clave ya no es válido. Puedes <a href=\"%(recovery_url)s\">solicitar uno nuevo</a>."
+msgstr "Συγνώμη αλλά αυτός ο σύνδεσμος μηδενισμού του κωδικού σας δεν είναι έγκυρος. Μπορείτε, αν θέλετε, να <a href=\"%(recovery_url)s\">ζητήσετε έναν καινούργιο</a>."
 
 #: djangopeople/templates/password_reset/reset.html:11
 #, python-format
 msgid "Hi, <strong>%(username)s</strong>. Please choose your new password."
-msgstr "Hola, <strong>%(username)s</strong>. Por favor, elige tu nueva clave"
+msgstr "Γεια σας, <strong>%(username)s</strong>. Παρακαλώ εισάγετε έναν νέο κωδικό."
 
 #: djangopeople/templates/password_reset/reset.html:14
 msgid "Set new password"
-msgstr "Establece tu nueva clave"
+msgstr "Εισάγετε έναν νέο κωδικό"
