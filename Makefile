@@ -10,7 +10,7 @@ txpush:
 	tx push -s
 
 txpull:
-	tx pull -a
+	tx pull -a --minimum-perc=100
 
 initialdeploy:
 	git push heroku master

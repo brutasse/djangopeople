@@ -36,6 +36,19 @@ To run the tests::
 
     python manage.py test
 
+Translations
+------------
+
+To update translations from Transifex, run::
+
+    make txpull
+    python manage.py compilemessages
+
+To push new strings to Transifex, run::
+
+    python manage.py makemessages -l en
+    make txpush
+
 Deploying on Heroku
 -------------------
 
