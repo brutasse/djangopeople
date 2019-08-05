@@ -37,45 +37,20 @@ strong.openid {
 /* @group Headings */
 
 h1 {
-	font-size: 3em;
+	font-size: 1.5em;
 }
 
-h2 {
-	font-family: Georgia, serif;
-	margin: 0.8em 0 1em 0;
-	font-size: 1.5em;
-	line-height: 1em;
-	color: #234F32;
-}
 
 /* @end */
 
 /* @group Links */
-
+a {
+    color: #25c488;
+}
 a img {
 	border: none;
 }
 
-a:link,
-a:visited,
-a:hover,
-a:active,
-a:focus {
-	border: none;
-	color: #AB5603;
-	text-decoration: underline;
-	padding: 0 1px;
-}
-a:hover,
-a:active,
-a:focus {
-	background-color: #E0FFB8;
-	color: #414F32;
-	text-decoration: none;
-}
-a:active {
-	text-decoration: underline;
-}
 a.nobg {
 	text-decoration: none;
 }
@@ -486,17 +461,11 @@ ul.split li {
 
 .mapContainer {
 	text-align: left;
-	border-style: solid;
-	border-color: #92CC47;
-	border-width: 0.7em 0 0.3em;
 	margin: 0 0 1em 0;
 }
 
 #map {
 	background-color: #99B3CC;
-	border: 1px solid #326342;
-	border-width: 2px 0 1px 0;
-	margin: 2px 0 1px 0;
 	width: 100%;
 }
 
@@ -568,10 +537,6 @@ div.highlight a.ext:focus {
 	background-repeat: no-repeat;
 }
 p.mapnote {
-	background-color: #E0FFB8;
-	border-color: #94DA3A;
-	border-style: solid;
-	border-width: 1px 0;
 	padding: 0.5em 1em;
 	margin: 1.45em 0 2em 0;
 	color: #234F32;
@@ -673,44 +638,6 @@ body {
 	text-align: center;
 }
 
-/* @group header */
-
-.header {
-	line-height: 1;
-	padding: 3em 0 0.5em 0;
-}
-.header h1 .meta {
-	font-size: 12px;
-	display: inline;
-	float: none;
-	color: #AB5603;
-}
-.header h1 .meta:hover,
-.header h1 .meta:active,
-.header h1 .meta:focus {
-	color: #414F32;
-}
-.header img.main {
-	float: left;
-	margin: 3px 15px 0 0;
-	border: 1px solid #326342;
-	padding: 1px;
-	background: white;
-	height: 5em;
-}
-
-.header .meta {
-	color: #90B282;
-	float: left;
-	width: 70%;
-	font-size: 1.7em;
-	margin: 0.5em 0 0 0;
-}
-
-.header .flag {
-	height: 0.75em;
-}
-
 /* @group Login */
 
 div#hiddenLogin {
@@ -763,53 +690,71 @@ div#hiddenLogin .openid a:active {
 /* @group Navigation */
 
 .nav {
-	border-bottom: 1px solid #92CC47;
+    background: #0C4B33;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    padding: 10px 0 6px;
+    display: flex;
 }
-.nav:hover {
-	border-bottom: 1px solid #326342;
-}
-
 .nav ul {
-	margin: 0 auto;
-	width: 70%;
-	padding: 0.5em 2% 0 2%;
-	min-width: 30em;
-	max-width: 70em;
-	overflow: hidden;
-	text-align: left;
-	list-style-type: none;
+    list-style: none;
+    display: flex;
+    margin: 18px;
+    margin-left: auto;
+    position: relative;
+    padding: 0 4.16667%;
+}
+.nav ul a {
+    margin: unset;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: left;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    padding: 20px 10px;
 }
 
-.nav ul li {
-	margin:0;
-	padding:0 1em 0 0;
-	display: inline;
-	font-size: 0.8em;
-	white-space: nowrap;
-	color: #234F32;
-}
-
-.nav a:link,
-.nav a:visited,
 .nav a:hover,
 .nav a:active,
 .nav a:focus {
-	color: #234F32;
-	background-color: #E0FFB8;
-	text-decoration: none;
-	padding: 3px 5px;
+    color: #44B78B;
+    text-decoration: none;
 }
-.current a:link,
-.current a:visited {
-	background-color:#92CC47;
-	color: white;
+/* @end */
+
+/* @group header */
+
+.header {
+    display: flex;
+    padding: 0 8%;
+	align-items: center;
 }
-.nav a:hover,
-.nav a:active,
-.nav a:focus {
-	background-color: #326342;
-	color: white;
+.header h1 {
+    color: #fff;
+    padding: 0;
+    padding-left: 8px;
+    margin: 0;
+    font-weight: bold;
+    font-size: 27px;
 }
+.header h2 {
+    color: #44B78B;
+    padding: 8px;
+    margin: 0;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0 0 0 10px;
+    width: 200px;
+    text-align: left;
+    line-height: 13px;
+}
+.header h2 a {
+    font-weight: bold;
+}
+
 /* @end */
 
 /* @group content */
@@ -833,8 +778,6 @@ div#hiddenLogin .openid a:active {
 	float: right;
 	width: 36%;
 }
-
-/* @end */
 
 /* @end */
 

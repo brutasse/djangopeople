@@ -377,14 +377,14 @@ class DjangoPeopleTest(TestCase):
         self.assertContains(response, 'TRACKED')
 
     def test_tagline(self):
-        """Tagline shows up on the homepage, not elsewhere"""
+        """Tagline shows up."""
         url = reverse('index')
         response = self.client.get(url)
         self.assertContains(response, 'Discover users of the')
 
         url = reverse('login')
         response = self.client.get(url)
-        self.assertNotContains(response, 'Discover users of the')
+        self.assertContains(response, 'Discover users of the')
 
     @patch('requests.get')
     def test_geonames(self, get):

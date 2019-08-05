@@ -14,6 +14,11 @@
 <body{% block bodymeta %}{% endblock %} data-static-url="{{ STATIC_URL }}">
 <div class="wrapper">
 	<div class="nav">
+		<div class="header">
+			<img src="{% static "djangopeople/img/logo-django.svg" %}"></img>
+			{% block header %}<h1>{% trans "People" %}</h1>{% endblock %}
+			{% block tagline %}<h2 class="tagline">{% blocktrans %}Discover users of the <a href="https://www.djangoproject.com/">Django Web framework</a> near you{% endblocktrans %}</h2>{% endblock %}
+		</div>
 		<ul>
 			<li{% block nav_li_class_home %}{% endblock %}><a href="{% url "index" %}">{% trans "home" %}</a></li>
 			<li{% block nav_li_class_about %}{% endblock %}><a href="{% url "about" %}">{% trans "about" %}</a></li>
@@ -38,10 +43,6 @@
 				</form>
 			</div>
 		{% endif %}
-	</div>
-	<div class="header content">
-		{% block header %}<h1>{% trans "Django People" %}</h1>{% endblock %}
-		{% block tagline %}{% if home %}<h2 class="tagline">{% blocktrans %}Discover users of the <a href="https://www.djangoproject.com/">Django Web framework</a> near you{% endblocktrans %}</h2>{% endif %}{% endblock %}
 	</div>
 	{% block map %}{% endblock %}
 	<div class="content">
