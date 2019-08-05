@@ -18,7 +18,7 @@ Hacking
     git clone git@github.com:django/djangopeople.git
     cd djangopeople
     mkvirtualenv -p python3.7 djangopeople
-    pip install -r requirements.txt
+    pip install -r requirements-dev.txt
     add2virtualenv .
     npm install
     ln -s node_modules/.bin/grunt grunt
