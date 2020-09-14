@@ -354,8 +354,8 @@ class FindingForm(forms.ModelForm):
                 'field': BoundField(self, field, 'im_' + shortname),
             })
 
-    first_name = forms.CharField(label=_('First name'))
-    last_name = forms.CharField(label=_('Last name'))
+    first_name = forms.CharField(label=_('First name'), max_length=30)
+    last_name = forms.CharField(label=_('Last name'), max_length=30)
     email = forms.EmailField(label=_('E-mail'))
     blog = forms.URLField(label=_('Blog URL'), required=False)
     privacy_search = forms.ChoiceField(
